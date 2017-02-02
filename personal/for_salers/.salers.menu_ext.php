@@ -5,57 +5,44 @@ global $APPLICATION;
 global $USER;
 $aMenuNativeExt = array();
 
-
-
-if (!$GLOBALS["USER"]->IsAuthorized())
-{
-	$arParamsToDelete = array(
-		"login",
-		"logout",
-		"register",
-		"forgot_password",
-		"change_password",
-		"confirm_registration",
-		"confirm_code",
-		"confirm_user_id",
-	);
-
-	$loginPath = SITE_DIR."login/?backurl=".urlencode($APPLICATION->GetCurPageParam("", array_merge($arParamsToDelete, array("backurl")), $get_index_page=false));
-	$aMenuNativeExt = array(
+// если пользователь продавец, то для него отображаются дополнительные пункты меню
+if (isUserSaler()) {
+	$aMenuLinks = Array(
 		Array(
-			"Войти",
-			$loginPath,
+			"Для продавцов", 
+			"/personal/for_salers/", 
+			Array(), 
+			Array(), 
+			"" 
+		),
+		Array(
+			"Мои продажи",
+			SITE_DIR."personal/for_salers/my_sales/",
 			Array(),
 			Array(),
 			""
+		),
+		Array(
+			"Прайс-лист баллов",
+			SITE_DIR."personal/for_salers/points_price_list/",
+			Array(),
+			Array(),
+			""
+		),
+		Array(
+			"Задать вопрос",
+			SITE_DIR."personal/for_salers/ask_question/",
+			Array(),
+			Array(),
+			""
+		),
+		Array(
+			"Персональные данные", 
+			"/personal/", 
+			Array(), 
+			Array(), 
+			"" 
 		)
 	);
 }
-else
-{
-	$aMenuNativeExt = Array(
-		Array(
-			"Изменить профиль",
-			SITE_DIR."personal/profile/",
-			Array(),
-			Array(),
-			""
-		),
-		Array(
-			"Заказы",
-			SITE_DIR."personal/order/",
-			Array(),
-			Array(),
-			""
-		),
-		Array(
-			"Выйти",
-			$APPLICATION->GetCurPageParam("logout=yes", Array("logout")),
-			Array(),
-			Array(),
-			""
-		),
-	);
-}
-$aMenuLinks = array_merge($aMenuLinks, $aMenuNativeExt);
 ?>

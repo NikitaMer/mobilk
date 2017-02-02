@@ -14,4 +14,25 @@ function logger($data, $file) {
         FILE_APPEND
     );
 }
+
+ /**
+ *
+ * @param mixed $data
+ * @param bool $admin_check
+ * @return void
+ *
+ * */
+
+function arshow($data, $admin_check = true){
+    global $USER;
+    $USER = new Cuser;
+    if ($adminCheck) {
+        if (!$USER->IsAdmin()) {
+            return false;
+        }
+    }
+    echo "<pre>";
+    print_r($data);
+    echo "</pre>";
+}
 ?>
