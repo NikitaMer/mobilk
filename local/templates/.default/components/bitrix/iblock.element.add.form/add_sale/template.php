@@ -1,30 +1,27 @@
 <?
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 $this->setFrameMode(false);
-
 if (!empty($arResult["ERRORS"])):?>
 	<?ShowError(implode("<br />", $arResult["ERRORS"]))?>
 <?endif;?>
+<h2 class="send_saler_report_header"><?= GetMessage("SEND_SALE_REPORT") ?></h2>
+<? if (!$arResult['USER_HAVE_ACTIVE_REQUESTS']) { ?>
 <form name="iblock_add" action="<?= POST_FORM_ACTION_URI ?>" method="post" enctype="multipart/form-data">
 	<?=bitrix_sessid_post()?>
-	<table class="data-table">
-		<thead>
-			<tr>
-				<td colspan="2">&nbsp;</td>
-			</tr>
-		</thead>
-		<?if (is_array($arResult["PROPERTY_LIST"]) && !empty($arResult["PROPERTY_LIST"])):?>
-		<tbody>
+		<? if (is_array($arResult["PROPERTY_LIST"]) && !empty($arResult["PROPERTY_LIST"])) { ?>
+		<div class="webFormItems">
 			<? foreach ($arResult["PROPERTY_LIST"] as $propertyID) { ?>
-				<tr style="<?= $propertyID == "NAME" ? "display: none" : "" ?>">
-					<td>
+				<div class="webFormItem" style="<?= $propertyID == "NAME" ? "display: none" : "" ?>">
+					<div class="webFormItemCaption">
+						<div class="webFormItemLabel">
 						<? if (intval($propertyID) > 0) { ?>
 							<?= $arResult["PROPERTY_LIST_FULL"][$propertyID]["NAME"] ?>
 						<? } else { ?>
 							<?= !empty($arParams["CUSTOM_TITLE_" . $propertyID]) ? $arParams["CUSTOM_TITLE_" . $propertyID] : GetMessage("IBLOCK_FIELD_" . $propertyID) ?>
 						<? } ?>
-					</td>
-					<td>
+						</div>
+					</div>
+					<div class="webFormItemField">
 						<?
 						if (intval($propertyID) > 0)
 						{
@@ -65,6 +62,7 @@ if (!empty($arResult["ERRORS"])):?>
 
 						switch ($INPUT_TYPE) {
 							case "S":
+							case "USER_TYPE":
 							case "N":
 								for ($i = 0; $i<$inputNum; $i++)
 								{
@@ -88,18 +86,36 @@ if (!empty($arResult["ERRORS"])):?>
 									$value = $arResult['USER_FULL_NAME'];
 								}
 								?>
-								<input type="text" name="PROPERTY[<?=$propertyID?>][<?=$i?>]" size="25" value="<?=$value?>" /><?
+								<?
+								if ($arResult["PROPERTY_LIST_FULL"][$propertyID]["USER_TYPE"] == "Date") { ?>
+									<div class="sale_date_calendar">
+									<? $APPLICATION->IncludeComponent(
+										'bitrix:main.calendar',
+										'',
+										array(
+											'FORM_NAME' => 'iblock_add',
+											'INPUT_NAME' => "PROPERTY[".$propertyID."][".$i."]",
+											'INPUT_VALUE' => $value,
+										),
+										null,
+										array('HIDE_ICONS' => 'Y')
+									); ?>
+									</div>
+									<input type="text" readonly data-field-type="calendar" class="inputtext" name="PROPERTY[<?=$propertyID?>][<?=$i?>]" size="25" value="<?=$value?>" />
+								<? } else { ?>
+									<input type="text" class="inputtext" name="PROPERTY[<?=$propertyID?>][<?=$i?>]" size="25" value="<?=$value?>" /><?
+									}
 								}
 							break;
 						} ?>
-					</td>
-				</tr>
+					</div>
+				</div>
 			<? } ?>
-		</tbody>
-		<?endif?>
-		<tfoot>
-			<tr>
-				<td colspan="2">
+		</div>
+		<? } ?>
+		<div class="webFormTools">
+			<div class="tb">
+				<div class="tc">
 					<input type="submit" name="iblock_submit" value="<?=GetMessage("IBLOCK_FORM_SUBMIT")?>" />
 					<? if (strlen($arParams["LIST_URL"]) > 0) { ?>
 						<input type="submit" name="iblock_apply" value="<?=GetMessage("IBLOCK_FORM_APPLY")?>" />
@@ -110,8 +126,10 @@ if (!empty($arResult["ERRORS"])):?>
 							onclick="location.href='<? echo CUtil::JSEscape($arParams["LIST_URL"])?>';"
 						>
 					<? } ?>
-				</td>
-			</tr>
-		</tfoot>
-	</table>
+				</div>
+			</div>
+		</div>
 </form>
+<? } else { ?>
+	<?= GetMessage('USER_HAVE_ACTIVE_REQUESTS') ?>
+<? } ?>
