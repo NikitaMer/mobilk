@@ -13,32 +13,35 @@
 $this->setFrameMode(true);
 ?>
 <form name="<?echo $arResult["FILTER_NAME"]."_form"?>" action="<?echo $arResult["FORM_ACTION"]?>" method="get">
-	<?foreach($arResult["ITEMS"] as $arItem):
-		if(array_key_exists("HIDDEN", $arItem)):
+	<? foreach($arResult["ITEMS"] as $arItem) {
+		if(array_key_exists("HIDDEN", $arItem)) {
 			echo $arItem["INPUT"];
-		endif;
-	endforeach;?>
-	<table class="data-table" cellspacing="0" cellpadding="2">
-	<thead>
-		<tr>
-			<td colspan="2" align="center"><?=GetMessage("IBLOCK_FILTER_TITLE")?></td>
-		</tr>
-	</thead>
-	<tbody>
-		<?foreach($arResult["ITEMS"] as $arItem):?>
-			<?if(!array_key_exists("HIDDEN", $arItem)):?>
-				<tr>
-					<td valign="top"><?=$arItem["NAME"]?>:</td>
-					<td valign="top"><?=$arItem["INPUT"]?></td>
-				</tr>
-			<?endif?>
-		<?endforeach;?>
-	</tbody>
-	<tfoot>
-		<tr>
-			<td colspan="2">
-				<input type="submit" name="set_filter" value="<?=GetMessage("IBLOCK_SET_FILTER")?>" /><input type="hidden" name="set_filter" value="Y" />&nbsp;&nbsp;<input type="submit" name="del_filter" value="<?=GetMessage("IBLOCK_DEL_FILTER")?>" /></td>
-		</tr>
-	</tfoot>
-	</table>
+		}
+	} ?>
+	<? //arshow($arResult["ITEMS"]) ?>
+	<div class="webFormItems">
+		<? foreach($arResult["ITEMS"] as $arItem) { ?>
+			<? if(!array_key_exists("HIDDEN", $arItem)) { ?>
+				<div class="webFormItem">
+					<div class="webFormItemCaption">
+						<div class="webFormItemLabel">
+						<?= $arItem["NAME"] ?>
+						</div>
+					</div>
+					<div class="webFormItemField <? if ($arItem["TYPE"] == "DATE_RANGE") { echo "date-range" ;} ?> ">
+						<?= $arItem["INPUT"] ?>
+					</div>
+				</div>
+			<? } ?>
+		<? } ?>
+	</div>
+	<div class="webFormTools">
+		<div class="tb">
+			<div class="tc salers_reports_buttons">
+				<input type="submit" name="set_filter" value="<?=GetMessage("IBLOCK_SET_FILTER")?>" />
+				<input type="hidden" name="set_filter" value="Y" />
+				<input type="submit" name="del_filter" value="<?=GetMessage("IBLOCK_DEL_FILTER")?>" />
+			</div>
+		</div>
+	</div>
 </form>

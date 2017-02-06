@@ -1,0 +1,23 @@
+.date-range input {
+	width: 35% !important;
+}
+
+.send_saler_report_header {
+	font-weight: 700;
+}
+
+.date-range img {
+	visibility: hidden;
+	height: 0 !important;
+	width: 0 !important;
+	position: relative;
+    left: -30%;
+}
+
+.salers_reports_buttons input {
+	width: 35% !important;
+}
+
+.salers_reports_buttons {
+	padding-left: 0 !important;
+}
