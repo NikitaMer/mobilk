@@ -4,6 +4,9 @@ $this->setFrameMode(false);
 if (!empty($arResult["ERRORS"])):?>
 	<?ShowError(implode("<br />", $arResult["ERRORS"]))?>
 <?endif;?>
+<?if (strlen($arResult["MESSAGE"]) > 0):?>
+	<?ShowNote($arResult["MESSAGE"])?>
+<?endif?>
 <h2 class="send_saler_report_header"><?= GetMessage("SEND_SALE_REPORT") ?></h2>
 <? if (!$arResult['USER_HAVE_ACTIVE_REQUESTS']) { ?>
 <form name="iblock_add" action="<?= POST_FORM_ACTION_URI ?>" method="post" enctype="multipart/form-data">
@@ -11,6 +14,7 @@ if (!empty($arResult["ERRORS"])):?>
 		<? if (is_array($arResult["PROPERTY_LIST"]) && !empty($arResult["PROPERTY_LIST"])) { ?>
 		<div class="webFormItems">
 			<? foreach ($arResult["PROPERTY_LIST"] as $propertyID) { ?>
+				<? if ($propertyID == SALER_REPORT_PRODUCT_ID_PROPERTY_ID) { continue; } ?>
 				<div class="webFormItem" style="<?= $propertyID == "NAME" ? "display: none" : "" ?>">
 					<div class="webFormItemCaption">
 						<div class="webFormItemLabel">
@@ -110,6 +114,42 @@ if (!empty($arResult["ERRORS"])):?>
 						} ?>
 					</div>
 				</div>
+				<? // выведем поле для добавления товара сразу после скрытого поля имени, т.к. компонент это поле вообще не выводит ?>
+				<? if ($propertyID == "NAME") { ?>
+				<div class="webFormItems">
+					<div class="webFormItemCaption">
+						<div class="webFormItemLabel">
+							<?= GetMessage("ADD_ITEM") ?>
+						</div>
+					</div>
+					<div class="webFormItemField">
+						<?$APPLICATION->IncludeComponent("bitrix:search.title", "products_search", Array(
+							"COMPONENT_TEMPLATE" => ".default",
+								"NUM_CATEGORIES" => "1",	// Количество категорий поиска
+								"TOP_COUNT" => "15",	// Количество результатов в каждой категории
+								"ORDER" => "date",	// Сортировка результатов
+								"USE_LANGUAGE_GUESS" => "Y",	// Включить автоопределение раскладки клавиатуры
+								"CHECK_DATES" => "N",	// Искать только в активных по дате документах
+								"SHOW_OTHERS" => "N",	// Показывать категорию "прочее"
+								"PAGE" => "#SITE_DIR#search/index.php",	// Страница выдачи результатов поиска (доступен макрос #SITE_DIR#)
+								"SHOW_INPUT" => "Y",	// Показывать форму ввода поискового запроса
+								"INPUT_ID" => "title-search-input",	// ID строки ввода поискового запроса
+								"CONTAINER_ID" => "title-search",	// ID контейнера, по ширине которого будут выводиться результаты
+								"CATEGORY_0_TITLE" => "",	// Название категории
+								"CATEGORY_0" => array(	// Ограничение области поиска
+									0 => "iblock_catalog",
+								),
+								"CATEGORY_0_iblock_catalog" => array(	// Искать в информационных блоках типа "iblock_catalog"
+									0 => "14",
+									1 => "20",
+								)
+							),
+							false
+						);?>
+					</div>
+				</div>
+				<input type="hidden" name="PROPERTY[<?= SALER_REPORT_PRODUCT_ID_PROPERTY_ID ?>][0]" size="25" value="" />
+				<? } ?>
 			<? } ?>
 		</div>
 		<? } ?>

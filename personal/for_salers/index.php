@@ -43,7 +43,7 @@ $APPLICATION->SetTitle("Для продавцов");
 			"LIST_URL" => "",
 			"USE_CAPTCHA" => "N",
 			"USER_MESSAGE_EDIT" => "",
-			"USER_MESSAGE_ADD" => "",
+			"USER_MESSAGE_ADD" => "Заявка успешно добавлена",
 			"DEFAULT_INPUT_SIZE" => "30",
 			"RESIZE_IMAGES" => "N",
 			"PROPERTY_CODES" => array(
@@ -51,6 +51,7 @@ $APPLICATION->SetTitle("Для продавцов");
 				1 => "128",
 				2 => "129",
 				3 => "NAME",
+				4 => "127"
 			),
 			"PROPERTY_CODES_REQUIRED" => array(
 				0 => "126",

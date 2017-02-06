@@ -13,4 +13,5 @@ $MESS["IBLOCK_FORM_CAPTCHA_TITLE"] = "Защита от автоматического заполнения";
 $MESS["IBLOCK_FORM_CAPTCHA_PROMPT"] = "Введите слово с картинки";
 $MESS["CT_BIEAF_PROPERTY_VALUE_NA"] = "(не установлено)";
 $MESS["SEND_SALE_REPORT"] = "Подать заявку о продаже";
+$MESS["ADD_ITEM"] = "Товар";
 ?>
