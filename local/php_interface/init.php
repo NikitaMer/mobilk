@@ -73,4 +73,22 @@ function isUserHaveActiveRequests() {
 		return true;
 	}
 }
+
+/**
+*
+* @param int $photo_id
+* @param int $width
+* @param int $height
+* @param string $type
+* @param int $quantity
+* @return string $src
+*
+* */
+function getResizedImage($photo_id, $width, $height, $type, $quantity) {
+    $file_path = CFile::GetPath($photo_id);
+    if ($file_path && (int)$width && (int)$height && strval($width)) {
+        $preview_img_file = CFile::ResizeImageGet($photo_id, array('width' => $width, 'height' => $height), $type, true, false, false, $quantity);
+        return $preview_img_file['src'];
+    }
+}
 ?>
