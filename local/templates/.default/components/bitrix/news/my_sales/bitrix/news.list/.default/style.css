@@ -10,3 +10,32 @@ div.news-list img.preview_picture
 .news-date-time {
 	color:#486DAA;
 }
+
+.sale_report {
+    border: 1px solid #e7e8ea;
+    border-radius: 4px;
+    width: 100%;
+    padding: 12px;
+}
+
+.sales_reports_list > table:not(:last-child) {
+	margin-bottom: 24px;
+}
+
+.sale_report td:first-child {
+    width: 20%;
+    font-weight: 700;
+}
+
+/* Статусы заявок */
+.accepted {
+	background-color: #dff0d8;
+}
+
+.denied {
+	background-color: #f2dede;
+}
+
+.under_consideration {
+	background-color: #fcf8e3;
+}
