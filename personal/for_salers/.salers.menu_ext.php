@@ -37,6 +37,20 @@ if (isUserSaler()) {
 			""
 		),
 		Array(
+			"Бонусный каталог",
+			SITE_DIR."personal/for_salers/bonus_catalog/",
+			Array(),
+			Array(),
+			""
+		),
+		Array(
+			"Бонусная статистика",
+			SITE_DIR."personal/for_salers/bonus_statistic/",
+			Array(),
+			Array(),
+			""
+		),
+		Array(
 			"Персональные данные", 
 			"/personal/", 
 			Array(), 
