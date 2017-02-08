@@ -34,11 +34,10 @@ $this->setFrameMode(true);?>
 					      <i class="h"></i>
 					    </div>
 				    <?endif;?>
-					<a href="<?=$arElement["DETAIL_PAGE_URL"]?>" class="picture">
+					<span class="picture">
 						<img src="<?=(!empty($arElement["IMAGE"]["src"]) ? $arElement["IMAGE"]["src"] : SITE_TEMPLATE_PATH.'/images/empty.png')?>" alt="<?=$arElement["NAME"]?>">
-						<span class="getFastView" data-id="<?=$arElement["ID"]?>"><?=GetMessage("FAST_VIEW_PRODUCT_LABEL")?></span>
-					</a>
-					<a href="<?=$arElement["DETAIL_PAGE_URL"]?>" class="name"><span class="middle"><?=$arElement["NAME"]?></span></a>
+					</span>
+					<span class="middle name"><?=$arElement["NAME"]?></span>
 					<?if(!empty($arElement["MIN_PRICE"])):?>
 						<?if($arElement["COUNT_PRICES"] > 1):?>
 							<a href="#" class="price getPricesWindow" data-id="<?=$arElement["ID"]?>">
@@ -51,7 +50,8 @@ $this->setFrameMode(true);?>
 								<?endif;?>
 							</a>
 						<?else:?>
-							<a class="price"><?=$arElement["MIN_PRICE"]["PRINT_DISCOUNT_VALUE"]?>
+							<a class="price">
+								<?=$arElement["MIN_PRICE"]["VALUE"]?> <?= GetMessage("PRICE_POINTS") ?>
 								<?if($arParams["HIDE_MEASURES"] != "Y" && !empty($arResult["MEASURES"][$arElement["CATALOG_MEASURE"]]["SYMBOL_RUS"])):?>
 									<span class="measure"> / <?=$arResult["MEASURES"][$arElement["CATALOG_MEASURE"]]["SYMBOL_RUS"]?></span>
 								<?endif;?>
@@ -65,28 +65,6 @@ $this->setFrameMode(true);?>
 						<a class="price"><?=GetMessage("REQUEST_PRICE_LABEL")?></a>
 						<a href="#" class="addCart disabled requestPrice" data-id="<?=$arElement["ID"]?>"><img src="<?=SITE_TEMPLATE_PATH?>/images/request.png" alt="" class="icon"><?=GetMessage("REQUEST_PRICE_BUTTON_LABEL")?></a>
 					<?endif;?>
-					<div class="optional">
-						<div class="row">
-							<a href="#" class="fastBack label<?if(empty($arElement["PRICE"]) || $arElement["CAN_BUY"] === "N" || $arElement["CAN_BUY"] === false):?> disabled<?endif;?>" data-id="<?=$arElement["ID"]?>"><img src="<?=SITE_TEMPLATE_PATH?>/images/fastBack.png" alt="" class="icon"><?=GetMessage("FASTBACK_LABEL")?></a>
-							<a href="#" class="addCompare label" data-id="<?=$arElement["ID"]?>"><img src="<?=SITE_TEMPLATE_PATH?>/images/compare.png" alt="" class="icon"><?=GetMessage("COMPARE_LABEL")?></a>
-						</div>
-						<div class="row">
-							<a href="#" class="addWishlist label" data-id="<?=$arElement["~ID"]?>"><img src="<?=SITE_TEMPLATE_PATH?>/images/wishlist.png" alt="" class="icon"><?=GetMessage("WISHLIST_LABEL")?></a>
-							<?if($arElement["CATALOG_QUANTITY"] > 0):?>
-								<?if(!empty($arElement["STORES"])):?>
-									<a href="#" data-id="<?=$arElement["ID"]?>" class="inStock label changeAvailable getStoresWindow"><img src="<?=SITE_TEMPLATE_PATH?>/images/inStock.png" alt="<?=GetMessage("AVAILABLE")?>" class="icon"><span><?=GetMessage("AVAILABLE")?></span></a>
-								<?else:?>
-									<span class="inStock label changeAvailable"><img src="<?=SITE_TEMPLATE_PATH?>/images/inStock.png" alt="<?=GetMessage("AVAILABLE")?>" class="icon"><span><?=GetMessage("AVAILABLE")?></span></span>
-								<?endif;?>
-							<?else:?>
-								<?if($arElement["CAN_BUY"] === true || $arElement["CAN_BUY"] === "Y"):?>
-									<a class="onOrder label changeAvailable"><img src="<?=SITE_TEMPLATE_PATH?>/images/onOrder.png" alt="" class="icon"><?=GetMessage("ON_ORDER")?></a>
-								<?else:?>
-									<a class="outOfStock label changeAvailable"><img src="<?=SITE_TEMPLATE_PATH?>/images/outOfStock.png" alt="" class="icon"><?=GetMessage("NOAVAILABLE")?></a>
-								<?endif;?>
-							<?endif;?>
-						</div>						
-					</div>
 					<?if(!empty($arElement["SKU_PRODUCT"])):?>
 						<?if(!empty($arElement["SKU_PROPERTIES"]) && $level = 1):?>
 							<?foreach ($arElement["SKU_PROPERTIES"] as $propName => $arNextProp):?>

@@ -5,3 +5,11 @@
 .removeFromWishlist{
 	display: none;
 }
+
+#appBasket {
+	display: none !important;
+}
+
+#foundation {
+	filter: none !important;
+}

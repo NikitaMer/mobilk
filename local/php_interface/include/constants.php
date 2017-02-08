@@ -5,6 +5,10 @@ define("SALERS_REQUESTS_IBLOCK_ID", 21);
 define("SALERS_REPORTS_IBLOCK_ID", 22);
 // каталог
 define("CATALOG_IBLOCK_ID", 14);
+// каталог с ТП
+define("SKU_CATALOG_IBLOCK_ID", 20);
+// бонусный каталог
+define("BONUS_CATALOG_IBLOCK_ID", 24);
 
 define("SALERS_GROUP_ID", 9);
 define("SILVER_SALER_GROUP_ID", 10);

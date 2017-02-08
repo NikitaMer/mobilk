@@ -9,8 +9,7 @@ if (isUserHaveGoldenStatus()) {
 }
 
 // получаем кол-во баллов
-$user_balance = CSaleUserAccount::GetByUserID($USER->GetID(), "RUB");
-$arResult['BALANCE'] = (int)$user_balance['CURRENT_BUDGET'];
+$arResult['BALANCE'] = getUserPoints($USER->GetID());
 
 $this->IncludeComponentTemplate();
 ?>
