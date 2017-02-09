@@ -24,4 +24,5 @@
 	$MESS["REQUEST_PRICE_LABEL"] = "Цена по запросу";
 	$MESS["REQUEST_PRICE_BUTTON_LABEL"] = "Запросить цену";
 	$MESS["PRICE_POINTS"] = "баллов";
+	$MESS["GIFTS_ALERT"] = "Внимание, корзина будет очищена перед добавлением подарка.";
 ?>

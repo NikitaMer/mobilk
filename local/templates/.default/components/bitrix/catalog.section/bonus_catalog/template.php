@@ -7,6 +7,7 @@ $this->setFrameMode(true);?>
 		?><? echo $arResult["NAV_STRING"]; ?><?
 	}
 ?>
+	<p class="alert-message"><?= GetMessage('GIFTS_ALERT') ?></p>
 	<div class="items productList" id="<?=CAjax::GetComponentID($component->__name, $component->__template->__name);?>">
 		<?foreach ($arResult["ITEMS"] as $index => $arElement):?>
 			<?

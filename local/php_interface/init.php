@@ -1,4 +1,8 @@
 <?
+CModule::IncludeModule("main");
+CModule::IncludeModule("iblock");
+CModule::IncludeModule("sale");
+
 // подключение lang файла
 include(GetLangFileName(dirname(__FILE__) . "/", "/init.php"));
 // подключение констант и отладочных функций
@@ -118,6 +122,31 @@ function getUserPoints($user_id) {
 
 /**
  * 
+ * Получить общее количество баллов у пользователя за все время
+ * 
+ * @param int $user_id
+ * @return int $current_points
+ * */
+function getTotalUserPoints($user_id) {
+	$users = CUser::GetList(
+		($by = "id"),
+		($order = "asc"),
+		array(
+			"ID" => $user_id
+		),
+		array(
+			"SELECT" => array("UF_TOTAL_POINTS"),
+			"FIELDS" => array("ID")
+		)
+	);
+	if ($user = $users->Fetch()) {
+		$current_points = $user['UF_TOTAL_POINTS'];
+	}
+	return $current_points;
+}
+
+/**
+ * 
  * Получить тип корзины
  * Возможные варианты:
  * - product - только товары за деньги
@@ -173,5 +202,134 @@ function getBasketType() {
 	}
 	
 	return $type;
+}
+
+/**
+ * 
+ * Получить кол-во баллов за товар с учетом группы пользователя
+ * 
+ * @param int $product_id
+ * @return int $cost
+ * 
+ * */
+ 
+function getProductPointCost($product_id) {
+	global $USER;
+	
+	$lvl_property = isUserHaveGoldenStatus() ? "GOLDEN_LVL_POINTS" : "SILVER_LVL_POINTS";
+	
+	$products = CIBlockElement::GetList(
+		Array(),
+		Array(
+			"ID" => $product_id
+		), 
+		false, 
+		Array(
+			"nPageSize" => 1
+		),
+		array("ID", "PROPERTY_" . $lvl_property)
+	);
+	if ($product = $products->Fetch()) {
+		$cost = $product['PROPERTY_' . $lvl_property . '_VALUE'];
+	}
+	return $cost;
+}
+
+/**
+ * 
+ * Добавить баллы на внутренний счет пользователя
+ * 
+ * @param int $user_id
+ * @param int $points
+ * @return void
+ * 
+ * */
+
+function updateUserAccountPoints($user_id, $points) {
+	CSaleUserAccount::UpdateAccount(
+        $user_id,
+        $points,
+        "RUB"
+    );
+}
+
+/**
+ * 
+ * Добавить баллы на общий счет пользователя
+ * 
+ * @param int $user_id
+ * @param int $points
+ * @return void
+ * 
+ * */
+
+function updateUserTotalPoints($user_id, $points) {
+	// получаем текущее кол-во баллов пользователя
+	$current_points = getTotalUserPoints($user_id);
+	// обновляем общие баллы пользователя
+	$user_object = new CUser;
+	$user_object->Update(
+		$user_id,
+		Array(
+			"UF_TOTAL_POINTS" => intval($current_points + $points)
+		)
+	);
+}
+
+/**
+ * 
+ * Возвращаем границы для уровней продавцов
+ * 
+ * @return array $result
+ * 
+ * */
+
+function getLevelsBorders() {
+	$result = array();
+	$lvls = CIBlockElement::GetList(
+		Array(),
+		Array(
+			"IBLOCK_ID" => SALERS_LVLS_IBLOCK_ID
+		), 
+		false, 
+		false,
+		array("ID", "NAME", "PROPERTY_FROM", "PROPERTY_TO")
+	);
+	while ($lvl = $lvls->Fetch()) {
+		$result[$lvl['ID']] = array(
+			"from" => $lvl['PROPERTY_FROM_VALUE'],
+			"to"   => $lvl['PROPERTY_TO_VALUE']
+		);
+	}
+	return $result;
+}
+
+/**
+ * 
+ * Проверяем уровень пользователя и, если баллов достаточно, то перекидываем его дальше
+ * 
+ * @param int $user_id
+ * @return void
+ * 
+ * */
+
+function checkUserLvl($user_id) {
+	$borders = getLevelsBorders();
+	$total = getTotalUserPoints($user_id);
+	if ($total >= $borders[GOLDEN_LVL_ID]['from']) {
+		// переносим его в группу золотых партнеров
+		$groups_ids = array();
+		$groups = CUser::GetUserGroupList($user_id);
+		while ($group = $groups->Fetch()){
+		   array_push($groups_ids, $group['GROUP_ID']);
+		}
+		array_push($groups_ids, GOLDEN_SALER_GROUP_ID);
+		
+		$user = new CUser;
+		$fields = Array(
+			"GROUP_ID"=> $groups_ids
+		);
+		$user->Update($user_id, $fields);
+	}
 }
 ?>

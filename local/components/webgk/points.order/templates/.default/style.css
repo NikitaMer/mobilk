@@ -1,0 +1,55 @@
+.order_message a {
+	color: #999999;
+}
+
+.order_message a:hover {
+	color: #ed1c24;
+}
+
+.points_order_form td {
+	vertical-align: top;
+}
+
+.points_order_form textarea {
+	padding: 10px;
+	outline: none;
+}
+
+.points_order_form td:first-child {
+	font-family: "robotoMedium";
+	color: #555555;
+}
+
+.points_order_form tr:last-child td:first-child {
+	vertical-align: middle;
+	font-size: 16px;
+}
+
+.points_order_form tr:last-child td:first-child span {
+	color: #ed1c24;
+}
+
+.points_order_form tr:last-child td:last-child {
+	text-align: right;
+}
+
+.points_order_form input[type="submit"] {
+    -webkit-transition: background-color 0.2s ease-in-out;
+    -o-transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "roboto_ltregular";
+    border: 1px solid #e7e7e7;
+    text-align: center;
+    line-height: 55px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #ffffff;
+    outline: none;
+    height: 55px;
+    width: 30%;
+    padding: 0;
+    background-color: #ed1c24;
+}
