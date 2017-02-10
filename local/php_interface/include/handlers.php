@@ -133,4 +133,37 @@ function addPointsForSaler(&$fields) {
 		}
 	}	
 }
+
+AddEventHandler("main", "OnBeforeUserUpdate", "createUserBill");
+
+/**
+ * 
+ * Создаем внутренний счет пользователя при добавлении его в группу продавцов
+ * 
+ * @param array $fields
+ * @return void
+ * */
+function createUserBill(&$fields) {
+	$groups_ids = array();
+	$new_groups_ids = array();
+	// получим текущие группы пользователя
+	$user_groups = CUser::GetUserGroupList($fields["ID"]);
+	while ($user_group = $user_groups->Fetch()){
+	   array_push($groups_ids, $user_group['GROUP_ID']);
+	}
+	// соберем новые id групп
+	foreach ($fields['GROUP_ID'] as $group) {
+		array_push($new_groups_ids, $group['GROUP_ID']);
+	}
+	// если пользователя пытаются добавить в группу продавцов, то создадим счет
+	if (!in_array(SALERS_GROUP_ID, $groups_ids) && in_array(SALERS_GROUP_ID, $new_groups_ids)) {
+		CSaleUserAccount::Add(
+			array(
+				"USER_ID"        => $fields['ID'],
+				"CURRENCY"       => "RUB",
+				"CURRENT_BUDGET" => 0
+			)
+		); 
+	}
+}
 ?>
