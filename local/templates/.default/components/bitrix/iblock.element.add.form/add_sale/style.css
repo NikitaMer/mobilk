@@ -1,0 +1,15 @@
+.send_saler_report_header {
+	font-weight: 700;
+}
+
+.sale_date_calendar {
+	position: relative;
+	height: 0 !important;
+	width: 0 !important;
+}
+
+.sale_date_calendar img {
+	visibility: hidden;
+	height: 0 !important;
+	width: 0 !important;
+}

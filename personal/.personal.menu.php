@@ -27,6 +27,13 @@ $aMenuLinks = Array(
 		Array(), 
 		Array(), 
 		"" 
+	),
+	Array(
+		"Для продавцов", 
+		"/personal/for_salers/", 
+		Array(), 
+		Array(), 
+		"" 
 	)
 );
 ?>

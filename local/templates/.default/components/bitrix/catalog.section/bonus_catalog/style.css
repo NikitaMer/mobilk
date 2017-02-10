@@ -1,0 +1,25 @@
+.items.productList{
+	margin-bottom: 24px;
+}
+
+.removeFromWishlist{
+	display: none;
+}
+
+#appBasket {
+	display: none !important;
+}
+
+#foundation {
+	filter: none !important;
+}
+
+.alert-message {
+	padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    background-color: #d9edf7;
+    border-color: #bcdff1;
+    color: #31708f;
+}
