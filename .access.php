@@ -1,4 +1,15 @@
 <?
+$PERM["salers_support"]["2"]="D";
+$PERM["salers_support"]["7"]="D";
+$PERM["salers_support"]["3"]="D";
+$PERM["salers_support"]["4"]="D";
+$PERM["salers_support"]["11"]="D";
+$PERM["salers_support"]["9"]="D";
+$PERM["salers_support"]["10"]="D";
+$PERM["salers_support"]["8"]="X";
+$PERM["salers_support"]["5"]="D";
+$PERM["salers_support"]["6"]="D";
+$PERM["salers_support"]["*"]="D";
 $PERM["personal"]["6"]="W";
 $PERM["catalog"]["6"]="W";
 $PERM["catalog"]["7"]="W";
