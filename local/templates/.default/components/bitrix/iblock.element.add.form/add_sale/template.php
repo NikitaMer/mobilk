@@ -140,7 +140,8 @@ if (!empty($arResult["ERRORS"])):?>
 									0 => "iblock_catalog",
 								),
 								"CATEGORY_0_iblock_catalog" => array(	// Искать в информационных блоках типа "iblock_catalog"
-									0 => "14"
+									0 => "14",
+									1 => "20"
 								)
 							),
 							false
