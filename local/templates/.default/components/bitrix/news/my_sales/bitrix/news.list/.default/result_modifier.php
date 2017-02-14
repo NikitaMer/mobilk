@@ -22,7 +22,6 @@ if (is_array($arResult["ITEMS"]) && !empty($arResult["ITEMS"])) {
 	$products = CIBlockElement::GetList(
 		Array(),
 		Array(
-			"IBLOCK_ID" => CATALOG_IBLOCK_ID,
 			"ACTIVE"    => "Y",
 			"ID"        => $products_ids
 		), 
