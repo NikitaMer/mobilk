@@ -28,12 +28,12 @@ function isUserSaler() {
  * 
  * Проверяем, имеет ли пользователь статус серебряного партнера
  * 
+ * @param int $user_id
  * @return bool
  * */
-function isUserHaveSilverStatus() {
-	global $USER;
-	// два разных вызова CSite необходимо, т.к. вызов с 2 id в массиве работает по принципу ИЛИ
-	if ($USER->IsAuthorized() && CSite::InGroup(array(SALERS_GROUP_ID)) && CSite::InGroup(array(SILVER_SALER_GROUP_ID))) {
+function isUserHaveSilverStatus($user_id) {
+	$user_groups = getUserGroupList($user_id);
+	if (in_array(SALERS_GROUP_ID, $user_groups) && in_array(SILVER_SALER_GROUP_ID, $user_groups)) {
 		return true;
 	}
 }
@@ -42,12 +42,12 @@ function isUserHaveSilverStatus() {
  * 
  * Проверяем, имеет ли пользователь статус золотого партнера
  * 
+ * @param int $user_id
  * @return bool
  * */
-function isUserHaveGoldenStatus() {
-	global $USER;
-	// два разных вызова CSite необходимо, т.к. вызов с 2 id в массиве работает по принципу ИЛИ
-	if ($USER->IsAuthorized() && CSite::InGroup(array(SALERS_GROUP_ID)) && CSite::InGroup(array(GOLDEN_SALER_GROUP_ID))) {
+function isUserHaveGoldenStatus($user_id) {
+	$user_groups = getUserGroupList($user_id);
+	if (in_array(SALERS_GROUP_ID, $user_groups) && in_array(GOLDEN_SALER_GROUP_ID, $user_groups)) {
 		return true;
 	}
 }
@@ -76,6 +76,22 @@ function isUserHaveActiveRequests() {
 	if ($request = $requests->Fetch()) {
 		return true;
 	}
+}
+
+/**
+ * 
+ * Получить список групп пользователя
+ * 
+ * @param int $user_id
+ * @return array $groups
+ * */
+function getUserGroupList($user_id) {
+	$groups = array();
+	$groups_result = CUser::GetUserGroupList($user_id);
+	while($group = $groups_result->Fetch()) {
+	    array_push($groups, $group['GROUP_ID']);
+	}
+	return $groups;
 }
 
 /**
@@ -209,14 +225,13 @@ function getBasketType() {
  * Получить кол-во баллов за товар с учетом группы пользователя
  * 
  * @param int $product_id
+ * @param int $user_id
  * @return int $cost
  * 
  * */
  
-function getProductPointCost($product_id) {
-	global $USER;
-	
-	$lvl_property = isUserHaveGoldenStatus() ? "GOLDEN_LVL_POINTS" : "SILVER_LVL_POINTS";
+function getProductPointCost($product_id, $user_id) {
+	$lvl_property = isUserHaveGoldenStatus($user_id) ? "GOLDEN_LVL_POINTS" : "SILVER_LVL_POINTS";
 	
 	$products = CIBlockElement::GetList(
 		Array(),

@@ -2,7 +2,7 @@
 
 global $USER;
 // узнаем статус пользователя
-if (isUserHaveGoldenStatus()) {
+if (isUserHaveGoldenStatus($USER->GetID())) {
 	$arResult['STATUS'] = GetMessage("GOLD");
 } else {
 	$arResult['STATUS'] = GetMessage("SILVER");
