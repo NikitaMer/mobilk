@@ -1,1 +1,1 @@
-<img src="<?=SITE_TEMPLATE_PATH?>/images/left_banner1.jpg" alt="">
+<a href="https://www.youtube.com/user/MobilkTechnics"><img src="<?=SITE_TEMPLATE_PATH?>/images/left_banner1.png" /></a>
