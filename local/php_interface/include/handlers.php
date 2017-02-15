@@ -122,7 +122,7 @@ function addPointsForSaler(&$fields) {
 			if ($new_status_value == SALER_REPORT_STATUS_ACCEPTED_ID) {
 				// обновляем счет юзера
 				// получаем кол-во баллов для товара
-				$item_cost = getProductPointCost($product_id);
+				$item_cost = getProductPointCost($product_id, $user_id);
 				// обновляем внутренний счет
 				updateUserAccountPoints($user_id, $item_cost);
 				// обновляем общий счет
