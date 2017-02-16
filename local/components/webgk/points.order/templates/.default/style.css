@@ -52,4 +52,5 @@
     width: 30%;
     padding: 0;
     background-color: #ed1c24;
+    -webkit-appearance: none;
 }
