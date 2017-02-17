@@ -39,3 +39,7 @@ div.news-list img.preview_picture
 .under_consideration {
 	background-color: #fcf8e3;
 }
+
+form[name="arFilter_form"] input[type="submit"] {
+	-webkit-appearance: none;
+}

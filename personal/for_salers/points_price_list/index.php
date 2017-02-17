@@ -47,7 +47,8 @@ $APPLICATION->SetTitle("ѕрайс-лист баллов");
 			1 => "ARTICLE",
 			2 => "GOLDEN_LVL_POINTS",
 			3 => "SILVER_LVL_POINTS",
-			4 => "",
+			4 => "ACTION_PRODUCT",
+			5 => "ADDITIONAL_POINTS"
 		),
 		"CHECK_DATES" => "Y",	// ѕоказывать только активные на данный момент элементы
 		"DETAIL_URL" => "",	// URL страницы детального просмотра (по умолчанию - из настроек инфоблока)

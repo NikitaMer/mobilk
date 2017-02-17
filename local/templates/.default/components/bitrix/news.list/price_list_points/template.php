@@ -29,6 +29,14 @@ $this->setFrameMode(true);
 				</div>
 			</div>
 		</div>
+		<? if ($product['actions']['is_action_product']) { ?>
+		<div class="column action_column">
+			<div class="optional">
+				<img src="<?= $product['actions']['action_logo'] ?>" alt="" /><br>
+				<?= str_replace("points", $product['actions']['additional_points'], GetMessage("ADDITIONAL_POINTS_MESSAGE")) ?>
+			</div>
+		</div>
+		<? } ?>
 	</div>
 <? } ?>
 </div>

@@ -12,6 +12,11 @@ foreach($arResult["ITEMS"] as $arItem) {
 		"golden_points" => array(
 			"title" => $arItem['PROPERTIES']['GOLDEN_LVL_POINTS']['NAME'],
 			"value" => $arItem['PROPERTIES']['GOLDEN_LVL_POINTS']['VALUE']
+		),
+		"actions"       => array(
+			"is_action_product" => $arItem['PROPERTIES']['ACTION_PRODUCT']['VALUE'],
+			"additional_points" => $arItem['PROPERTIES']['ADDITIONAL_POINTS']['VALUE'],
+			"action_logo"       => $arItem['PROPERTIES']['ACTION_LOGO']['VALUE'] ? getResizedImage($arItem['PROPERTIES']['ACTION_LOGO']['VALUE'], ACTION_PRODUCT_LOGO_WIDTH, ACTION_PRODUCT_LOGO_HEIGHT, BX_RESIZE_IMAGE_PROPORTIONAL_ALT ) : ""
 		)
 	);
 }

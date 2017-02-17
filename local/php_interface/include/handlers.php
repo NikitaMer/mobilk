@@ -29,7 +29,8 @@ AddEventHandler("iblock", "OnAfterIBlockElementAdd", "setDefaultStatusToSalerRep
  * */
 function setDefaultStatusToSalerReport(&$fields) {
     if ($fields["IBLOCK_ID"] == SALERS_REPORTS_IBLOCK_ID) {
-		CIBlockElement::SetPropertyValuesEx($fields['ID'], false, array(SALER_REPORT_STATUS_PROPERTY_ID => SALER_REPORT_STATUS_UNDER_CONSIDERATION_ID));
+		CIBlockElement::SetPropertyValuesEx($fields['ID'], false, array(SALER_REPORT_STATUS_PROPERTY_ID => SALER_REPORT_STATUS_ACCEPTED_ID));
+		addPointsForSalerWithoutEvent($fields);
     }
 }
 
@@ -86,7 +87,7 @@ function checkBasket(&$fields) {
 	}
 }
 
-AddEventHandler("iblock", "OnBeforeIBlockElementUpdate", "addPointsForSaler");
+//AddEventHandler("iblock", "OnBeforeIBlockElementUpdate", "addPointsForSaler");
 
 /**
  * 
@@ -95,7 +96,7 @@ AddEventHandler("iblock", "OnBeforeIBlockElementUpdate", "addPointsForSaler");
  * @param array $fields
  * @return void
  * */
-function addPointsForSaler(&$fields) {
+function addPointsForSaler($fields) {
 	if ($fields['IBLOCK_ID'] == SALERS_REPORTS_IBLOCK_ID) {
 		$product_id = "";
 		$status_id = "";
@@ -132,6 +133,41 @@ function addPointsForSaler(&$fields) {
 			}
 		}
 	}	
+}
+
+/**
+ * 
+ * Зачисляем баллы продавцу, если его продажа подтверждена
+ * 
+ * @param array $fields
+ * @return void
+ * */
+function addPointsForSalerWithoutEvent($fields) {
+	$product_id = "";
+	$reports = CIBlockElement::GetList(
+		Array(),
+		Array(
+			"ID"        => $fields['ID'],
+			"IBLOCK_ID" => SALERS_REPORTS_IBLOCK_ID
+		), 
+		false, 
+		false,
+		array("ID", "CREATED_BY",  "PROPERTY_product")
+	);
+	if ($report = $reports->Fetch()) {
+		$user_id = $report['CREATED_BY'];
+		$product_id = $report['PROPERTY_PRODUCT_VALUE'];
+	}
+
+	// обновляем счет юзера
+	// получаем кол-во баллов для товара
+	$item_cost = getProductPointCost($product_id, $user_id);
+	// обновляем внутренний счет
+	updateUserAccountPoints($user_id, $item_cost);
+	// обновляем общий счет
+	updateUserTotalPoints($user_id, $item_cost);
+	// проверяем уровень пользователя
+	checkUserLvl($user_id);
 }
 
 AddEventHandler("main", "OnBeforeUserUpdate", "createUserBill");

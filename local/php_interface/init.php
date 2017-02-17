@@ -232,6 +232,7 @@ function getBasketType() {
  
 function getProductPointCost($product_id, $user_id) {
 	$lvl_property = isUserHaveGoldenStatus($user_id) ? "GOLDEN_LVL_POINTS" : "SILVER_LVL_POINTS";
+	$additional_points = 0;
 	
 	$products = CIBlockElement::GetList(
 		Array(),
@@ -242,10 +243,16 @@ function getProductPointCost($product_id, $user_id) {
 		Array(
 			"nPageSize" => 1
 		),
-		array("ID", "PROPERTY_" . $lvl_property)
+		array("ID", "PROPERTY_" . $lvl_property, "PROPERTY_ACTION_PRODUCT", "PROPERTY_ADDITIONAL_POINTS")
 	);
+	
 	if ($product = $products->Fetch()) {
-		$cost = $product['PROPERTY_' . $lvl_property . '_VALUE'];
+		// есть ли бонусные баллы за данный товар
+		if ($product['PROPERTY_ACTION_PRODUCT_VALUE']) {
+			$additional_points = $product['PROPERTY_ADDITIONAL_POINTS_VALUE'];
+		}
+		
+		$cost = $product['PROPERTY_' . $lvl_property . '_VALUE'] + $additional_points;
 	}
 	return $cost;
 }

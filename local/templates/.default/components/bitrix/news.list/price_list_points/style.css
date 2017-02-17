@@ -59,6 +59,13 @@ div.news-list img.preview_picture
 	padding-left: 30px;
 }
 
+#points_price_list .column.action_column:last-child {
+    width: 23%;
+	text-align: center;
+	padding-left: 30px;
+	color: #ff232b;
+}
+
 #points_price_list .row {
     display: inline-block;
     text-align: center;
