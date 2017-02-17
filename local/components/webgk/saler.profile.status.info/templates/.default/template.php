@@ -11,11 +11,13 @@
 	</tr>
 	<? if ($arResult['POINTS_TO_NEXT_LVL']) { ?>
 	<tr>
-		<td colspan="2"><?= str_replace("points", $arResult['POINTS_TO_NEXT_LVL'], GetMessage("POINTS_TO_NEXT_LVL")) ?></td>
+		<td><?= GetMessage("POINTS_TO_NEXT_LVL") ?>:</td>
+		<td><?= $arResult['POINTS_TO_NEXT_LVL'] . GetMessage("POINTS") ?></td>
 	</tr>
 	<? } ?>
 	<tr>
-		<td colspan="2"><?= str_replace("points", $arResult['TOTAL_POINTS'], GetMessage("TOTAL_POINTS")) ?></td>
+		<td><?= GetMessage("TOTAL_POINTS") ?>:</td>
+		<td><?= $arResult['TOTAL_POINTS'] . GetMessage("POINTS") ?></td>
 	</tr>
 </table>
 
