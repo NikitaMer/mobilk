@@ -36,4 +36,7 @@ define('SALER_REPORT_STATUS_PROPERTY_ID', 130);
 define('SALER_REPORT_STATUS_UNDER_CONSIDERATION_ID', 77);
 // ID значения "Принято" для свойства "Статус"
 define('SALER_REPORT_STATUS_ACCEPTED_ID', 75);
+// размер маленьких картинок у акционных товаров
+define('ACTION_PRODUCT_LOGO_WIDTH', 100);
+define('ACTION_PRODUCT_LOGO_HEIGHT', 100);
 ?>
