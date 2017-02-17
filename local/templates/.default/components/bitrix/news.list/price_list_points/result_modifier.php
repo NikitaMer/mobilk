@@ -16,7 +16,8 @@ foreach($arResult["ITEMS"] as $arItem) {
 		"actions"       => array(
 			"is_action_product" => $arItem['PROPERTIES']['ACTION_PRODUCT']['VALUE'],
 			"additional_points" => $arItem['PROPERTIES']['ADDITIONAL_POINTS']['VALUE'],
-			"action_logo"       => $arItem['PROPERTIES']['ACTION_LOGO']['VALUE'] ? getResizedImage($arItem['PROPERTIES']['ACTION_LOGO']['VALUE'], ACTION_PRODUCT_LOGO_WIDTH, ACTION_PRODUCT_LOGO_HEIGHT, BX_RESIZE_IMAGE_PROPORTIONAL_ALT ) : ""
+			"action_logo"       => $arItem['PROPERTIES']['ACTION_LOGO']['VALUE'] ? getResizedImage($arItem['PROPERTIES']['ACTION_LOGO']['VALUE'], ACTION_PRODUCT_LOGO_WIDTH, ACTION_PRODUCT_LOGO_HEIGHT, BX_RESIZE_IMAGE_PROPORTIONAL_ALT ) : "",
+			"action_text"       => $arItem['PROPERTIES']['ACTION_TEXT']['VALUE']
 		)
 	);
 }

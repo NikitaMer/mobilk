@@ -33,7 +33,7 @@ $this->setFrameMode(true);
 		<div class="column action_column">
 			<div class="optional">
 				<img src="<?= $product['actions']['action_logo'] ?>" alt="" /><br>
-				<?= str_replace("points", $product['actions']['additional_points'], GetMessage("ADDITIONAL_POINTS_MESSAGE")) ?>
+				<?= $product['actions']['action_text'] ?>
 			</div>
 		</div>
 		<? } ?>
