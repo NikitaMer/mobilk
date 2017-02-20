@@ -338,15 +338,26 @@ function getLevelsBorders() {
 function checkUserLvl($user_id) {
 	$borders = getLevelsBorders();
 	$total = getTotalUserPoints($user_id);
-	if ($total >= $borders[GOLDEN_LVL_ID]['from']) {
+	$groups_ids = array();
+	$user_have_golden_status = isUserHaveGoldenStatus($user_id);
+	if ($user_have_golden_status && $total < $borders[GOLDEN_LVL_ID]['from']) {
+		// удаляем пользователя из золотых партнеров
+		$groups = CUser::GetUserGroupList($user_id);
+		while ($group = $groups->Fetch()){
+		   array_push($groups_ids, $group['GROUP_ID']);
+		}
+		$groups_ids = array_diff($groups_ids, array(GOLDEN_SALER_GROUP_ID));
+	} else if (!$user_have_golden_status && $total >= $borders[GOLDEN_LVL_ID]['from']) {
 		// переносим его в группу золотых партнеров
-		$groups_ids = array();
 		$groups = CUser::GetUserGroupList($user_id);
 		while ($group = $groups->Fetch()){
 		   array_push($groups_ids, $group['GROUP_ID']);
 		}
 		array_push($groups_ids, GOLDEN_SALER_GROUP_ID);
-		
+	}
+	
+	if (!empty($groups_ids)) {
+		// если есть что записать в список групп, то обновляем
 		$user = new CUser;
 		$fields = Array(
 			"GROUP_ID"=> $groups_ids

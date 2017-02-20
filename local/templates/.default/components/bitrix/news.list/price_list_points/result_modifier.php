@@ -6,11 +6,11 @@ foreach($arResult["ITEMS"] as $arItem) {
 		"article"       => $arItem['PROPERTIES']['ARTICLE']['VALUE'],
 		"picture"       => $arItem['DETAIL_PICTURE']['ID'] ? getResizedImage($arItem['DETAIL_PICTURE']['ID'], 80, 60) : "/bitrix/templates/dresscode/images/empty.png",
 		"silver_points" => array(
-			"title" => $arItem['PROPERTIES']['SILVER_LVL_POINTS']['NAME'],
+			"title" => GetMessage("SILVER_LVL"),
 			"value" => $arItem['PROPERTIES']['SILVER_LVL_POINTS']['VALUE']
 		),
 		"golden_points" => array(
-			"title" => $arItem['PROPERTIES']['GOLDEN_LVL_POINTS']['NAME'],
+			"title" => GetMessage("GOLDEN_LVL"),
 			"value" => $arItem['PROPERTIES']['GOLDEN_LVL_POINTS']['VALUE']
 		),
 		"actions"       => array(

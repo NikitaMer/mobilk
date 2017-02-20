@@ -135,6 +135,56 @@ function addPointsForSaler($fields) {
 	}	
 }
 
+AddEventHandler("iblock", "OnBeforeIBlockElementUpdate", "removePointsForSaler");
+
+/**
+ * 
+ * Списываем баллы продавцу, если его продажа отклонена. 
+ * Если будет решено вернуть начисление после подтверждения, то нужно будет сделать единый хендлер,
+ * объединенный с addPointsForSaler
+ * 
+ * @param array $fields
+ * @return void
+ * */
+function removePointsForSaler($fields) {
+	if ($fields['IBLOCK_ID'] == SALERS_REPORTS_IBLOCK_ID) {
+		$product_id = "";
+		$status_id = "";
+		$new_status_value = $fields['PROPERTY_VALUES'][SALER_REPORT_STATUS_PROPERTY_ID][0]['VALUE'];
+		// нас интересует только изменение статуса, посмотрим его текущее значение
+		$reports = CIBlockElement::GetList(
+			Array(),
+			Array(
+				"ID"        => $fields['ID'],
+				"IBLOCK_ID" => SALERS_REPORTS_IBLOCK_ID
+			), 
+			false, 
+			false,
+			array("ID", "CREATED_BY", "PROPERTY_status", "PROPERTY_product")
+		);
+		if ($report = $reports->Fetch()) {
+			$user_id = $report['CREATED_BY'];
+			$product_id = $report['PROPERTY_PRODUCT_VALUE'];
+			$status_id = $report['PROPERTY_STATUS_ENUM_ID'];
+		}
+		// смотрим, изменилось ли оно
+		if ($status_id != $new_status_value) {
+			// если изменилось, то смотрим не проставили ли статус "Отклонено"
+			if ($new_status_value == SALER_REPORT_STATUS_DENIED_ID) {
+				// обновляем счет юзера
+				// получаем кол-во баллов для товара
+				$item_cost = getProductPointCost($product_id, $user_id) * -1;
+				// обновляем внутренний счет
+				updateUserAccountPoints($user_id, $item_cost);
+				// обновляем общий счет
+				updateUserTotalPoints($user_id, $item_cost);
+				// проверяем уровень пользователя
+				checkUserLvl($user_id);
+			}
+		}
+	}	
+}
+
 /**
  * 
  * Зачисляем баллы продавцу, если его продажа подтверждена
