@@ -877,7 +877,7 @@
 		elseif($_GET["act"] == "addCompare"){
 			if(!empty($_GET["id"])){
 				$_SESSION["COMPARE_LIST"]["ITEMS"][$_GET["id"]] = $_GET["id"];
-				echo intval($_SESSION["COMPARE_LIST"]["ITEMS"][$_GET["id"]]);
+				echo jsonEn($_SESSION["COMPARE_LIST"]["ITEMS"]);
 			}
 		}elseif($_GET["act"] == "compDEL"){
 			if(!empty($_GET["id"])){
@@ -1561,7 +1561,9 @@
 
 			echo jsonEn($result);
 
-		}
+		}elseif($_GET["act"] === "Compare"){
+            echo jsonEn($_SESSION["COMPARE_LIST"]["ITEMS"]);
+        }
 	}
 	else{
 		die(false);

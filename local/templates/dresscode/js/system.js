@@ -105,7 +105,6 @@ $(function(){
 });
 
 $(window).on("ready", function(event){
-
 	var $body = $("body").removeClass("loading"); // cache body
 
 	if($("div").is(".global-block-container") && $("div").is(".global-information-block") && $("div").is(".global-information-block-cn")){
@@ -580,12 +579,12 @@ $(window).on("ready", function(event){
 		var _product_height = 200;
 
 		var $_this = $(this);
-		var $_mProductContainer = $_this.parents(".item");
+		var $_mProductContainer = $_this.parents(".item");        
 		var $_mProduct = $_this.parents(".sku");
 		var $_parentProp = $_this.parents(".skuProperty");
 		var $_propList = $_mProduct.find(".skuProperty");
 		var $_clickedProp = $_this.parents(".skuPropertyValue");
-
+         
 		var _level = $_parentProp.data("level");
 
 		$_this.parents(".skuPropertyList").find("li").removeClass("selected");
@@ -669,7 +668,39 @@ $(window).on("ready", function(event){
 				$elPicture.html($("<img/>").attr("src", http[0]["PRODUCT"]["PICTURE"]));
 				$elPicture.append($("<span />", {class: "getFastView"}).data("id", http[0]["PRODUCT"]["ID"]).html(LANG["FAST_VIEW_PRODUCT_LABEL"]));
 
-				$_mProduct.find(".addCart, .fastBack, .addCompare").data("id", http[0]["PRODUCT"]["ID"]);
+                var id_http = http[0]["PRODUCT"]["ID"];
+				var $_temp = $_mProduct.find(".addCart, .fastBack, .addCompare");  
+                
+                $_temp.each(function(  ) {
+                    $(this).attr("data-id", id_http);  
+                });
+                
+                var $_maddCompare = $_mProduct.find(".addCompare");
+                var $_micon = $_maddCompare.find("img");
+                var $_mproductID = $_maddCompare.attr("data-id");
+                var $_gObj = {act: "Compare"};
+                $.get(ajaxPath, $_gObj).done(function(hData){
+                    if(hData != ""){
+                        $_maddCompare.addClass("loading");
+                        $_data = JSON.parse(hData);   
+                        for ($_key in $_data){
+                            if($_data[$_key] == $_mproductID){
+                                $_maddCompare.removeClass("added")
+                                                .addClass("loading")
+                                                    .html(LANG["ADD_COMPARE_ADDED"])
+                                                        .prepend($_micon)
+                                                            .attr("href", SITE_DIR + "compare/");
+                                break;
+                            }else{
+                                $_maddCompare.removeClass("loading")
+                                                .addClass("added")
+                                                    .html(LANG["ADD_COMPARE_NO_ADDED"])
+                                                        .prepend($_micon)
+                                                            .attr("href", "#");
+                            }                    
+                        }     
+                    }        
+                });
 
 				if(http[0]["PRODUCT"]["PRICE"]["DISCOUNT_PRICE"]){
 					$_mProduct.find(".price").html(http[0]["PRODUCT"]["PRICE"]["DISCOUNT_PRICE"] + " ").removeClass("getPricesWindow");
@@ -1119,10 +1150,10 @@ $(window).on("ready", function(event){
 
 		var $this = $(event.currentTarget);
 		var $icon = $this.find("img");
-		var productID = $this.data("id");
+		var productID = $this.attr("data-id");
 
 		if($this.attr("href") == "#"){
-			if(parseInt(productID, 10) > 0 && !$this.hasClass("added")){
+			if(parseInt(productID, 10) > 0){
 				
 				$this.addClass("loading");
 
