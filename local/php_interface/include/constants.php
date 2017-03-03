@@ -41,4 +41,9 @@ define('SALER_REPORT_STATUS_DENIED_ID', 76);
 // размер маленьких картинок у акционных товаров
 define('ACTION_PRODUCT_LOGO_WIDTH', 100);
 define('ACTION_PRODUCT_LOGO_HEIGHT', 100);
+// секции для вывода в прайслисте баллов из ИБ товаров
+define('MOTOBLOCKS', 107);
+define('TILLERS', 108);
+define('SNOWBLOWERS', 126);
+define('BUILDING_TECH', 127);
 ?>
