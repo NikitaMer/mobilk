@@ -219,7 +219,8 @@
 		var LANG = {
 			BASKET_ADDED: "<?=GetMessage("BASKET_ADDED")?>",
 			WISHLIST_ADDED: "<?=GetMessage("WISHLIST_ADDED")?>",
-			ADD_COMPARE_ADDED: "<?=GetMessage("ADD_COMPARE_ADDED")?>",
+            ADD_COMPARE_ADDED: "<?=GetMessage("ADD_COMPARE_ADDED")?>",
+			ADD_COMPARE_NO_ADDED: "<?=GetMessage("ADD_COMPARE_NO_ADDED")?>",
 			ADD_CART_LOADING: "<?=GetMessage("ADD_CART_LOADING")?>",
 			ADD_BASKET_DEFAULT_LABEL: "<?=GetMessage("ADD_BASKET_DEFAULT_LABEL")?>",
 			ADDED_CART_SMALL: "<?=GetMessage("ADDED_CART_SMALL")?>",
@@ -230,7 +231,6 @@
 			REQUEST_PRICE_LABEL: "<?=GetMessage("REQUEST_PRICE_LABEL")?>",
 			REQUEST_PRICE_BUTTON_LABEL: "<?=GetMessage("REQUEST_PRICE_BUTTON_LABEL")?>"
 		};
-	</script>
-
+	</script> 
 </body>
 </html>
