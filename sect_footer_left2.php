@@ -1,1 +1,1 @@
-<p>Copyright 1993-2015 © mobilk.ru все права защищены. </p>
+<p>Copyright 1993-2017 © mobilk.ru все права защищены. </p>
