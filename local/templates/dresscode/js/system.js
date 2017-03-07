@@ -580,7 +580,8 @@ $(window).on("ready", function(event){
 
 		var $_this = $(this);
 		var $_mProductContainer = $_this.parents(".item");        
-		var $_mProduct = $_this.parents(".sku");
+        var $_mProduct = $_this.parents(".sku");
+		var $_tProduct = $_this.parents(".tableContainer");
 		var $_parentProp = $_this.parents(".skuProperty");
 		var $_propList = $_mProduct.find(".skuProperty");
 		var $_clickedProp = $_this.parents(".skuPropertyValue");

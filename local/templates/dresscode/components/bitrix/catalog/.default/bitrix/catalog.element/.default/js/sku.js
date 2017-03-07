@@ -1,7 +1,7 @@
 $(function(){
 
-	var skuLoading = false;
-
+	var skuLoading = false; 
+        
 	var elementSelectSku = function(event){
 
 		if(skuLoading == true){
@@ -20,7 +20,7 @@ $(function(){
 
 		var $_mProduct = $_this.parents(".elementSku");
 		var $_mProductContainer = $_this.parents(".item");
-		var $_parentProp = $_this.parents(".elementSkuProperty");
+        var $_parentProp = $_this.parents(".elementSkuProperty");        
 		var $_propList = $_mProduct.find(".elementSkuProperty");
 		var $_clickedProp = $_this.parents(".elementSkuPropertyValue");
 		var $changeFastBack = $_mProduct.find(".fastBack").removeClass("disabled");
@@ -81,7 +81,7 @@ $(function(){
 			
 			$(".changeName").html(http[0]["PRODUCT"]["NAME"]);
 
-			$_mProduct.find(".changeID").data("id", http[0]["PRODUCT"]["ID"]);
+			$_mProduct.find(".changeID").attr("data-id", http[0]["PRODUCT"]["ID"]);
 			$_mProduct.find(".changePicture").html($("<img/>").attr("src", http[0]["PRODUCT"]["IMAGES"][0]["MEDIUM_IMAGE"]["SRC"]));
 			$_mProduct.find(".changePropertiesNoGroup").html(http[0]["PRODUCT"]["RESULT_PROPERTIES_NO_GROUP"]);
 			$_mProduct.find(".changePropertiesGroup").html(http[0]["PRODUCT"]["RESULT_PROPERTIES_GROUP"]);
@@ -102,7 +102,32 @@ $(function(){
 					.attr("href", "#");
 			}
 
-			//AVAILABLE
+			var $_maddCompare = $_mProduct.find(".addCompare");
+            //var $_micon = $_maddCompare.find("img");
+            var $_mproductID = $_maddCompare.attr("data-id");
+            var $_gObj = {act: "Compare"};
+            $.get(ajaxPath, $_gObj).done(function(hData){
+                if(hData != ""){
+                    $_maddCompare.addClass("loading");
+                    $_data = JSON.parse(hData);   
+                    for ($_key in $_data){
+                        if($_data[$_key] == $_mproductID){
+                            $_maddCompare.removeClass("added")
+                                            .addClass("loading")
+                                                .html(LANG["ADD_COMPARE_ADDED"])
+                                                    .prepend(($("<img />").attr({src: TEMPLATE_PATH + "/images/compare.png", class: "icon"})))
+                                                        .attr("href", SITE_DIR + "compare/");
+                            break;
+                        }else{
+                            $_maddCompare.removeClass("loading")
+                                            .addClass("added")
+                                                .html(LANG["ADD_COMPARE_NO_ADDED"])
+                                                    .prepend(($("<img />").attr({src: TEMPLATE_PATH + "/images/compare.png", class: "icon"})))
+                                                        .attr("href", "#");
+                        }                    
+                    }     
+                }        
+            });
 			
 			var $changeAvailable = $_mProduct.find(".changeAvailable");
 
@@ -368,3 +393,32 @@ $(function(){
 	$(document).on("click", ".elementSkuPropertyLink", elementSelectSku);
 
 });
+$(window).on("load", function(){
+   // var $_parentList = $(document).find(".tableContainer");
+    var $Compare = $(".addCompare");
+    //var $_micon = $_maddCompare.find("img");
+    var $_mproductID = $(".changeID ").attr("data-id");
+    var $_gObj = {act: "Compare"};
+    $.get(ajaxPath, $_gObj).done(function(hData){
+        if(hData != ""){
+            $Compare.addClass("loading");
+            $_data = JSON.parse(hData);   
+            for ($_key in $_data){
+                if($_data[$_key] == $_mproductID){
+                    $Compare.removeClass("added")
+                                    .addClass("loading")
+                                        .html(LANG["ADD_COMPARE_ADDED"])
+                                            .prepend(($("<img />").attr({src: TEMPLATE_PATH + "/images/compare.png", class: "icon"})))
+                                                .attr("href", SITE_DIR + "compare/");
+                    break;
+                }else{
+                    $Compare.removeClass("loading")
+                                    .addClass("added")
+                                        .html(LANG["ADD_COMPARE_NO_ADDED"])
+                                            .prepend(($("<img />").attr({src: TEMPLATE_PATH + "/images/compare.png", class: "icon"})))
+                                                .attr("href", "#");
+                }                    
+            }     
+        }        
+    });    
+    });    
