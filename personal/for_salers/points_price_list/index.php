@@ -23,6 +23,14 @@ $APPLICATION->SetTitle("Прайс-лист баллов");
 );?>
 
 <? if (isUserSaler()) { ?>
+<?
+global $points_price_list_filter;
+$points_price_list_filter =  array(
+    "LOGIC" => "AND",
+    array("!=PROPERTY_GOLDEN_LVL_POINTS" => false),
+    array("!=PROPERTY_SILVER_LVL_POINTS" => false)
+);
+?>
 <?$APPLICATION->IncludeComponent(
 	"bitrix:news.list",
 	"price_list_points",
@@ -35,7 +43,7 @@ $APPLICATION->SetTitle("Прайс-лист баллов");
 		"SORT_ORDER1" => "ASC",	// Направление для первой сортировки новостей
 		"SORT_BY2" => "SORT",	// Поле для второй сортировки новостей
 		"SORT_ORDER2" => "ASC",	// Направление для второй сортировки новостей
-		"FILTER_NAME" => "",	// Фильтр
+		"FILTER_NAME" => "points_price_list_filter",	// Фильтр
 		"FIELD_CODE" => array(	// Поля
 			0 => "CODE",
 			1 => "NAME",
