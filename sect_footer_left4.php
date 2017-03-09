@@ -1,8 +1,8 @@
 <div class="telephone">+7 (800) 433-35-43</div>
-<div class="email">Email: <a href="mailto:info@dresscode.ru">info@dresscode.ru</a></div>
+<div class="email">Email: <a href="mailto:shop@mobilk.ru">shop@mobilk.ru</a></div>
 <ul class="list">
 	<li>√рафик работы</li>
-	<li>ѕн-ѕт: с 9:00 до 21:00</li>
-	<li>—б: с 9:00 до 18:00</li>
+	<li>ѕн-ѕт: с 10:00 до 20:00</li>
+	<li>—б: с 10:00 до 15:00</li>
 	<li>¬с: ¬ыходной</li>
 </ul>
