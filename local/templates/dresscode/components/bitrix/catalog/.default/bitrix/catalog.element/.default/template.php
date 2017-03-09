@@ -5,7 +5,7 @@
 	$countPropertyElements = 7;
 	global $USER;
 ?>
-<?
+<?   
 	$this->AddEditAction($arResult["ID"], $arResult["EDIT_LINK"], CIBlock::GetArrayByID($arResult["IBLOCK_ID"], "ELEMENT_EDIT"));
 	$this->AddDeleteAction($arResult["ID"], $arResult["DELETE_LINK"], CIBlock::GetArrayByID($arResult["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
 ?>
@@ -24,7 +24,7 @@
 			<div id="elementNavigation" class="column">
 				<?if(!empty($arResult["TABS"])):?>
 					<div class="tabs">
-						<?foreach ($arResult["TABS"] as $it => $arTab):?>
+						<?foreach ($arResult["TABS"] as $it => $arTab): ?>
 							<div class="tab<?if($arTab["ACTIVE"] == "Y"):?> active<?endif;?>" data-id="<?=$arTab["ID"]?>"><a href="<?if(!empty($arTab["LINK"])):?><?=$arTab["LINK"]?><?else:?>#<?endif;?>"><?=$arTab["NAME"]?><img src="<?=$arTab["PICTURE"]?>" alt="<?=$arTab["NAME"]?>"></a></div>
 						<?endforeach;?>
 					</div>

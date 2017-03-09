@@ -753,7 +753,7 @@
 			);
 		}
 
-		if(!empty($arResult["DISPLAY_PROPERTIES"])){
+		if(!empty($arResult["PROPERTIES"])){
 			$arResult["TABS"]["CATALOG_ELEMENT_CHARACTERISTICS"] = array(
 				"PICTURE" => SITE_TEMPLATE_PATH."/images/elementNavIco9.png",
 				"NAME" => GetMessage("CATALOG_ELEMENT_CHARACTERISTICS"),
