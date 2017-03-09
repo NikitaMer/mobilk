@@ -13,7 +13,7 @@
 $this->setFrameMode(true);
 ?>
 <select name="PROPERTY[<?= SALER_REPORT_PRODUCT_ID_PROPERTY_ID ?>][0]" id="">
-<? foreach ($arResult["ITEMS"] as $arItem) { ?>
-	<option value="<?= $arItem['ID'] ?>"><?= $arItem['NAME'] ?></option>
+<? foreach ($arResult["PRODUCTS"] as $arItem) { ?>
+	<option value="<?= $arItem['id'] ?>"><?= $arItem['title'] ?></option>
 <? } ?>
 </select>
