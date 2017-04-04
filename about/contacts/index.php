@@ -1,6 +1,6 @@
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Задайте вопрос");
-?><h1>Контактная информация</h1>
+$APPLICATION->SetTitle("Г‡Г Г¤Г Г©ГІГҐ ГўГ®ГЇГ°Г®Г±");
+?><h1>ГЉГ®Г­ГІГ ГЄГІГ­Г Гї ГЁГ­ГґГ®Г°Г¬Г Г¶ГЁГї</h1>
  <?$APPLICATION->IncludeComponent(
 	"bitrix:menu",
 	"personal",
@@ -53,10 +53,10 @@ $APPLICATION->SetTitle("Задайте вопрос");
 	<tbody>
 	<tr>
 		<td>
- <img alt="cont3.png" src="/local/templates/dresscode/images/cont3.png" title="cont3.png">   
+ <img alt="cont3.png" src="/local/templates/dresscode/images/cont3.png" title="cont3.png">В  В 
 		</td>
 		<td>
-			 Смоленская обл., Гагаринский р-н, д. Поличня, ул. Новая         
+			 Г‘Г¬Г®Г«ГҐГ­Г±ГЄГ Гї Г®ГЎГ«., ГѓГ ГЈГ Г°ГЁГ­Г±ГЄГЁГ© Г°-Г­, Г¤. ГЏГ®Г«ГЁГ·Г­Гї, ГіГ«. ГЌГ®ГўГ ГїВ  В  В  В  В 
 		</td>
 	</tr>
 	</tbody>
@@ -70,9 +70,9 @@ $APPLICATION->SetTitle("Задайте вопрос");
  <img alt="cont4.png" src="/local/templates/dresscode/images/cont4.png" title="cont4.png">
 		</td>
 		<td>
-			 Пн-Пт : с 08:00 до 18:00<br>
-			 Сб : с 09:00 до 15:00<br>
-			 Вс : выходной<br>
+			 ГЏГ­-ГЏГІ : Г± 08:00 Г¤Г® 18:00<br>
+			 Г‘ГЎ : Г± 09:00 Г¤Г® 15:00<br>
+			 Г‚Г± : ГўГ»ГµГ®Г¤Г­Г®Г©<br>
 		</td>
 	</tr>
 	</tbody>
@@ -85,17 +85,21 @@ $APPLICATION->SetTitle("Задайте вопрос");
 	".default",
 	Array(
 		"COMPONENT_TEMPLATE" => ".default",
-		"CONTROLS" => array(0=>"SMALL_ZOOM_CONTROL",1=>"TYPECONTROL",2=>"SCALELINE",),
-		"INIT_MAP_TYPE" => "ROADMAP",
-		"MAP_DATA" => "a:4:
-{s:10:\"yandex_lat\";d:55.580350;s:10:\"yandex_lon\";d:34.980213;s:12:\"yandex_scale\";i:12;s:10:\"PLACEMARKS\";a:3:
-{i:0;a:3:{s:4:\"TEXT\";s:7:\"Точка 1\";s:3:\"LON\";d:37.620620727539;s:3:\"LAT\";d:55.731749899652;}i:1;a:3:
-{s:4:\"TEXT\";s:7:\"Точка 2\";s:3:\"LON\";d:38.620620727539;s:3:\"LAT\";d:56.731749899652;}i:2;a:3:{s:4:\"TEXT\";s:7:\"Магазин\";s:3:\"LON\";d:34.980213;s:3:\"LAT\";d:55.580350;}}}
-\"\"MAP_HEIGHT\"=>\"500",
+		"CONTROLS" => array(
+			0 => "TYPECONTROL",
+			1 => "SCALELINE",
+		),
+		"INIT_MAP_TYPE" => "MAP",
+		"MAP_DATA" => "a:4:{s:10:\"yandex_lat\";d:55.57285806433379;s:10:\"yandex_lon\";d:34.97792738092041;s:12:\"yandex_scale\";i:12;s:10:\"PLACEMARKS\";a:1:{i:0;a:3:{s:3:\"LON\";d:34.98134444836754;s:3:\"LAT\";d:55.58089580051337;s:4:\"TEXT\";s:7:\"ГЊГ®ГЎГЁГ« ГЉ\";}}}",
+		"MAP_HEIGHT" => "500",
 		"MAP_ID" => "",
 		"MAP_WIDTH" => "100%",
-		"OPTIONS" => array(0=>"ENABLE_DBLCLICK_ZOOM",1=>"ENABLE_DRAGGING",2=>"ENABLE_KEYBOARD",)
-	)
+		"OPTIONS" => array(
+			0 => "ENABLE_DBLCLICK_ZOOM",
+			1 => "ENABLE_DRAGGING",
+		)
+	),
+	false
 );?><br>
  <br>
 		<?$APPLICATION->IncludeComponent(
