@@ -87,22 +87,17 @@ $APPLICATION->SetTitle("Задайте вопрос");
 	array(
 		"COMPONENT_TEMPLATE" => ".default",
 		"CONTROLS" => array(
-			0 => "SMALL_ZOOM_CONTROL",
-			1 => "TYPECONTROL",
-			2 => "SCALELINE",
+			0 => "TYPECONTROL",
+			1 => "SCALELINE",
 		),
-		"INIT_MAP_TYPE" => "ROADMAP",
-		"MAP_DATA" => "a:4:{s:10:\"yandex_lat\";d:55.580350;s:10:\"yandex_lon\";d:34.980213;s:12:\"yandex_scale\";i:12;s:10:\"PLACEMARKS\";
-a:3:{i:0;a:3:{s:4:\"TEXT\";s:7:\"Точка 1\";s:3:\"LON\";d:37.620620727539;s:3:\"LAT\";d:55.731749899652;}i:1;
-a:3:{s:4:\"TEXT\";s:7:\"Точка 2\";s:3:\"LON\";d:38.620620727539;s:3:\"LAT\";d:56.731749899652;}i:2;
-a:3:{s:4:\"TEXT\";s:7:\"Магазин\";s:3:\"LON\";d:34.980213;s:3:\"LAT\";d:55.580350;}}}",
+		"INIT_MAP_TYPE" => "MAP",
+		"MAP_DATA" => "a:4:{s:10:\"yandex_lat\";d:55.57285806433379;s:10:\"yandex_lon\";d:34.97792738092041;s:12:\"yandex_scale\";i:12;s:10:\"PLACEMARKS\";a:1:{i:0;a:3:{s:3:\"LON\";d:34.98134444836754;s:3:\"LAT\";d:55.58089580051337;s:4:\"TEXT\";s:7:\"Мобил К\";}}}",
 		"MAP_HEIGHT" => "500",
 		"MAP_ID" => "",
 		"MAP_WIDTH" => "100%",
 		"OPTIONS" => array(
 			0 => "ENABLE_DBLCLICK_ZOOM",
 			1 => "ENABLE_DRAGGING",
-			2 => "ENABLE_KEYBOARD",
 		)
 	),
 	false

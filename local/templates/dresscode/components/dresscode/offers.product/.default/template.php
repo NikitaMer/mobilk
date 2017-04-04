@@ -48,7 +48,7 @@
 						<div class="ajaxContainer">
 					<?endif;?>
 						<div class="items productList">
-							<?foreach ($arItemsGroup["ITEMS"] as $index => $arElement):?>
+							<?foreach ($arItemsGroup["ITEMS"] as $index => $arElement): //arshow($arElement);?>
 								<?
 									$this->AddEditAction($arElement["ID"], $arElement["EDIT_LINK"], CIBlock::GetArrayByID($arElement["IBLOCK_ID"], "ELEMENT_EDIT"));
 									$this->AddDeleteAction($arElement["ID"], $arElement["DELETE_LINK"], CIBlock::GetArrayByID($arElement["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
