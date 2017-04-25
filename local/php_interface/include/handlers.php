@@ -252,4 +252,88 @@ function createUserBill(&$fields) {
 		); 
 	}
 }
+
+AddEventHandler("main", "OnAfterUserRegister", "changeMailRegistration");
+
+/**
+* Отправка письма при регистрации пользователя
+* 
+* @param array $arFields
+* @return void
+*/
+function changeMailRegistration(&$arFields){
+    $EVENT_TYPE = 'NEW_USER_CONFIRM_WITH_PASS';
+    $arMailFields = array(
+        'LOGIN' => $arFields['LOGIN'],
+        'ID' => $arFields['USER_ID'],
+        'NAME' => $arFields['NAME'],
+        'LAST_NAME' => $arFields['LAST_NAME'],
+        'PASSWORD' => $arFields['PASSWORD'],
+        'SERVER_NAME' => $_SERVER['HTTP_HOST'],
+        'CONFIRM_CODE' => $arFields['CONFIRM_CODE'],
+        'EMAIL' => $arFields['EMAIL']
+    );
+    CEvent::Send($EVENT_TYPE, $arFields['LID'], $arMailFields);
+}
+
+AddEventHandler("sale", "OnOrderNewSendEmail", "changeMailOrder");
+
+/**
+* Отправка письма при регистрации пользователя
+* 
+* @param array $arFields
+* @param string $eventName
+* @param integer $orderID
+* @return void
+*/
+function changeMailOrder($orderID, &$eventName, &$arFields){
+    $arOrder = CSaleOrder::GetByID($orderID);
+    $arSystem = CSalePaySystem::GetByID($arOrder['PAY_SYSTEM_ID']);
+    $order_props = CSaleOrderPropsValue::GetOrderProps($orderID);
+    $delivery = CSaleDelivery::GetByID($arOrder['DELIVERY_ID']);
+    $arFields["PHONE"]="";
+    $arFields["COUNTRY_NAME_ORIG"] = ""; 
+    $arFields["ZIP"] = "";
+    $arFields["ADDRESS"] = "";  
+    $arFields["CITY_NAME_ORIG"] = "";
+    while ($arProps = $order_props->Fetch())
+    {
+        if ($arProps["CODE"] == "PHONE")
+        {
+           $arFields["PHONE"] = htmlspecialchars($arProps["VALUE"]);
+        }
+        if ($arProps["CODE"] == "LOCATION")
+        {
+            $arLocs = CSaleLocation::GetByID($arProps["VALUE"]);
+            $arFields["COUNTRY_NAME_ORIG"] =  $arLocs["COUNTRY_NAME_ORIG"];
+            $arFields["CITY_NAME_ORIG"] = $arLocs["CITY_NAME_ORIG"];
+        }
+
+        if ($arProps["CODE"] == "ZIP")
+        {
+          $arFields["ZIP"] = $arProps["VALUE"];   
+        }
+
+        if ($arProps["CODE"] == "ADDRESS")
+        {
+          $arFields["ADDRESS"] = $arProps["VALUE"];
+        }           
+    }
+    $arFields["PRICE_DELIVERY"] = $arOrder["PRICE_DELIVERY"];       
+    $arFields["PAY_SISTEM_NAME"] = $arSystem["NAME"];
+    if($delivery["NAME"]){
+        $arFields["DELIVERY"] =  $delivery["NAME"];
+    }else{
+        $arFields["DELIVERY"] = "Доставка курьером";
+    }
+    $dbBasketItems = CSaleBasket::GetList(array("NAME" => "ASC","ID" => "ASC"), array("LID" => SITE_ID, "ORDER_ID" => $orderID));
+    while ($arItems = $dbBasketItems->Fetch())
+    {
+        $arFields["ALL_PRICE"] = $arFields["ALL_PRICE"]+($arItems["BASE_PRICE"]*$arItems["QUANTITY"]);              
+        
+    }    
+    $arFields["DISCOUNT_VALUE"] = (($arFields["ALL_PRICE"]-($arOrder["PRICE"]-$arFields["PRICE_DELIVERY"]))/$arFields["ALL_PRICE"])*100;
+    $arFields["DISCOUNT_VALUE"] = $arFields["DISCOUNT_VALUE"]."%";    
+    $arFields["ORDER_ACCOUNT_NUMBER_ENCODE"] = '<a href="http://'.$_SERVER["HTTP_HOST"].'/personal/order/detail/'.$orderID.'/">http://'.$_SERVER["HTTP_HOST"].'/personal/order/detail/'.$orderID.'/</a>';    
+}
 ?>
