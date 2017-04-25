@@ -279,7 +279,7 @@ function changeMailRegistration(&$arFields){
 AddEventHandler("sale", "OnOrderNewSendEmail", "changeMailOrder");
 
 /**
-* Отправка письма при регистрации пользователя
+* Изменение полей письма при создании нового заказа
 * 
 * @param array $arFields
 * @param string $eventName
