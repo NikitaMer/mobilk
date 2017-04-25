@@ -7,7 +7,8 @@
  *
  * */
 
-function logger($data, $file) {
+function logger($data, $file = "log.log") {
+    $file = $_SERVER['DOCUMENT_ROOT'].'/'.$file;
     file_put_contents(
         $file,
         var_export($data, 1)."\n",
