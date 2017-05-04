@@ -317,7 +317,20 @@ function changeMailOrder($orderID, &$eventName, &$arFields){
         if ($arProps["CODE"] == "ADDRESS")
         {
           $arFields["ADDRESS"] = $arProps["VALUE"];
+        }
+        if ($arProps["CODE"] == "COUPON")
+        {
+            if(trim(strtolower($arProps["VALUE"])) == "mobilk2017"){
+                $arFields["COUPON"] = strtoupper($arProps["VALUE"]);
+            }elseif(!$arProps["VALUE"]){
+                $arFields["COUPON"] = "-";    
+            }else{
+                $arFields["COUPON"] = "неверный промокод";
+            }
         }           
+    }
+    if(!$arFields["COUPON"]){
+        $arFields["COUPON"] = "-";        
     }
     $arFields["PRICE_DELIVERY"] = $arOrder["PRICE_DELIVERY"];
     $arFields["USER_DESCRIPTION"] = $arOrder["USER_DESCRIPTION"];       
