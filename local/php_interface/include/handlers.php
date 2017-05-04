@@ -298,7 +298,6 @@ function changeMailOrder($orderID, &$eventName, &$arFields){
     $arFields["CITY_NAME_ORIG"] = "";
     while ($arProps = $order_props->Fetch())
     {
-        logger($arFields);
         if ($arProps["CODE"] == "PHONE")
         {
            $arFields["PHONE"] = htmlspecialchars($arProps["VALUE"]);
