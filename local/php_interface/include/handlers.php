@@ -286,7 +286,7 @@ AddEventHandler("sale", "OnOrderNewSendEmail", "changeMailOrder");
 * @param integer $orderID
 * @return void
 */
-function changeMailOrder($orderID, &$eventName, &$arFields){
+function changeMailOrder($orderID, &$eventName, &$arFields){    
     $arOrder = CSaleOrder::GetByID($orderID);
     $arSystem = CSalePaySystem::GetByID($arOrder['PAY_SYSTEM_ID']);
     $order_props = CSaleOrderPropsValue::GetOrderProps($orderID);
@@ -319,7 +319,8 @@ function changeMailOrder($orderID, &$eventName, &$arFields){
           $arFields["ADDRESS"] = $arProps["VALUE"];
         }           
     }
-    $arFields["PRICE_DELIVERY"] = $arOrder["PRICE_DELIVERY"];       
+    $arFields["PRICE_DELIVERY"] = $arOrder["PRICE_DELIVERY"];
+    $arFields["USER_DESCRIPTION"] = $arOrder["USER_DESCRIPTION"];       
     $arFields["PAY_SISTEM_NAME"] = $arSystem["NAME"];
     if($delivery["NAME"]){
         $arFields["DELIVERY"] =  $delivery["NAME"];
