@@ -1,27 +1,22 @@
-<span class="heading">+7 (800) 505-40-38</span>
-
+<span class="heading">+7 (800) 333-92-14</span>
 <?$APPLICATION->IncludeComponent(
-	"bitrix:form.result.new", 
-	"modal", 
-	array(
+	"bitrix:form.result.new",
+	"modal",
+	Array(
 		"CACHE_TIME" => "3600000",
 		"CACHE_TYPE" => "A",
 		"CHAIN_ITEM_LINK" => "",
 		"CHAIN_ITEM_TEXT" => "",
+		"COMPONENT_TEMPLATE" => "modal",
 		"EDIT_URL" => "result_edit.php",
 		"IGNORE_CUSTOM_TEMPLATE" => "N",
 		"LIST_URL" => "result_list.php",
+		"MODAL_BUTTON_CLASS_NAME" => "link callBack",
+		"MODAL_BUTTON_NAME" => "",
 		"SEF_MODE" => "N",
 		"SUCCESS_URL" => "",
 		"USE_EXTENDED_ERRORS" => "N",
-		"WEB_FORM_ID" => "1",
-		"COMPONENT_TEMPLATE" => "modal",
-		"MODAL_BUTTON_NAME" => "",
-		"MODAL_BUTTON_CLASS_NAME" => "link callBack",
-		"VARIABLE_ALIASES" => array(
-			"WEB_FORM_ID" => "WEB_FORM_ID",
-			"RESULT_ID" => "RESULT_ID",
-		)
-	),
-	false
+		"VARIABLE_ALIASES" => array("WEB_FORM_ID"=>"WEB_FORM_ID","RESULT_ID"=>"RESULT_ID",),
+		"WEB_FORM_ID" => "1"
+	)
 );?>

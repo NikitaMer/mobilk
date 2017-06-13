@@ -1,8 +1,7 @@
 Есть вопросы? <br>
  свяжитесь с нами удобным Вам способом <br>
  <img src="/local/templates/dresscode/images/cont1.png"> <br>
- +7 (800) 505-40-38<br>
- +7 (812) 244-71-27<br>
+ +7 (800) 333-92-14<br>
  <img src="/local/templates/dresscode/images/cont2.png"> <br>
  <a href="mailto:shop@mobilk.ru">shop@mobilk.ru</a> <br>
  <img src="/local/templates/dresscode/images/cont3.png"> <br>

@@ -41,6 +41,13 @@ $aMenuLinks = Array(
 		Array(), 
 		Array(), 
 		"" 
+	),
+	Array(
+		"Запасные части", 
+		"about/spares/", 
+		Array(), 
+		Array(), 
+		"" 
 	)
 );
 ?>
