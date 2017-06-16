@@ -107,7 +107,7 @@
 			</form>
 		</div>
 
-		<a href="<?=SITE_DIR?>personal/cart/order/" id="newOrder" class="selected"><img src="<?=SITE_TEMPLATE_PATH?>/images/order.png"><?=GetMessage("BASKET_TABS_ORDER_MAKE")?></a>
+		<a href="<?=SITE_DIR?>personal/cart/order/" id="newOrder" class="selected" onclick="ga('send','pageview','/makeorder/');"><img src="<?=SITE_TEMPLATE_PATH?>/images/order.png"><?=GetMessage("BASKET_TABS_ORDER_MAKE")?></a>
 
 		<div id="order" class="orderContainer">
 			<span class="title"><?=GetMessage("ORDER_HEADING")?></span> 
