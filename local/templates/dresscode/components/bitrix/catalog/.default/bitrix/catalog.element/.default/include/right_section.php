@@ -51,7 +51,7 @@
 	   	</div>
 	    <?endif;?>
 		<div class="row">
-			<a href="#" class="fastBack label changeID<?if(empty($arResult["MIN_PRICE"]) || $arResult["CAN_BUY"] === "N" || $arResult["CAN_BUY"] === false):?> disabled<?endif;?>" data-id="<?=$arResult["ID"]?>"><img src="<?=SITE_TEMPLATE_PATH?>/images/fastBack.png" alt="<?=GetMessage("FASTBACK_LABEL")?>" class="icon"><?=GetMessage("FASTBACK_LABEL")?></a>
+			<a href="#" class="fastBack label changeID<?if(empty($arResult["MIN_PRICE"]) || $arResult["CAN_BUY"] === "N" || $arResult["CAN_BUY"] === false):?> disabled<?endif;?>" data-id="<?=$arResult["ID"]?>" onclick="ga('send','pageview','/1clickpurchase/');"><img src="<?=SITE_TEMPLATE_PATH?>/images/fastBack.png" alt="<?=GetMessage("FASTBACK_LABEL")?>" class="icon"><?=GetMessage("FASTBACK_LABEL")?></a>
 		</div>
 		<div class="row">
 			<a href="#" class="addWishlist label" data-id="<?=$arResult["~ID"]?>"><img src="<?=SITE_TEMPLATE_PATH?>/images/wishlist.png" alt="<?=GetMessage("WISHLIST_LABEL")?>" class="icon"><?=GetMessage("WISHLIST_LABEL")?></a>
