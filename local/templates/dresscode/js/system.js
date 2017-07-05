@@ -1490,7 +1490,23 @@ $(window).on("ready", function(event){
         }
    
     };
+    
+    //Открытие формы
+    var popup = function(){
+        $("#p1").fadeIn(500);
+        $(".screen").fadeIn(500);
+        $("#foundation").addClass("blur");    
+    };
+    // Закрытие формы
+    var popup_close = function(){
+        $("#p1").fadeOut(500);
+        $(".screen").fadeOut(500);
+        $("#foundation").removeClass("blur");
+    };
 
+    $(document).on("click", ".pop", popup);
+    $(document).on("click", ".popup_close", popup_close);
+    
     $(document).on("click", "#appBasket .closeWindow", appBasketClose);
     $(document).on("click", "#appBasket .delete", appBasketDelete);
     $(document).on("click", "#appBasket .minus", appBasketMinus);

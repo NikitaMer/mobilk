@@ -106,7 +106,6 @@
 				<input placeholder="<?=GetMessage("COUPON_LABEL")?>" name="user" class="couponField"><input type="submit" value="<?=GetMessage("COUPON_ACTIVATE")?>" class="couponActivate">
 			</form>
 		</div>
-
 		<a href="<?=SITE_DIR?>personal/cart/order/" id="newOrder" class="selected"><img src="<?=SITE_TEMPLATE_PATH?>/images/order.png"><?=GetMessage("BASKET_TABS_ORDER_MAKE")?></a>
 
 		<div id="order" class="orderContainer">

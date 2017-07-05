@@ -145,8 +145,10 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 			</div>
 		</div>
 </div>
-<?endif?>
+<?endif?> 
+    <p>Нажатие кнопки «Регистрация» означает согласие с настоящей <a class="pop">Политикой конфиденциальности</a></p>
 		<div class="bx-authform-formgroup-container send">
+            
 			<input type="submit" class="btn btn-primary submit" name="Register" value="<?=GetMessage("AUTH_REGISTER")?>" />
 		</div>
 

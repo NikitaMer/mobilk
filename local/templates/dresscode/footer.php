@@ -207,7 +207,15 @@
 	<div id="upButton">
 		<a href="#"></a>
 	</div>
-
+    <div class="screen" style="display: none;"> </div>
+        <div class="popup" id="p1" style="display: none;">
+            <div class="popup_close"></div>
+            <div class="popup_h1"> <?$APPLICATION->IncludeFile(SITE_DIR."sect_popup_h1.php", Array(), Array("MODE" => "text", "NAME" => GetMessage("SECT_FOOTER_COUNTERS"), "TEMPLATE" => "sect_popup_h1.php"));?> </div>
+            <div class="popup_text">
+                <?$APPLICATION->IncludeFile(SITE_DIR."sect_popup_text.php", Array(), Array("MODE" => "text", "NAME" => GetMessage("SECT_FOOTER_COUNTERS"), "TEMPLATE" => "sect_popup_text.php"));?>    
+            </div>
+        </div>
+    
     <script type="text/javascript">
       var ajaxPath = "<?=SITE_DIR?>ajax.php";
       var SITE_DIR = "<?=SITE_DIR?>";
