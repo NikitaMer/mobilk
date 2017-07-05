@@ -16,7 +16,7 @@
 					<div class="formLine"><input name="name" type="text" placeholder="Имя*" value="" id="fastBuyFormName"></div>
 					<div class="formLine"><input name="phone" type="text" placeholder="Телефон*" value="" id="fastBuyFormTelephone"></div>
 					<div class="formLine"><textarea name="message" cols="30" rows="10" placeholder="Сообщение" id="fastBuyFormMessage"></textarea></div>
-					<div class="formLine"><a href="#" id="fastBuyFormSubmit"><img src="<?=SITE_TEMPLATE_PATH?>/images/incart.png" alt="Купить в один клик"> Купить в один клик</a></div>
+					<div class="formLine"><a href="#" id="fastBuyFormSubmit" onclick="ga('send','pageview','/1clickpurchasesubmit/');"><img src="<?=SITE_TEMPLATE_PATH?>/images/incart.png" alt="Купить в один клик"> Купить в один клик</a></div>
 				</form>
 			</div>
 		</div>

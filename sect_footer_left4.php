@@ -1,4 +1,4 @@
-<div class="telephone">+7 (800) 433-35-43</div>
+<div class="telephone">+7 (800) 333-92-14</div>
 <div class="email">Email: <a href="mailto:shop@mobilk.ru">shop@mobilk.ru</a></div>
 <ul class="list">
 	<li>График работы</li>
