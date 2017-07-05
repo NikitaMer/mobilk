@@ -65,6 +65,7 @@
 		<?endif;?>
 		<div class="webFormError"></div>
 		<div class="webFormTools">
+            <p>Нажатие кнопки «Отправить» означает согласие с настоящей <a class="pop">Политикой конфиденциальности</a></p>
 			<input <?=(intval($arResult["F_RIGHT"]) < 10 ? "disabled=\"disabled\"" : "");?> type="submit" name="web_form_submit" value="<?=htmlspecialcharsbx(strlen(trim($arResult["arForm"]["BUTTON"])) <= 0 ? GetMessage("FORM_ADD") : $arResult["arForm"]["BUTTON"]);?>" class="sendWebFormDw" />
 			<input type="hidden" name="web_form_apply" value="Y" />
 			<input type="reset" value="<?=GetMessage("FORM_RESET");?>" />
