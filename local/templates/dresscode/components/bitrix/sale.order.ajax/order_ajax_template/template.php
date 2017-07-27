@@ -298,7 +298,7 @@ else
 
 				<!--	ORDER SAVE BLOCK	-->
 				<div id="bx-soa-orderSave" class="hidden-xs">
-					<a href="javascript:void(0)" style="margin: 10px 0" class="pull-right btn btn-default btn-lg" onclick="ga('send','pageview','/callback/');">
+					<a href="javascript:void(0)" style="margin: 10px 0" class="pull-right btn btn-default btn-lg" onclick="ga('send','pageview','/order/');">
 						<?=$arParams['MESS_ORDER']?>
 					</a>
 				</div>

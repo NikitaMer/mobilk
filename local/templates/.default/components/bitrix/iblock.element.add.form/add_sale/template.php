@@ -6,7 +6,7 @@ if (!empty($arResult["ERRORS"])):?>
 <?endif;?>
 <?if (strlen($arResult["MESSAGE"]) > 0):?>
 	<?ShowNote($arResult["MESSAGE"])?>
-<?endif?>
+<?endif?>   
 <h2 class="send_saler_report_header"><?= GetMessage("SEND_SALE_REPORT") ?></h2>
 <? if (!$arResult['USER_HAVE_ACTIVE_REQUESTS']) { ?>
 <form name="iblock_add" action="<?= POST_FORM_ACTION_URI ?>" method="post" enctype="multipart/form-data">
@@ -226,4 +226,4 @@ if (!empty($arResult["ERRORS"])):?>
 </form>
 <? } else { ?>
 	<?= GetMessage('USER_HAVE_ACTIVE_REQUESTS') ?>
-<? } ?>
+<? } ?>  

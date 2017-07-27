@@ -42,9 +42,9 @@
     </div>
     
 <?$APPLICATION->IncludeComponent(
-    "dresscode:offers.product", 
-    ".default", 
-    array(
+	"dresscode:offers.product", 
+	"main_product", 
+	array(
         "CACHE_TYPE" => "Y",
         "CACHE_TIME" => "3600000",
         "PROP_NAME" => "OFFERS",
