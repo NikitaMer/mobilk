@@ -1,7 +1,7 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Сравнение товаров");
-?><h1>Список сравнения</h1>
+$APPLICATION->SetTitle("Г‘Г°Г ГўГ­ГҐГ­ГЁГҐ ГІГ®ГўГ Г°Г®Гў");
+?><h1>Г‘ГЇГЁГ±Г®ГЄ Г±Г°Г ГўГ­ГҐГ­ГЁГї</h1>
  <?$APPLICATION->IncludeComponent(
 	"dresscode:catalog.compare", 
 	"compare", 
