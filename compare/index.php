@@ -2,12 +2,16 @@
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Сравнение товаров");
 ?><h1>Список сравнения</h1>
- <?$APPLICATION->IncludeComponent("dresscode:catalog.compare", "compare", Array(
-	"CACHE_TIME" => "360000",	// Время кеширования (сек.)
-		"CACHE_TYPE" => "A",	// Тип кеширования
-		"IBLOCK_ID" => "14",	// Инфоблок
-		"IBLOCK_TYPE" => "catalog",	// Тип инфоблока
-		"PRODUCT_PRICE_CODE" => "",	// Тип цены
+ <?$APPLICATION->IncludeComponent(
+	"dresscode:catalog.compare", 
+	".default", 
+	array(
+		"CACHE_TIME" => "360000",
+		"CACHE_TYPE" => "A",
+		"IBLOCK_ID" => "14",
+		"IBLOCK_TYPE" => "catalog",
+		"PRODUCT_PRICE_CODE" => array(
+		),
 		"COMPONENT_TEMPLATE" => ".default"
 	),
 	false
