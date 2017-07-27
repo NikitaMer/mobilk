@@ -88,7 +88,7 @@ if ($arParams['USE_CUSTOM_MAIN_MESSAGES'] != 'Y')
 }
 
 if ($arParams['USE_CUSTOM_ADDITIONAL_MESSAGES'] != 'Y')
-{
+{  
 	$arParams['MESS_REGISTRATION_REFERENCE'] = Loc::getMessage('REGISTRATION_REFERENCE_DEFAULT');
 	$arParams['MESS_AUTH_REFERENCE_1'] = Loc::getMessage('AUTH_REFERENCE_1_DEFAULT');
 	$arParams['MESS_AUTH_REFERENCE_2'] = Loc::getMessage('AUTH_REFERENCE_2_DEFAULT');
@@ -107,7 +107,7 @@ if ($arParams['USE_CUSTOM_ADDITIONAL_MESSAGES'] != 'Y')
 }
 
 if ($arParams['USE_CUSTOM_ERROR_MESSAGES'] != 'Y')
-{
+{  
 	$arParams['MESS_PRELOAD_ORDER_TITLE'] = Loc::getMessage('PRELOAD_ORDER_TITLE_DEFAULT');
 	$arParams['MESS_SUCCESS_PRELOAD_TEXT'] = Loc::getMessage('SUCCESS_PRELOAD_TEXT_DEFAULT');
 	$arParams['MESS_FAIL_PRELOAD_TEXT'] = Loc::getMessage('FAIL_PRELOAD_TEXT_DEFAULT');
@@ -125,7 +125,7 @@ switch (LANGUAGE_ID)
 	case 'tk':
 		$locale = 'tr-TR'; break;
 	default:
-		$locale = 'en-US'; break;
+		$locale = 'en-US'; break;               
 }
 
 $this->addExternalCss('/bitrix/css/main/bootstrap.css');
@@ -135,10 +135,10 @@ $this->addExternalJs($templateFolder.'/order_ajax.js');
 \Bitrix\Sale\PropertyValueCollection::initJs();
 $this->addExternalJs($templateFolder.'/script.js');
 $this->addExternalJs($scheme.'://api-maps.yandex.ru/2.1.34/?load=package.full&lang='.$locale);
-?>
+?> 
 	<NOSCRIPT>
 		<div style="color:red"><?=Loc::getMessage('SOA_NO_JS')?></div>
-	</NOSCRIPT>
+	</NOSCRIPT>                     
 <?
 
 if (strlen($request->get('ORDER_ID')) > 0)
@@ -465,6 +465,6 @@ else
 		})();
 		<? endif ?>
 	</script>
-	<?
+	<?                                             
 }
 ?>

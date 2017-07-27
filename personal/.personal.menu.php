@@ -7,6 +7,20 @@ $aMenuLinks = Array(
 		Array(), 
 		"" 
 	),
+    Array(
+        "Профили покупателя", 
+        "/personal/profile/", 
+        Array(), 
+        Array(), 
+        "" 
+    ),
+	Array(
+		"Регистрация продаж", 
+		"/personal/for_salers/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
 	Array(
 		"История заказов", 
 		"/personal/order/", 
@@ -15,7 +29,14 @@ $aMenuLinks = Array(
 		"" 
 	),
 	Array(
-		"Корзина", 
+		"Личный счет", 
+		"/personal/bill/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Моя корзина", 
 		"/personal/cart/", 
 		Array(), 
 		Array(), 
@@ -24,13 +45,6 @@ $aMenuLinks = Array(
 	Array(
 		"Подписка на рассылку", 
 		"/personal/subscribe/", 
-		Array(), 
-		Array(), 
-		"" 
-	),
-	Array(
-		"Для продавцов", 
-		"/personal/for_salers/", 
 		Array(), 
 		Array(), 
 		"" 

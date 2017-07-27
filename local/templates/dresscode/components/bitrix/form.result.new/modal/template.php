@@ -72,7 +72,7 @@
                         <p>Нажатие кнопки «Отправить» означает согласие с настоящей <a class="pop">Политикой конфиденциальности</a></p>
 							<div class="tb">
 								<div class="tc">
-									<input <?=(intval($arResult["F_RIGHT"]) < 10 ? "disabled=\"disabled\"" : "");?> type="submit" name="web_form_submit" value="<?=htmlspecialcharsbx(strlen(trim($arResult["arForm"]["BUTTON"])) <= 0 ? GetMessage("FORM_ADD") : $arResult["arForm"]["BUTTON"]);?>" class="sendWebFormDw" />
+									<input <?=(intval($arResult["F_RIGHT"]) < 10 ? "disabled=\"disabled\"" : "");?> type="submit" name="web_form_submit" value="<?=htmlspecialcharsbx(strlen(trim($arResult["arForm"]["BUTTON"])) <= 0 ? GetMessage("FORM_ADD") : $arResult["arForm"]["BUTTON"]);?>" class="sendWebFormDw" onclick="ga('send','pageview','/callback/');"/>
 									<input type="hidden" name="web_form_apply" value="Y" />
 								</div>
 								<div class="tc"><input type="reset" value="<?=GetMessage("FORM_RESET");?>" /></div>
