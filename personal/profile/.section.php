@@ -1,6 +1,6 @@
 <?
-$sSectionName = "Настройки пользователя";
-$arDirProperties = array(
+$sSectionName = "Настройки профилей покупателя";
+$arDirProperties = Array(
 
 );
 ?>

@@ -448,3 +448,15 @@ BX.saleOrderAjax = { // bad solution, actually, a singleton at the page
 	}
 
 }
+
+$(document).ready(function(){
+    if ($("div#bx-soa-region a.pull-right").size() > 0) {
+        $("div#bx-soa-region a.pull-right").attr("onclick", "ga('send','pageview','/nextregion/');");
+    } else if ($("div#bx-soa-delivery a.pull-right").size() > 0) {
+        $("div#bx-soa-delivery a.pull-right").attr("onclick", "ga('send','pageview','/nextdelivery/');");    
+    } else if ($("div#bx-soa-paysystem a.pull-right").size() > 0) {
+        $("div#bx-soa-paysystem a.pull-right").attr("onclick", "ga('send','pageview','/nextpayment/');");
+    } else if ($("div#bx-soa-properties a.pull-right").size() > 0) {
+        $("div#bx-soa-properties a.pull-right").attr("onclick", "ga('send','pageview','/nextcustomer/');");
+    }
+});

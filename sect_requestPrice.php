@@ -22,6 +22,7 @@
 					<input name="act" type="hidden" id="requestPriceFormAct" value="requestPrice">
 					<input name="SITE_ID" type="hidden" id="requestPriceFormSiteId" value="<?=SITE_ID?>">
 					<textarea name="message" placeholder="Сообщение"></textarea>
+					<div class="personalInfoRequest"><input type="checkbox" name="personalInfoRequest" id="personalInfoRequest"><label for="personalInfoRequest">Я согласен на <a href="/personal-info/" class="pilink">обработку персональных данных.</a>*</label></div>
 					<a href="#" id="requestPriceSubmit"><img src="<?=SITE_TEMPLATE_PATH?>/images/request.png" alt="Запросить цену"> Запросить цену</a>
 				</form>
 			</div>

@@ -1,7 +1,5 @@
-<?
-require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Настройки профилей покупателя");
-?><h1>Настройки профилей покупателя</h1>
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION->SetTitle("Личный счет");?><h1>Личный счет</h1>
 <?$APPLICATION->IncludeComponent("bitrix:menu", "personal", Array(
 	"COMPONENT_TEMPLATE" => ".default",
 		"ROOT_MENU_TYPE" => "personal",	// Тип меню для первого уровня
@@ -16,16 +14,36 @@ $APPLICATION->SetTitle("Настройки профилей покупателя");
 		"ALLOW_MULTI_SELECT" => "N",	// Разрешить несколько активных пунктов одновременно
 	),
 	false
+);?><?$APPLICATION->IncludeComponent("bitrix:sale.personal.account", ".default", Array(
+	
+	),
+	false
 );?><?$APPLICATION->IncludeComponent(
-	"bitrix:sale.personal.profile", 
+	"bitrix:sale.account.pay", 
 	".default", 
 	array(
 		"COMPONENT_TEMPLATE" => ".default",
-		"SEF_MODE" => "N",
-		"PER_PAGE" => "20",
-		"USE_AJAX_LOCATIONS" => "N",
-		"PAGER_TEMPLATE" => "round",
-		"SET_TITLE" => "N"
+		"REFRESHED_COMPONENT_MODE" => "Y",
+		"PATH_TO_BASKET" => "/personal/cart",
+		"PATH_TO_PAYMENT" => "/personal/order/payment",
+		"SELL_CURRENCY" => "RUB",
+		"PERSON_TYPE" => "1",
+		"ELIMINATED_PAY_SYSTEMS" => array(
+			0 => "1",
+			1 => "2",
+		),
+		"SELL_VALUES_FROM_VAR" => "N",
+		"SELL_SHOW_FIXED_VALUES" => "Y",
+		"SELL_TOTAL" => array(
+			0 => "100",
+			1 => "200",
+			2 => "500",
+			3 => "1000",
+			4 => "5000",
+			5 => "",
+		),
+		"SELL_USER_INPUT" => "Y",
+		"SET_TITLE" => "Y"
 	),
 	false
-);?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+);?><br><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

@@ -75,6 +75,7 @@ $(function(){
 						});
 						$(".webformModal").removeClass("visible");
 						$thisForm[0].reset();
+                        
 					}
 
 		  			//remove loader
