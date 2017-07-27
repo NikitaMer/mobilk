@@ -187,7 +187,7 @@ IncludeTemplateLangFile(__FILE__);
 						</li>
 	             	 	<li class="cart"><div id="flushTopCart"><?$APPLICATION->IncludeComponent(
 	"bitrix:sale.basket.basket.line", 
-	"topCart", 
+	"basket_top", 
 	array(
 		"HIDE_ON_BASKET_PAGES" => "N",
 		"PATH_TO_BASKET" => SITE_DIR."personal/cart/",
@@ -202,13 +202,14 @@ IncludeTemplateLangFile(__FILE__);
 		"SHOW_PERSONAL_LINK" => "N",
 		"SHOW_PRODUCTS" => "Y",
 		"SHOW_TOTAL_PRICE" => "Y",
-		"COMPONENT_TEMPLATE" => "topCart",
+		"COMPONENT_TEMPLATE" => "basket_top",
 		"SHOW_DELAY" => "N",
 		"SHOW_NOTAVAIL" => "N",
 		"SHOW_SUBSCRIBE" => "N",
 		"SHOW_IMAGE" => "Y",
 		"SHOW_PRICE" => "Y",
-		"SHOW_SUMMARY" => "Y"
+		"SHOW_SUMMARY" => "Y",
+		"PATH_TO_AUTHORIZE" => ""
 	),
 	false
 );?></div></li>

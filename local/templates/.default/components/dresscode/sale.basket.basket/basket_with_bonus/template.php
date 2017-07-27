@@ -6,11 +6,11 @@
 	
 	if ($arResult['BONUS_PRODUCTS_IN_BASKET']) { ?>
 		<script>
-		// Г§Г Г¬ГҐГ­ГїГҐГ¬ Г°ГіГЎ. Г­Г  ГЎГ Г«Г«.
+		// заменяем руб. на балл.
 		$(document).ready(function() {
 			$(document).ajaxComplete(function() {
 				$("#basketProductList .points_item .price, #basketProductList .points_item .sum").each(function(){
-					$(this).html($(this).html().replace("Г°ГіГЎ.", "ГЎГ Г«Г«."));
+					$(this).html($(this).html().replace("руб.", "балл."));
 				});
 			});
 		});
@@ -106,7 +106,8 @@
 				<input placeholder="<?=GetMessage("COUPON_LABEL")?>" name="user" class="couponField"><input type="submit" value="<?=GetMessage("COUPON_ACTIVATE")?>" class="couponActivate">
 			</form>
 		</div>
-		<a href="<?=SITE_DIR?>personal/cart/order/" id="newOrder" class="selected" onclick="ga('send','pageview','/makeorder/');"><img src="<?=SITE_TEMPLATE_PATH?>/images/order.png"><?=GetMessage("BASKET_TABS_ORDER_MAKE")?></a>
+		<a href="<?=SITE_DIR?>personal/cart/order/" id="newOrder" class="selected"><img src="<?=SITE_TEMPLATE_PATH?>/images/order.png"><?=GetMessage("BASKET_TABS_ORDER_MAKE")?></a>
+
 		<div id="order" class="orderContainer">
 			<span class="title"><?=GetMessage("ORDER_HEADING")?></span> 
 			<table class="personSelect">
