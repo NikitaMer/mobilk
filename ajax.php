@@ -184,8 +184,7 @@
 						"COMPONENT_TEMPLATE" => ".default",
 						"CACHE_TYPE" => "A",
 						"CACHE_TIME" => "360000",
-						"PRODUCT_ID" => intval($_GET["product_id"]),
-						"PRODUCT_PRICE_CODE" => explode("||", $_GET["product_price_code"])
+						"PRODUCT_ID" => intval($_GET["product_id"])
 					),
 					false
 				);
@@ -199,8 +198,7 @@
 						"COMPONENT_TEMPLATE" => ".default",
 						"CACHE_TYPE" => "A",
 						"CACHE_TIME" => "360000",
-						"PRODUCT_ID" => intval($_GET["product_id"]),
-						"PRODUCT_PRICE_CODE" => explode("||", $_GET["product_price_code"])
+						"PRODUCT_ID" => intval($_GET["product_id"])
 					),
 					false
 				);
@@ -217,23 +215,6 @@
 
 				$OPTION_ADD_CART = COption::GetOptionString("catalog", "default_can_buy_zero");
 				$OPTION_CURRENCY  = CCurrency::GetBaseCurrency();
-
-				$arResult["PRODUCT_PRICE_ALLOW"] = array();
-				$arResult["PRODUCT_PRICE_ALLOW_FILTER"] = array();
-				$arPriceCode = array();
-
-				if(!empty($_GET["price-code"]) && $_GET["price-code"] != "undefined"){
-					$arPriceCode = explode("||", $_GET["price-code"]);
-					$dbPriceType = CCatalogGroup::GetList(
-				        array("SORT" => "ASC"),
-				        array("NAME" => $arPriceCode)
-				    );
-					while ($arPriceType = $dbPriceType->Fetch()){
-						if($arPriceType["CAN_BUY"] == "Y")
-					    	$arResult["PRODUCT_PRICE_ALLOW"][] = $arPriceType;
-					    $arResult["PRODUCT_PRICE_ALLOW_FILTER"][] = $arPriceType["ID"];
-					}
-				}
 
 				$arTmpFilter = array(
  					"ACTIVE" => "Y",
@@ -387,17 +368,7 @@
 					}
 				}
 
-				$arSkuPriceCodes = array();
-
-				if(!empty($arResult["PRODUCT_PRICE_ALLOW"])){
-					$arSkuPriceCodes["PRODUCT_PRICE_ALLOW"] = $arResult["PRODUCT_PRICE_ALLOW"];
-				}
-
-				if(!empty($arPriceCode)){
-					$arSkuPriceCodes["PARAMS_PRICE_CODE"] = $arPriceCode;
-				}
-
-				$arLastOffer = getLastOffer($arLastFilter, $arProps, $_GET["product_id"], $OPTION_CURRENCY, !empty($_GET["product-more-pictures"]), $arSkuPriceCodes);
+				$arLastOffer = getLastOffer($arLastFilter, $arProps, $_GET["product_id"], $OPTION_CURRENCY, !empty($_GET["product-more-pictures"]));
 
 				if(!empty($arLastOffer["PRODUCT"]["CATALOG_MEASURE"])){
 					//коэффициент еденица измерения
@@ -416,7 +387,7 @@
 					}
 				}
 
-				if(!empty($_GET["product-change-prop"]) && $_GET["product-change-prop"] != "undefined"){
+				if(!empty($_GET["product-change-prop"])){
 					ob_start();
 					$APPLICATION->IncludeComponent(
 						"dresscode:catalog.properties.list",
@@ -432,13 +403,9 @@
 				}
 
 				//price count
-				$arPriceFilter = array("PRODUCT_ID" => $arLastOffer["PRODUCT"]["ID"], "CAN_ACCESS" => "Y");
-				if(!empty($arResult["PRODUCT_PRICE_ALLOW_FILTER"])){
-					$arPriceFilter["CATALOG_GROUP_ID"] = $arResult["PRODUCT_PRICE_ALLOW_FILTER"];
-				}
 				$dbPrice = CPrice::GetList(
 			        array(),
-			        $arPriceFilter,
+			        array("PRODUCT_ID" => $arLastOffer["PRODUCT"]["ID"]),
 			        false,
 			        false,
 			        array("ID")
@@ -522,22 +489,22 @@
 				$arComplectID = array();
 				$arResult["COMPLECT"] = array();
 
-				// $rsComplect = CCatalogProductSet::getList(
-				// 	array("SORT" => "ASC"),
-				// 	array(
-				// 		"TYPE" => 1,
-				// 		"OWNER_ID" => intval($_GET["id"]),
-				// 		"!ITEM_ID" => intval($_GET["id"])
-				// 	),
-				// 	false,
-				// 	false,
-				// 	array("*")
-				// );
+				$rsComplect = CCatalogProductSet::getList(
+					array("SORT" => "ASC"),
+					array(
+						"TYPE" => 1,
+						"OWNER_ID" => intval($_GET["id"]),
+						"!ITEM_ID" => intval($_GET["id"])
+					),
+					false,
+					false,
+					array("*")
+				);
 
-				// while ($arComplectItem = $rsComplect->Fetch()){
-				// 	$arResult["COMPLECT"]["ITEMS"][$arComplectItem["ITEM_ID"]] = $arComplectItem;
-				// 	$arComplectID[$arComplectItem["ITEM_ID"]] = $arComplectItem["ITEM_ID"];
-				// }
+				while ($arComplectItem = $rsComplect->Fetch()){
+					$arResult["COMPLECT"]["ITEMS"][$arComplectItem["ITEM_ID"]] = $arComplectItem;
+					$arComplectID[$arComplectItem["ITEM_ID"]] = $arComplectItem["ITEM_ID"];
+				}
 
 				if(!empty($arComplectID)){
 
@@ -739,7 +706,7 @@
 			echo CSaleBasket::Delete(intval($_GET["id"]));
 		}elseif($_GET["act"] == "upd"){
 
-			$OPTION_QUANTITY_TRACE = COption::GetOptionString("catalog", "can_buy_zero");
+			$OPTION_QUANTITY_TRACE = COption::GetOptionString("catalog", "default_quantity_trace");
 
 			if(!empty($_GET["id"])){
 				$getList = CIBlockElement::GetList(
@@ -910,7 +877,7 @@
 		elseif($_GET["act"] == "addCompare"){
 			if(!empty($_GET["id"])){
 				$_SESSION["COMPARE_LIST"]["ITEMS"][$_GET["id"]] = $_GET["id"];
-				echo intval($_SESSION["COMPARE_LIST"]["ITEMS"][$_GET["id"]]);
+				echo jsonEn($_SESSION["COMPARE_LIST"]["ITEMS"]);
 			}
 		}elseif($_GET["act"] == "compDEL"){
 			if(!empty($_GET["id"])){
@@ -1011,7 +978,7 @@
 			   <li class="dl">
 <?$APPLICATION->IncludeComponent(
 	"bitrix:sale.basket.basket.line",
-	addslashes($_GET["topCartTemplate"]),
+	"topCart",
 	array(
 		"HIDE_ON_BASKET_PAGES" => "N",
 		"PATH_TO_BASKET" => SITE_DIR."personal/cart/",
@@ -1055,13 +1022,13 @@
 );?>
 				</li>
 				<li class="dl">
-					<?$APPLICATION->IncludeComponent("dresscode:favorite.line", addslashes($_GET["wishListTemplate"]), Array(
+					<?$APPLICATION->IncludeComponent("dresscode:favorite.line", ".default", Array(
 						),
 						false
 					);?>
 				</li>
 				<li class="dl">
-					<?$APPLICATION->IncludeComponent("dresscode:compare.line", addslashes($_GET["compareTemplate"]), Array(
+					<?$APPLICATION->IncludeComponent("dresscode:compare.line", ".default", Array(
 
 						),
 						false
@@ -1254,7 +1221,7 @@
 									if($arResProductSku = $productBySku->GetNextElement()){
 										$arResProductSkuFields = $arResProductSku->GetFields();
 										if(!empty($arResProductSkuFields["DETAIL_PICTURE"])){
-											$arResult["PRODUCT"]["PICTURE"] = CFile::ResizeImageGet($arResProductSkuFields["DETAIL_PICTURE"], array("width" => 270, "height" => 230), BX_RESIZE_IMAGE_PROPORTIONAL, false, false, false, 80);
+											$arResult["PRODUCT"]["PICTURE"] = CFile::ResizeImageGet($arResProductSkuFields["DETAIL_PICTURE"], array("width" => 270, "height" => 230), BX_RESIZE_IMAGE_PROPORTIONAL, false, false, false, 80);									
 										}
 									}
 								}
@@ -1270,7 +1237,7 @@
 						$mSt = ''; foreach ($arResult["PRODUCT"]["PROPERTIES"]["OFFERS"]["VALUE"] as $ifv => $marker){
 							$background = strstr($arResult["PRODUCT"]["PROPERTIES"]["OFFERS"]["VALUE_XML_ID"][$ifv], "#") ? $arResult["PRODUCT"]["PROPERTIES"]["OFFERS"]["VALUE_XML_ID"][$ifv] : "#424242";
 							$mStr .= '<div class="marker" style="background-color: '.$background .'">'.$marker.'</div>';
-						}
+						}					   
 
 						$arResult["PRODUCT"]["MARKER"] = $mStr;
 					}
@@ -1428,7 +1395,7 @@
 
 							// NEW ORDER
 
-							$getPersonType = CSalePersonType::GetList(Array("SORT" => "ASC"), Array("LID" => htmlspecialcharsbx($_GET["SITE_ID"]), "ACTIVE" => "Y"));
+							$getPersonType = CSalePersonType::GetList(Array("SORT" => "ASC"), Array("LID" => htmlspecialcharsbx($_GET["SITE_ID"])));
 							if ($arPersonItem = $getPersonType->Fetch()){
 								$USER_ID = intval($USER->GetID());
 		  						if($USER_ID == 0){
@@ -1594,7 +1561,9 @@
 
 			echo jsonEn($result);
 
-		}
+		}elseif($_GET["act"] === "Compare"){
+            echo jsonEn($_SESSION["COMPARE_LIST"]["ITEMS"]);
+        }
 	}
 	else{
 		die(false);
@@ -1645,7 +1614,7 @@ function getJnLevel($data, $level = 1, $arJsn = array()){
 	return $arJsn;
 }
 
-function getLastOffer($arLastFilter, $arProps, $productID, $priceCurrency, $enableMorePictures = false, $arPrices = array()){
+function getLastOffer($arLastFilter, $arProps, $productID, $priceCurrency, $enableMorePictures = false){
 
 	if(!empty($_GET["product_width"]) && !empty($_GET["product_height"])){
 		$arProductImage = array("width" => $_GET["product_width"], "height" => $_GET["product_height"]);
@@ -1669,7 +1638,7 @@ function getLastOffer($arLastFilter, $arProps, $productID, $priceCurrency, $enab
 	if(!$rsLastOffer->SelectedRowsCount()){
 		$st = array_pop($arLastFilter);
 		$mt = array_pop($arProps);
-		return getLastOffer($arLastFilter, $arProps, $productID, $priceCurrency, $enableMorePictures, $arPrices);
+		return getLastOffer($arLastFilter, $arProps, $productID, $priceCurrency, $enableMorePictures);
 	}else{
 		if($obReturnOffer = $rsLastOffer->GetNextElement()){
 
@@ -1750,31 +1719,7 @@ function getLastOffer($arLastFilter, $arProps, $productID, $priceCurrency, $enab
 			}
 
 			global $USER;
-
-			if(!empty($arPrices["PRODUCT_PRICE_ALLOW"])){
-				$arPriceCodes = array();
-				foreach($arPrices["PRODUCT_PRICE_ALLOW"] as $ipc => $arNextAllowPrice){
-					$dbPrice = CPrice::GetList(
-				        array(),
-				        array(
-				            "PRODUCT_ID" => $productFilelds["ID"],
-				            "CATALOG_GROUP_ID" => $arNextAllowPrice["ID"]
-				        )
-				    );
-					if($arPriceValues = $dbPrice->Fetch()){
-						$arPriceCodes[] = array(
-							"ID" => $arNextAllowPrice["ID"],
-							"PRICE" => $arPriceValues["PRICE"],
-							"CURRENCY" => $arPriceValues["CURRENCY"],
-							"CATALOG_GROUP_ID" => $arNextAllowPrice["ID"]
-						);
-					}
-				}
-			}
-
-			if(!empty($arPrices["PRODUCT_PRICE_ALLOW"]) && !empty($arPriceCodes) || empty($arPrices["PARAMS_PRICE_CODE"]))
-				$productFilelds["PRICE"] = CCatalogProduct::GetOptimalPrice($productFilelds["ID"], 1, $USER->GetUserGroupArray(), "N", $arPriceCodes);
-
+			$productFilelds["PRICE"] = CCatalogProduct::GetOptimalPrice($productFilelds["ID"], 1, $USER->GetUserGroupArray());
 			$productFilelds["PRICE"]["DISCOUNT_PRICE"] = FormatCurrency($productFilelds["PRICE"]["DISCOUNT_PRICE"], $priceCurrency);
 			$productFilelds["PRICE"]["RESULT_PRICE"]["BASE_PRICE"] = FormatCurrency($productFilelds["PRICE"]["RESULT_PRICE"]["BASE_PRICE"], $priceCurrency);
 			$productFilelds["CAN_BUY"] = $productFilelds["CATALOG_AVAILABLE"];

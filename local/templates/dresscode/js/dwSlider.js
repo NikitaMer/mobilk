@@ -15,7 +15,7 @@
             speed: 500,
         }, options);
 
-        var link = this.css({"overflow" : "hidden", "position" : "relative"});
+        var link = $(this).css({"overflow" : "hidden", "position" : "relative"});
         var slideBox = link.find(".slideBox").css({"position" : "relative", "left": "0px", "padding" : "0px", "cursor" : options["touch"] ? "move" : "default", "margin" : "0px"});
         var slideElements = slideBox.children("li");
         var leftButton = $(options["leftButton"]);
@@ -52,6 +52,8 @@
 
             slideBox.on("mousedown touchstart", function(e){
                 timeoutID && clearTimeout(timeoutID);
+                slideElementWidth = slideElements.width();
+                slideBoxWidth = ((slideElements.length - 1) * slideElementWidth);
                 slideStartPosition = parseInt(slideBox.css("left"), 10);
                 clickPositionX = e.type == "touchstart" ? e.originalEvent.touches[0].pageX : e.pageX;
                 clickPositionY = e.type == "touchstart" ? e.originalEvent.touches[0].pageY : e.pageY;
@@ -68,8 +70,11 @@
                     if(Math.abs(clickPositionY - curTouchPosY) < 450){
                         var touchExpression = clickPositionX - curTouchPosX;
                         if(Math.abs(touchExpression) == touchExpression){
+
                             var touchMoveEx = slideStartPosition - Math.abs(touchExpression);
                             touchMoveEx = slideBoxWidth > Math.abs(touchMoveEx) ? touchMoveEx : -(slideBoxWidth + ((Math.abs(touchMoveEx) - slideBoxWidth) / 6));
+                            console.log("touchExpression" + touchExpression);
+                            console.log("touchMoveEx" + touchMoveEx);
                             slideBox.finish().css({
                                 left: touchMoveEx + "px"
                             });
