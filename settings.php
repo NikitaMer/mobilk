@@ -2,7 +2,7 @@
 
 	//настройки шаблона
 	//шапка сайта
-	$TEMPLATE_HEADER = "header6"; // выбор шапки 1-8
+	$TEMPLATE_HEADER = "header5"; // выбор шапки 1-8
 	$TEMPLATE_HEADER_TYPE = "type1"; // круглые, квадратные края (type1, type2)
 	$TEMPLATE_HEADER_COLOR = "theme"; // цвет верхней или нижней панели шапки (default, black, theme)
 	$TEMPLATE_SUBHEADER_COLOR = "white"; // цвет основной шапки  (default, black, theme)

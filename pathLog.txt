@@ -1,0 +1,1 @@
+/home/u301639/shop.mobilk.ru/www/bitrix/modules/sale/install/components/bitrix/sale.personal.order/templates/.default/bitrix//home/u301639/shop.mobilk.ru/www/bitrix/components/bitrix/sale.personal.order/templates/.default/bitrix/
