@@ -79,6 +79,7 @@ $(function(){
 		if(windowOpened){
 			$("#appZoomWindow").remove();
 			windowOpened = false;
+			event.preventDefault();
 		}
 
 	};
