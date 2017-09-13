@@ -1,10 +1,9 @@
 $(function(){
-	
 	var searchVisible;
 
 	var $searchQuery = $("#searchQuery");
 	var openSearch = function(event){
-		$("#topSearch").slideDown(150, function(){
+		$("#topSearch, #topSearch3").slideDown(150, function(){
 			var tmpSearchKeyword = $searchQuery.val();
 			searchVisible = true;
 			$searchQuery.val("");
@@ -18,7 +17,7 @@ $(function(){
 		if(searchVisible == true){
 			if(event.which == 1){
 				$("#searchProductsClose").trigger("click");
-				$("#topSearch").slideUp(150);
+				$("#topSearch, #topSearch3").slideUp(150);
 				searchVisible = false;
 				return event.preventDefault();
 			}
@@ -28,7 +27,7 @@ $(function(){
 	$(document).keydown(function(event) {
 	    if(searchVisible == true && event.keyCode === 27 ) {
 			$("#searchProductsClose").trigger("click");
-			$("#topSearch").slideUp(150);
+			$("#topSearch, #topSearch3").slideUp(150);
 			searchVisible = false;
 	        return false;
 	    }
