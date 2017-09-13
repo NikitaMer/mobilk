@@ -1,0 +1,180 @@
+#topHeader2{
+	background-color: #ffffff;
+	overflow: hidden;
+}
+
+#topHeader2 .leftColumn{
+	float: left;
+}
+
+#topHeader2 .rightColumn{
+	float: right;
+}
+
+#topHeader2 .slColumn,
+#topHeader2 .srColumn{
+	float: left;
+}
+
+#topHeader2 #topMenu{
+	border: 0;
+}
+
+#topHeader2 #topMenu li a:not(:hover):not(.selected){
+	color: #000000;
+}
+
+#topHeader2 #topMenu li a:active{
+	position: relative;
+	top: 1px;
+}
+
+#topHeader2 #topService{
+	color: #000000;
+	border: 0;
+}
+
+#topHeader2 #topService li{
+	border: 0;
+}
+
+#topHeader2 #topService li a:not(:hover):not(.selected){
+	color: #000000;
+}
+
+#topHeader2 #topService li a:active{
+	position: relative;
+	top: 1px;
+}
+
+#topHeader2 #topMenu li:first-child a{
+	padding-left: 0px;
+}
+
+#subHeader2{
+	background-color: #ffffff;
+	border: 1px solid #f3f3f3;
+	overflow: hidden;
+}
+
+#subHeader2 .subTable{
+	border-collapse: collapse;
+    table-layout: fixed;
+    display: table;
+    width: 100%;
+}
+
+#subHeader2 .subTableColumn{
+	vertical-align: middle;
+	display: table-cell;
+}
+
+#subHeader2 .subTableColumn:first-child{
+	width: 680px;
+}
+
+#subHeader2 .subTableColumn:last-child{
+	padding-left: 24px;
+	text-align: right;
+	width: 391px;
+}
+
+#subHeader2 .subTableColumn:nth-child(2){
+	text-align: center;
+	width: 50%;
+}
+
+#subHeader2 .subContainer{
+	overflow: hidden;
+}
+
+#subHeader2 #logo{
+	width: 208px;
+}
+
+#subHeader2 #logo,
+#subHeader2 #topHeading{
+	border: 0;
+}
+
+#subHeader2 #logo,
+#subHeader2 #topHeading p{
+	text-align: left;
+}
+
+#subHeader2 #topHeading p{
+	max-height: 60px;
+	overflow: hidden;
+}
+
+#subHeader2 #topCallback{
+    line-height: 102px;
+    list-style: none;
+    float: left;
+    margin: 0;
+}
+
+#subHeader2 .topWishlist,
+#subHeader2 .topCompare,
+#subHeader2 .cart{
+	vertical-align: middle;
+	display: inline-block;
+}
+
+#subHeader2 .topWishlist,
+#subHeader2 .topCompare{
+	width: 50px;
+}
+
+#subHeader2 #topCallback{
+    padding: 0 18px;
+}
+
+#subHeader2 #topCallback .wrap {
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 21px;
+}
+
+#subHeader2 #topCallback .icon{
+	background: url(images/callbackH2.png) 0 0 no-repeat transparent;
+	border: 1px solid #f3f3f3;
+	vertical-align: middle;
+	display: inline-block;
+	border-radius: 50%;
+	height: 50px;
+	width: 50px;
+}
+
+#subHeader2 #topCallback .icon:active{
+	position: relative;
+	top: 1px;
+}
+
+#subHeader2 #topCallback .nf{
+	vertical-align: middle;
+	display: inline-block;
+    margin-left: 12px;
+}
+
+#subHeader2 #topCallback .heading {
+    text-decoration: none;
+    padding-top: 4px;
+    font-size: 18px;
+    display: block;
+}
+
+#subHeader2 #topCallback .heading {
+    color: #000000;
+}
+
+#subHeader2 #topCallback .link{
+	text-decoration: none;
+	font-size: 13px;
+	color: #ffa800;
+}
+
+#subHeader2 #topCallback .link:active{
+	position: relative;
+	top: 1px;
+}
