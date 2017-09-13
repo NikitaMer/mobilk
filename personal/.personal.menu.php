@@ -7,16 +7,9 @@ $aMenuLinks = Array(
 		Array(), 
 		"" 
 	),
-    Array(
-        "Профили покупателя", 
-        "/personal/profile/", 
-        Array(), 
-        Array(), 
-        "" 
-    ),
 	Array(
-		"Регистрация продаж", 
-		"/personal/for_salers/", 
+		"Профили покупателя", 
+		"/personal/profile/", 
 		Array(), 
 		Array(), 
 		"" 

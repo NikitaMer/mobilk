@@ -9,7 +9,11 @@
 
 	//тема сайта
 	$TEMPLATE_BACKGROUND_NAME = "white"; // цвет меню (black, white)
+<<<<<<< HEAD
+	$TEMPLATE_THEME_NAME = "green"; // цветовая гамма сайта (/themes/)
+=======
 	$TEMPLATE_THEME_NAME = "red"; // цветовая гамма сайта (/themes/)
+>>>>>>> upstream/master
 
 	// /themes/
 	//arctic - голубой
