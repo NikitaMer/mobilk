@@ -32,11 +32,8 @@
 	),
 	false
 );?>
-			<?$APPLICATION->IncludeComponent(
-	"bitrix:catalog.top", 
-	".default", 
-	array(
-		"COMPONENT_TEMPLATE" => ".default",
+			<?$APPLICATION->IncludeComponent("bitrix:catalog.top", ".default", array(
+	"COMPONENT_TEMPLATE" => ".default",
 		"IBLOCK_TYPE" => "for_sellers",
 		"IBLOCK_ID" => "24",
 		"ELEMENT_SORT_FIELD" => "sort",
@@ -101,15 +98,16 @@
 		"ADD_PROPERTIES_TO_BASKET" => "Y",
 		"PRODUCT_PROPS_VARIABLE" => "prop",
 		"PARTIAL_PRODUCT_PROPERTIES" => "N",
-		"PRODUCT_PROPERTIES" => array(
-		),
-		"OFFERS_CART_PROPERTIES" => array(
-		),
+		"PRODUCT_PROPERTIES" => "",
+		"OFFERS_CART_PROPERTIES" => "",
 		"ADD_TO_BASKET_ACTION" => "ADD",
 		"DISPLAY_COMPARE" => "N",
 		"ROTATE_TIMER" => "30"
 	),
-	false
+	false,
+	array(
+	"ACTIVE_COMPONENT" => "N"
+	)
 );?>
 
 
