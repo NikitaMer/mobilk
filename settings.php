@@ -2,18 +2,14 @@
 
 	//настройки шаблона
 	//шапка сайта
-	$TEMPLATE_HEADER = "header1"; // выбор шапки 1-8
+	$TEMPLATE_HEADER = "header6"; // выбор шапки 1-8
 	$TEMPLATE_HEADER_TYPE = "type1"; // круглые, квадратные края (type1, type2)
 	$TEMPLATE_HEADER_COLOR = "theme"; // цвет верхней или нижней панели шапки (default, black, theme)
-	$TEMPLATE_SUBHEADER_COLOR = "white"; // цвет основной шапки  (default, black, theme)
+	$TEMPLATE_SUBHEADER_COLOR = "default"; // цвет основной шапки  (default, black, theme)
 
 	//тема сайта
 	$TEMPLATE_BACKGROUND_NAME = "white"; // цвет меню (black, white)
-<<<<<<< HEAD
-	$TEMPLATE_THEME_NAME = "green"; // цветовая гамма сайта (/themes/)
-=======
-	$TEMPLATE_THEME_NAME = "red"; // цветовая гамма сайта (/themes/)
->>>>>>> upstream/master
+	$TEMPLATE_THEME_NAME = "blue"; // цветовая гамма сайта (/themes/)
 
 	// /themes/
 	//arctic - голубой

@@ -748,7 +748,7 @@ strong{
 }
 
 #footer{
-	margin-bottom: 50px;
+	margin-bottom: 45px;
 	padding-top: 24px;
 	overflow: hidden;
 }
@@ -6490,7 +6490,6 @@ div.bx-debug-summary{
     filter: blur(4px);    
 }
 .pop{
-    color: #ed1c24;
     cursor: pointer;
     text-decoration: underline;    
 }
