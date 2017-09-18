@@ -439,7 +439,7 @@ $(window).on("ready", function(event){
 		$elPicture.attr("href", http[0]["PRODUCT"]["DETAIL_PAGE_URL"]);
 		$elPicture.html($("<img/>").attr("src", http[0]["PRODUCT"]["PICTURE"]));
 
-		$product.find(".addCart, .fastBack, .addCompare").data("id", http[0]["PRODUCT"]["ID"]);
+		$product.find(".addCart, .fastBack, .addCompare").attr("data-id", http[0]["PRODUCT"]["ID"]);
 		if(http[0]["PRODUCT"]["PRICE"]["DISCOUNT_PRICE"]){
 			$product.find(".price").html(http[0]["PRODUCT"]["PRICE"]["DISCOUNT_PRICE"] + " ").removeClass("getPricesWindow");
 		}else{
@@ -725,7 +725,7 @@ $(window).on("ready", function(event){
                     }        
                 });
                 
-                $_mProduct.find(".addCart, .fastBack, .addCompare").data("id", http[0]["PRODUCT"]["ID"]);
+                $_mProduct.find(".addCart, .fastBack, .addCompare").attr("data-id", http[0]["PRODUCT"]["ID"]);
                 
 				if(http[0]["PRODUCT"]["PRICE"]["DISCOUNT_PRICE"]){
 					$_mProduct.find(".price").html(http[0]["PRODUCT"]["PRICE"]["DISCOUNT_PRICE"] + " ").removeClass("getPricesWindow");
@@ -934,7 +934,7 @@ $(window).on("ready", function(event){
 			var $moreLink = $appBasket.find(".moreLink").attr("href", jData["DETAIL_PAGE_URL"]);
 			var $image = $appBasket.find(".image").attr("src", $appBasket.data("load"));
 			var $wishlist = $appBasket.find(".addWishlist").data("id", jData["ID"]);
-			var $compare = $appBasket.find(".addCompare").data("id", jData["ID"]);
+			var $compare = $appBasket.find(".addCompare").attr("data-id", jData["ID"]);
 			var $picture = $appBasket.find(".picture");
 			var $delete = $appBasket.find(".delete").data("id", jData["CART_ID"]);
 			var $price = $appBasket.find(".price").html(jData["PRICE"]).data({"price": jData["~PRICE"], "discount": jData["OLD_PRICE"]});
