@@ -103,7 +103,7 @@ function BXMapLoader_<?echo $arParams['MAP_ID']?>()
 			if (window.ymaps && window.ymaps.Map)
 				init_<?echo $arParams['MAP_ID']?>();
 			else
-				setTimeout(_wait_for_map, 50);
+				setTimeout(_wait_for_map, 150);
 		}
 
 		BX.loadScript('<?=$arResult['MAPS_SCRIPT_URL']?>', _wait_for_map);

@@ -358,11 +358,11 @@ body.index{
 	color: #ffffff;
 }
 
-#rightFooter .showMap{
+#rightFooter .showMap, .pop{
 	color: #daa550;
 }
 
-#rightFooter .showMap:hover{
+#rightFooter .showMap:hover, .pop:hover{
 	color: #e4a540;
 }
 

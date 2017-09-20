@@ -46,6 +46,14 @@
 						</div>
 					<?endif;?>
 				<?endforeach;?>
+				<div class="personalInfo">
+					<div class="webFormItem">
+						<div class="webFormItemError"></div>
+						<div class="webFormItemField" data-required="Y">
+							<input type="checkbox" id="personalInfoFieldStatic" name="personalInfo" value="Y"><label for="personalInfoFieldStatic"><?=getMessage("PERSONAL_INFO_REQUIRED")?><span class="webFormItemRequired">*</span></label>
+						</div>
+					</div>
+				</div>
 				<?if($arResult["isUseCaptcha"] == "Y"):?>
 					<div class="webFormItem">
 						<div class="webFormItemCaption"><?=GetMessage("FORM_CAPTCHA_TABLE_TITLE")?></div>		
@@ -65,7 +73,6 @@
 		<?endif;?>
 		<div class="webFormError"></div>
 		<div class="webFormTools">
-            <p>Нажатие кнопки «Отправить» означает согласие с настоящей <a class="pop">Политикой конфиденциальности</a></p>
 			<input <?=(intval($arResult["F_RIGHT"]) < 10 ? "disabled=\"disabled\"" : "");?> type="submit" name="web_form_submit" value="<?=htmlspecialcharsbx(strlen(trim($arResult["arForm"]["BUTTON"])) <= 0 ? GetMessage("FORM_ADD") : $arResult["arForm"]["BUTTON"]);?>" class="sendWebFormDw" />
 			<input type="hidden" name="web_form_apply" value="Y" />
 			<input type="reset" value="<?=GetMessage("FORM_RESET");?>" />

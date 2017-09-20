@@ -129,6 +129,10 @@
 		display: none;
 	}
 
+	.ya-share-label{
+		display: none;
+	}
+
 }
 
 @media all and (max-width: 1023px) {

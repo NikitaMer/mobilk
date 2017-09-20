@@ -41,9 +41,9 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED!==true) die();
 						$propValues[$enum_fields["EXTERNAL_ID"]] = array(
 							"VALUE"  => $enum_fields["VALUE"],
 							"DISPLAY_VALUE"  => $enum_fields["VALUE"],
-							"SELECTED"  => N,
-							"DISABLED"  => N,
-							"HIGHLOAD" => N,
+							"SELECTED"  => "N",
+							"DISABLED"  => "N",
+							"HIGHLOAD" => "N",
 							"TYPE" => "L",
 						);
 					}
@@ -81,8 +81,8 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED!==true) die();
 							$propValues[$row_requests["UF_XML_ID"]] = array(
 								"VALUE" => $row_requests["UF_XML_ID"],
 								"DISPLAY_VALUE"  => $row_requests["UF_NAME"],
-								"SELECTED" => N,
-								"DISABLED" => N,
+								"SELECTED" => "N",
+								"DISABLED" => "N",
 								"TYPE" => "H",
 								"UF_XML_ID" => $row_requests["UF_XML_ID"],
 								"IMAGE" => $row_requests["UF_FILE"],
@@ -116,8 +116,8 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED!==true) die();
 							"NAME" => $arNextLinkElement["NAME"],
 							"TYPE" => "E",
 							"HIGHLOAD" => "N",
-							"SELECTED" => N,
-							"DISABLED" => N,
+							"SELECTED" => "N",
+							"DISABLED" => "N",
 						);
 					}
 					$prop_fields["TYPE"] = "E";

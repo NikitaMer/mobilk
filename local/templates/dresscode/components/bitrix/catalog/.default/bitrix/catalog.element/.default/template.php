@@ -5,7 +5,7 @@
 	$countPropertyElements = 7;
 	global $USER;
 ?>
-<?   
+<?
 	$this->AddEditAction($arResult["ID"], $arResult["EDIT_LINK"], CIBlock::GetArrayByID($arResult["IBLOCK_ID"], "ELEMENT_EDIT"));
 	$this->AddDeleteAction($arResult["ID"], $arResult["DELETE_LINK"], CIBlock::GetArrayByID($arResult["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
 ?>
@@ -24,7 +24,7 @@
 			<div id="elementNavigation" class="column">
 				<?if(!empty($arResult["TABS"])):?>
 					<div class="tabs">
-						<?foreach ($arResult["TABS"] as $it => $arTab): ?>
+						<?foreach ($arResult["TABS"] as $it => $arTab):?>
 							<div class="tab<?if($arTab["ACTIVE"] == "Y"):?> active<?endif;?>" data-id="<?=$arTab["ID"]?>"><a href="<?if(!empty($arTab["LINK"])):?><?=$arTab["LINK"]?><?else:?>#<?endif;?>"><?=$arTab["NAME"]?><img src="<?=$arTab["PICTURE"]?>" alt="<?=$arTab["NAME"]?>"></a></div>
 						<?endforeach;?>
 					</div>
@@ -45,8 +45,7 @@
 								<div class="pictureSlider">
 									<?foreach ($arResult["IMAGES"] as $ipr => $arNextPicture):?>
 										<div class="item">
-											<a href="<?=$arNextPicture["LARGE_IMAGE"]["SRC"]?>" title="<?=GetMessage("CATALOG_ELEMENT_ZOOM")?>" class="zoom" data-small-picture="<?=$arNextPicture["SMALL_IMAGE"]["SRC"]?>" data-large-picture="<?=$arNextPicture["LARGE_IMAGE"]["SRC"]?>"><img src="<?=$arNextPicture["MEDIUM_IMAGE"]["SRC"]?>" alt=""></a>
-										</div>
+											<a href="<?=$arNextPicture["LARGE_IMAGE"]["SRC"]?>" title="<?=GetMessage("CATALOG_ELEMENT_ZOOM")?>"  class="zoom" data-small-picture="<?=$arNextPicture["SMALL_IMAGE"]["SRC"]?>" data-large-picture="<?=$arNextPicture["LARGE_IMAGE"]["SRC"]?>"><img src="<?=$arNextPicture["MEDIUM_IMAGE"]["SRC"]?>" alt="<?if($ipr==0):?><?if(!empty($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_ALT"])):?><?=$arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_ALT"]?><?else:?><?=$arResult["NAME"]?><?endif;?><?endif;?>" title="<?if($ipr==0):?><?if(!empty($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TITLE"])):?><?=$arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TITLE"]?><?else:?><?=$arResult["NAME"]?><?endif;?><?endif;?>"></a>										</div>
 									<?endforeach;?>
 								</div>
 							</div>
@@ -151,11 +150,11 @@
 						</div>
 						<div class="complectResult">
 							<?=GetMessage("CATALOG_ELEMENT_COMPLECT_PRICE_RESULT")?>
-							<div class="complectPriceResult"><?=$arResult["COMPLECT"]["RESULT_PRICE_FORMATED"];?></div> 
-							<?if($arResult["COMPLECT"]["RESULT_BASE_DIFF"] > 0):?>
-								<s class="discount"><?=$arResult["COMPLECT"]["RESULT_BASE_PRICE_FORMATED"];?></s>
+							<div class="complectPriceResult"><?=$arResult["MIN_PRICE"]["PRINT_DISCOUNT_VALUE"];?></div> 
+							<?if(!empty($arResult["MIN_PRICE"]["PRINT_DISCOUNT_DIFF"]) && $arResult["MIN_PRICE"]["PRINT_DISCOUNT_DIFF"] > 0):?>
+								<s class="discount"><?=$arResult["MIN_PRICE"]["PRINT_VALUE"];?></s>
 								<div class="complectResultEconomy">
-									<?=GetMessage("CATALOG_ELEMENT_COMPLECT_ECONOMY")?> <span class="complectResultEconomyValue"><?=$arResult["COMPLECT"]["RESULT_BASE_DIFF_FORMATED"]?></span>
+									<?=GetMessage("CATALOG_ELEMENT_COMPLECT_ECONOMY")?> <span class="complectResultEconomyValue"><?=$arResult["MIN_PRICE"]["PRINT_DISCOUNT_DIFF"]?></span>
 								</div>
 							<?endif;?>
 						</div>
@@ -200,7 +199,7 @@
 				</div>
 		        <?if($arResult["SHOW_RELATED"] == "Y"):?>
 		        	<div id="related">
-						<div class="heading"><?=GetMessage("CATALOG_ELEMENT_ACCEESSORIES")?> (<?=$arResult["RELATED_COUNT"]?>)</div>
+						<div class="heading"><?=GetMessage("CATALOG_ELEMENT_ACCEESSORIES")?> (<?=$arResult["RELATED_COUNT"] <= 8 ? $arResult["RELATED_COUNT"] : 8?>)</div>
 						<?$APPLICATION->IncludeComponent(
 							"bitrix:catalog.section", 
 							"squares", 
@@ -224,7 +223,7 @@
 								"FILTER_NAME" => "relatedFilter",
 								"INCLUDE_SUBSECTIONS" => "Y",
 								"SHOW_ALL_WO_SECTION" => "Y",
-								"HIDE_NOT_AVAILABLE" => $arParams["HIDE_NOT_AVAILABLE"],
+								"HIDE_NOT_AVAILABLE" => $arParams["HIDE_NOT_AVAILABLE_ELEMENT"],
 								"PAGE_ELEMENT_COUNT" => "8",
 								"LINE_ELEMENT_COUNT" => "3",
 								"PROPERTY_CODE" => array(
@@ -237,7 +236,7 @@
 								"DETAIL_URL" => "",
 								"SECTION_ID_VARIABLE" => "SECTION_ID",
 								"SEF_MODE" => "N",
-								"AJAX_MODE" => "Y",
+								"AJAX_MODE" => "N",
 								"AJAX_OPTION_JUMP" => "N",
 								"AJAX_OPTION_STYLE" => "Y",
 								"AJAX_OPTION_HISTORY" => "N",
@@ -271,7 +270,7 @@
 								),
 								"PAGER_TEMPLATE" => "round",
 								"DISPLAY_TOP_PAGER" => "N",
-								"DISPLAY_BOTTOM_PAGER" => "Y",
+								"DISPLAY_BOTTOM_PAGER" => "N",
 								"PAGER_TITLE" => GetMessage("CATALOG_ELEMENT_ACCEESSORIES"),
 								"PAGER_SHOW_ALWAYS" => "N",
 								"PAGER_DESC_NUMBERING" => "N",
@@ -385,7 +384,7 @@
 		        <?endif;?>
 				<?if($arResult["SHOW_SIMILAR"] == "Y"):?>
 		        	<div id="similar">
-						<div class="heading"><?=GetMessage("CATALOG_ELEMENT_SIMILAR")?> (<?=$arResult["SIMILAR_COUNT"]?>)</div>
+						<div class="heading"><?=GetMessage("CATALOG_ELEMENT_SIMILAR")?> (<?=$arResult["SIMILAR_COUNT"] <= 8 ? $arResult["SIMILAR_COUNT"] : 8?>)</div>
 						<?$APPLICATION->IncludeComponent(
 							"bitrix:catalog.section", 
 							"squares", 
@@ -409,7 +408,7 @@
 								"FILTER_NAME" => "similarFilter",
 								"INCLUDE_SUBSECTIONS" => "Y",
 								"SHOW_ALL_WO_SECTION" => "Y",
-								"HIDE_NOT_AVAILABLE" => $arParams["HIDE_NOT_AVAILABLE"],
+								"HIDE_NOT_AVAILABLE" => $arParams["HIDE_NOT_AVAILABLE_ELEMENT"],
 								"PAGE_ELEMENT_COUNT" => "8",
 								"LINE_ELEMENT_COUNT" => "3",
 								"PROPERTY_CODE" => array(
@@ -422,7 +421,7 @@
 								"DETAIL_URL" => "",
 								"SECTION_ID_VARIABLE" => "SECTION_ID",
 								"SEF_MODE" => "N",
-								"AJAX_MODE" => "Y",
+								"AJAX_MODE" => "N",
 								"AJAX_OPTION_JUMP" => "N",
 								"AJAX_OPTION_STYLE" => "Y",
 								"AJAX_OPTION_HISTORY" => "N",
@@ -456,7 +455,7 @@
 								),
 								"PAGER_TEMPLATE" => "round",
 								"DISPLAY_TOP_PAGER" => "N",
-								"DISPLAY_BOTTOM_PAGER" => "Y",
+								"DISPLAY_BOTTOM_PAGER" => "N",
 								"PAGER_TITLE" => GetMessage("CATALOG_ELEMENT_SIMILAR"),
 								"PAGER_SHOW_ALWAYS" => "N",
 								"PAGER_DESC_NUMBERING" => "N",
@@ -477,7 +476,8 @@
 	".default", 
 	array(
 		"COMPONENT_TEMPLATE" => ".default",
-		"STORES" =>array(),
+		"STORES" => array(
+		),
 		"ELEMENT_ID" => $arResult["ID"],
 		"ELEMENT_CODE" => $arResult["CODE"],
 		"STORE_PATH" => "/stores/#store_id#/",
@@ -502,7 +502,10 @@
 		"SHOW_EMPTY_STORE" => "N",
 		"USE_MIN_AMOUNT" => "Y",
 		"SHOW_GENERAL_STORE_INFORMATION" => "N",
-		"MIN_AMOUNT" => "0"
+		"MIN_AMOUNT" => "0",
+		"IBLOCK_TYPE" => "catalog",
+		"IBLOCK_ID" => "",
+		"OFFER_ID" => ""
 	),
 	false
 );?>
@@ -604,7 +607,7 @@
 		<meta itemprop="reviewCount" content="<?=count($arResult["REVIEWS"])?>">
 	</div>
 	<div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-		<meta itemprop="priceCurrency" content="<?=$arResult["MIN_PRICE"]["CURRENCY"]?>" />
+		<meta itemprop="priceCurrency" content="<?if(!empty($arResult["MIN_PRICE"]["CURRENCY"])):?><?=$arResult["MIN_PRICE"]["CURRENCY"]?><?else:?><?=CCurrency::GetBaseCurrency();?><?endif;?>" />
 		<meta itemprop="price" content="<?=$arResult["MIN_PRICE"]["VALUE"]?>" />
 		<?if($arResult["CATALOG_QUANTITY"] > 0):?>
             <link itemprop="availability" href="http://schema.org/InStock">
@@ -619,3 +622,14 @@
 		<meta itemprop="description" content='<?=$arResult["DETAIL_TEXT"]?>' />
 	<?endif;?>
 </div>
+
+<meta property="og:title" content="<?=$arResult["NAME"]?>" />
+<meta property="og:description" content="<?=htmlspecialcharsbx($arResult["PREVIEW_TEXT"])?>" />
+<meta property="og:url" content="<?=$arResult["DETAIL_PAGE_URL"]?>" />
+<meta property="og:type" content="website" />
+<?if(!empty($arResult["IMAGES"][0]["LARGE_IMAGE"]["SRC"])):?>
+	<meta property="og:image" content="<?=$arResult["IMAGES"][0]["LARGE_IMAGE"]["SRC"]?>" />
+<?endif;?>
+
+<script src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
+<script src="//yastatic.net/share2/share.js"></script>

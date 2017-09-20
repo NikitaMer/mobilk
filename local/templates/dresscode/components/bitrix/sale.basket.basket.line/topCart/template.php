@@ -1,5 +1,6 @@
-<?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
-
+<?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+$frame = $this->createFrame()->begin();
+?>
 <div class="wrap">
 	<a<?if(!empty($arResult["NUM_PRODUCTS"])):?> href="<?=SITE_DIR?>personal/cart/"<?endif;?> class="icon<?if(!empty($arResult["NUM_PRODUCTS"])):?> active<?endif;?>"></a>
 		<div class="nf">
@@ -11,4 +12,4 @@
 			<?endif;?>
 		</div>
 </div>
-
+<?$frame->end();?>

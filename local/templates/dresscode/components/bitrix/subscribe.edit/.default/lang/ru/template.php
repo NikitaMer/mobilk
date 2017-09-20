@@ -66,4 +66,5 @@ $MESS ['subscr_pass_button'] = "Выслать";
 $MESS ['subscr_CAPTCHA_REGF_TITLE'] = "Защита от автоматической регистрации";
 $MESS ['subscr_CAPTCHA_REGF_PROMT'] = "Введите слово на картинке";
 $MESS ['adm_reg_butt'] = "Регистрация";
+$MESS["USER_PERSONAL_INFO"] = 'Нажимая кнопку "добавить" или "изменить" я даю согласие на <a href="/personal-info/" class="pilink">обработку персональных данных.</a>';
 ?>

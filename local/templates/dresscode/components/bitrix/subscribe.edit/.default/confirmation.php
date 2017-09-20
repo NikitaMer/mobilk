@@ -16,7 +16,11 @@
 		<?echo GetMessage("subscr_conf_note1")?> <a title="<?echo GetMessage("adm_send_code")?>" href="<?echo $arResult["FORM_ACTION"]?>?ID=<?echo $arResult["ID"]?>&amp;action=sendcode&amp;<?echo bitrix_sessid_get()?>"><?echo GetMessage("subscr_conf_note2")?></a>.
 	</td>
 </tr>
-<tfoot><tr><td colspan="2"><input type="submit" class="submit" name="confirm" value="<?echo GetMessage("subscr_conf_button")?>" /></td></tr></tfoot>
+<tfoot>
+	<tr>
+		<td colspan="2"><input type="submit" class="submit" name="confirm" value="<?echo GetMessage("subscr_conf_button")?>" /></td>
+	</tr>
+</tfoot>
 </table>
 <input type="hidden" name="ID" value="<?echo $arResult["ID"];?>" />
 <?echo bitrix_sessid_post();?>

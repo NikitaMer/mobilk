@@ -1,6 +1,6 @@
 <?if(!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED!==true)die();
 global $USER;
-$cacheID = $USER->GetGroups();
+$cacheID = array($USER->GetGroups());
 $this->__component->arResultCacheKeys = array_merge($this->__component->arResultCacheKeys, $cacheID);
 ?>
 <?

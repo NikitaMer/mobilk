@@ -128,6 +128,10 @@
 	padding-left: 28px;
 }
 
+.webFormItemField input[type="checkbox"].error + label:before{
+	border: 1px solid #ff0000 !important;
+}
+
 .webFormItemField input[type="checkbox"] + label:before {
 	background: url(images/checkBox.png) 0 0 no-repeat transparent;
 }

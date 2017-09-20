@@ -46,7 +46,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED!==true) die();
 					$prop_fields["HIGHLOAD"] = "N";
 					$property_enums = CIBlockPropertyEnum::GetList(Array("SORT" => "ASC", "DEF" => "DESC"), Array("IBLOCK_ID" => $SKU_INFO["IBLOCK_ID"], "CODE" => $prop_fields["CODE"]));
 					while($enum_fields = $property_enums->GetNext()){
-						$propValues[$enum_fields["EXTERNAL_ID"]] = array(
+						$propValues[$enum_fields["VALUE"]] = array(
 							"VALUE"  => $enum_fields["VALUE"],
 							"DISPLAY_VALUE"  => $enum_fields["VALUE"],
 							"SELECTED"  => N,
@@ -245,7 +245,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED!==true) die();
 									if($arOffer["PROPERTIES"][$ip]["VALUE"] == $checkValue){
 										$disabled = false; $selected = true;
 										foreach ($arPropClean as $ic => $arNextClean) {
-											if($arNextClean["HIGHLOAD"] == "Y" && $arOffer["PROPERTIES"][$arNextClean["PROPERTY"]]["VALUE"] != $arNextClean["VALUE"] || $arNextClean["HIGHLOAD"] != "Y" && $arOffer["PROPERTIES"][$arNextClean["PROPERTY"]]["VALUE_XML_ID"] != $arNextClean["VALUE"]){
+											if($arNextClean["HIGHLOAD"] == "Y" && $arOffer["PROPERTIES"][$arNextClean["PROPERTY"]]["VALUE"] != $arNextClean["VALUE"] || $arNextClean["HIGHLOAD"] != "Y" && $arOffer["PROPERTIES"][$arNextClean["PROPERTY"]]["VALUE"] != $arNextClean["VALUE"]){
 												if($ic == $ip){
 													break(2);
 												}
@@ -299,7 +299,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED!==true) die();
 								break(1);
 							}
 						}else{
-							if($arOffer["PROPERTIES"][$arNextClean["PROPERTY"]]["VALUE_XML_ID"] != $arNextClean["VALUE"]){
+							if($arOffer["PROPERTIES"][$arNextClean["PROPERTY"]]["VALUE"] != $arNextClean["VALUE"]){
 								$active = false;
 								break(1);
 							}
@@ -393,9 +393,13 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED!==true) die();
 				array("*")
 			);
 
-			while ($arComplectItem = $rsComplect->Fetch()) {
-				$arElement["COMPLECT"]["ITEMS"][$arComplectItem["ITEM_ID"]] = $arComplectItem;
-				$arComplectID[$arComplectItem["ITEM_ID"]] = $arComplectItem["ITEM_ID"];
+			// while ($arComplectItem = $rsComplect->Fetch()) {
+			// 	$arElement["COMPLECT"]["ITEMS"][$arComplectItem["ITEM_ID"]] = $arComplectItem;
+			// 	$arComplectID[$arComplectItem["ITEM_ID"]] = $arComplectItem["ITEM_ID"];
+			// }
+
+			if($arComplectItem = $rsComplect->Fetch()) {
+				$arElement["IS_COMPLECT"] = "Y";
 			}
 
 			if(!empty($arComplectID)){
@@ -465,7 +469,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED!==true) die();
 
 			}
 
-			if(empty($arElement["COMPLECT"])){
+			if(empty($arElement["COMPLECT"]) && empty($arElement["IS_COMPLECT"])){
 				//Информация о складах
 				$rsStore = CCatalogStoreProduct::GetList(array(), array("PRODUCT_ID" => $arElement["ID"]), false, false, array("ID", "AMOUNT")); 
 				while($arNextStore = $rsStore->GetNext()){

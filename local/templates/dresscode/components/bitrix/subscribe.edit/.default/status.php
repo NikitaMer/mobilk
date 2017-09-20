@@ -50,7 +50,8 @@
 			<input type="submit" name="activate" value="<?echo GetMessage("subscr_activate")?>" />
 			<input type="hidden" name="action" value="activate" />
 		<?endif;?>
-		</td></tr></tfoot>
+		</td></tr>
+</tfoot>
 	<?endif;?>
 </table>
 <input type="hidden" name="ID" value="<?echo $arResult["SUBSCRIPTION"]["ID"];?>" />

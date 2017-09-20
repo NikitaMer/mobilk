@@ -16,11 +16,12 @@ $this->setFrameMode(true);$arPlacemarks = array();?>
 				<div class="fastViewStoresMap">
 					<?$APPLICATION->IncludeComponent(
 						"bitrix:map.yandex.view", 
-						".default", 
+						"fastView", 
 						array(
 							"COMPONENT_TEMPLATE" => ".default",
 							"INIT_MAP_TYPE" => "MAP",
 							"MAP_DATA" => serialize(array("yandex_lat" => $gpsN, "yandex_lon" => $gpsS, "yandex_scale" => 8, "PLACEMARKS" => $arPlacemarks)),
+							"DEV_MODE"=>"Y",
 							"MAP_WIDTH" => "auto",
 							"MAP_HEIGHT" => "300",
 							"CONTROLS" => array(
@@ -34,7 +35,7 @@ $this->setFrameMode(true);$arPlacemarks = array();?>
 								1 => "ENABLE_DBLCLICK_ZOOM",
 								2 => "ENABLE_DRAGGING",
 							),
-							"MAP_ID" => ""
+							"MAP_ID" => rand(0, 9999999)
 						),
 						false
 					);?>

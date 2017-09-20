@@ -3,6 +3,7 @@ var timeOutID;
 var intervalID;
 var flushTimeout;
 var appBasketChangeTimeout;
+var lastAddCartText;
 var skuLoading = false;
 var fastBuyOpen = false;
 var fastViewOpen = false;
@@ -53,13 +54,28 @@ var flushCart = function(id, q) {
 }
 
 var cartReload = function() {
-	$.get(ajaxPath + "?act=flushCart", function(data) {
-		var $items = $(data).find(".dl");
-		$("#flushTopCart").html($items.eq(0).html());
-		$("#flushFooterCart").html($items.eq(1).html());
-		$("#flushTopwishlist").html($items.eq(2).html());
-		$("#flushTopCompare").html($items.eq(3).html());
-	});
+	if(typeof(window.topCartTemplate) == "undefined"){
+        window.topCartTemplate = "topCart";
+    }
+
+    if(typeof(window.wishListTemplate) == "undefined"){
+        window.wishListTemplate = ".default";
+    }
+
+    if(typeof(window.compareTemplate) == "undefined"){
+        window.compareTemplate = ".default";
+    }
+
+    $.get(ajaxPath + "?act=flushCart&topCartTemplate=" + window.topCartTemplate + "&wishListTemplate=" + window.wishListTemplate + "&compareTemplate=" + window.compareTemplate, function(data){
+
+        var $items = $(data).find(".dl");
+
+        $("#flushTopCart").html($items.eq(0).html());
+        $("#flushFooterCart").html($items.eq(1).html());
+        $("#flushTopwishlist").html($items.eq(2).html());
+        $("#flushTopCompare").html($items.eq(3).html());
+
+    });
 }
 
 $(function(){
@@ -105,7 +121,6 @@ $(function(){
 });
 
 $(window).on("ready", function(event){
-    
 	var $body = $("body").removeClass("loading"); // cache body
 
 	if($("div").is(".global-block-container") && $("div").is(".global-information-block") && $("div").is(".global-information-block-cn")){
@@ -256,7 +271,12 @@ $(window).on("ready", function(event){
 			$requestPriceFormTelephone.addClass("error");
 		}
 
-		if($requestPriceFormTelephone.val() !=""){
+        var $personalInfo = $requestPriceForm.find("#personalInfoRequest");
+        if(!$personalInfo.prop("checked")){
+            $personalInfo.addClass("error");
+        }
+        
+		if($requestPriceFormTelephone.val() !="" && $personalInfo.prop("checked")){
 
 			$.getJSON(ajaxPath + "?" + $requestPriceForm.serialize()).done(function(jData){
 
@@ -419,7 +439,7 @@ $(window).on("ready", function(event){
 		$elPicture.attr("href", http[0]["PRODUCT"]["DETAIL_PAGE_URL"]);
 		$elPicture.html($("<img/>").attr("src", http[0]["PRODUCT"]["PICTURE"]));
 
-		$product.find(".addCart, .fastBack, .addCompare").data("id", http[0]["PRODUCT"]["ID"]);
+		$product.find(".addCart, .fastBack, .addCompare").attr("data-id", http[0]["PRODUCT"]["ID"]);
 		if(http[0]["PRODUCT"]["PRICE"]["DISCOUNT_PRICE"]){
 			$product.find(".price").html(http[0]["PRODUCT"]["PRICE"]["DISCOUNT_PRICE"] + " ").removeClass("getPricesWindow");
 		}else{
@@ -704,7 +724,9 @@ $(window).on("ready", function(event){
                         }     
                     }        
                 });
-
+                
+                $_mProduct.find(".addCart, .fastBack, .addCompare").attr("data-id", http[0]["PRODUCT"]["ID"]);
+                
 				if(http[0]["PRODUCT"]["PRICE"]["DISCOUNT_PRICE"]){
 					$_mProduct.find(".price").html(http[0]["PRODUCT"]["PRICE"]["DISCOUNT_PRICE"] + " ").removeClass("getPricesWindow");
 				}else{
@@ -819,17 +841,20 @@ $(window).on("ready", function(event){
 					if($this.data("selector") != "" && $this.attr("href") === "#"){
 						$this.addClass("loading").text(LANG["ADD_CART_LOADING"]);
 						var $addElements = $($this.data("selector")).filter(":not(.disabled)");
-                        
+                        var elementsQuantity = "";
 						if($addElements.length > 0){
 							$addElements.each(function(x, elx){
 								var $elx = $(elx);
 								if($elx.data("id") != ""){
 									_arID[x] = $elx.data("id");
+                                    if(parseFloat($elx.data("quantity")) != ""){
+                                        elementsQuantity += $elx.data("id") + ":" + parseFloat($elx.data("quantity")) + ";";
+                                    }
 								}
 							});
 
 							if(_arID != ""){
-								$.getJSON(ajaxPath + "?act=addCart&id=" + _arID.join(";") + "&q=1&multi=1&site_id=" + SITE_ID, function(data) {
+								$.getJSON(ajaxPath + "?act=addCart&id=" + _arID.join(";") + "&q="+ elementsQuantity +"&multi=1&site_id=" + SITE_ID, function(data) {
 									var $imageAfterLoad = $this.find("img");
 									$this.text(LANG["ADDED_CART_SMALL"])
 										.attr("href", SITE_DIR + "personal/cart/")
@@ -864,9 +889,12 @@ $(window).on("ready", function(event){
 							var reloadCart = cartReload();
 							var cartWindow = displayWindow(jData);
 							var $imageAfterLoad = $this.find("img");
-
+                            $(".bwOpened").removeClass("bwOpened");
+                            lastAddCartText = $this.html();
+                            
 							$this.removeClass("loading")
 								.addClass("added")
+                                .addClass("bwOpened")
 								.html(LANG["BASKET_ADDED"])
 								.prepend($imageAfterLoad.attr("src", TEMPLATE_PATH + "/images/added.png"))
 								.attr("href", SITE_DIR + "personal/cart/");
@@ -906,7 +934,7 @@ $(window).on("ready", function(event){
 			var $moreLink = $appBasket.find(".moreLink").attr("href", jData["DETAIL_PAGE_URL"]);
 			var $image = $appBasket.find(".image").attr("src", $appBasket.data("load"));
 			var $wishlist = $appBasket.find(".addWishlist").data("id", jData["ID"]);
-			var $compare = $appBasket.find(".addCompare").data("id", jData["ID"]);
+			var $compare = $appBasket.find(".addCompare").attr("data-id", jData["ID"]);
 			var $picture = $appBasket.find(".picture");
 			var $delete = $appBasket.find(".delete").data("id", jData["CART_ID"]);
 			var $price = $appBasket.find(".price").html(jData["PRICE"]).data({"price": jData["~PRICE"], "discount": jData["OLD_PRICE"]});
@@ -1008,8 +1036,10 @@ $(window).on("ready", function(event){
 		$.get(ajaxPath, gObj).done(function(hData){
 			
 			if(hData != ""){
+                var $savedItems = $(".bwOpened").removeClass("added").attr("href", "#");
 				$("#appBasket .closeWindow").trigger("click");
 				$this.removeClass("loading");
+                $savedItems.html(lastAddCartText);
 				cartReload();
 			}else{
 				$this.removeClass("loading")
@@ -1115,10 +1145,11 @@ $(window).on("ready", function(event){
 
 			var $sumDiscount = $sum.find(".discount");
 			var gstrSumDiscount = $sumDiscount.html().replace(/\d\.\d/g, '').replace(/[0-9]/g, '');
-
+            var tmpDiscPrice = $price.data("discount") * $qty.val();
+            
 			$sumDiscount.html(
 				formatPrice(
-					$price.data("discount") * $qty.val()
+					tmpDiscPrice.toFixed(0)
 				) + gstrSumDiscount	
 			);
 		}
@@ -1336,7 +1367,12 @@ $(window).on("ready", function(event){
 			$fastBuyFormTelephone.addClass("error");
 		}
 
-		if($fastBuyFormName.val() != "" && $fastBuyFormTelephone.val() !=""){
+        var $personalInfo = $fastBuyForm.find("#personalInfoFastBuy");
+        if(!$personalInfo.prop("checked")){
+            $personalInfo.addClass("error");
+        }
+        
+		if($fastBuyFormName.val() != "" && $fastBuyFormTelephone.val() !="" && $personalInfo.prop("checked")){
 
 			$.getJSON(ajaxPath + "?" + $fastBuyForm.serialize()).done(function(jData){
 				
@@ -1386,7 +1422,7 @@ $(window).on("ready", function(event){
 
 		$.get(ajaxPath, gObj).done(function(hData){
 			if(hData != ""){
-				if($wishlist.find(".product").length == 1){
+				if($wishlist.find(".product, .itemRow").length == 1){
 					window.location.reload();
 				}else{
 					reloadCart = cartReload();

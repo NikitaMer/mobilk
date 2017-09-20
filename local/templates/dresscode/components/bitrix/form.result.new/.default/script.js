@@ -35,6 +35,12 @@ $(function(){
 			}
 		});
 
+		var $personalInfo = $thisForm.find("#personalInfoFieldStatic");
+		if(!$personalInfo.prop("checked")){
+			$personalInfo.addClass("error");
+			requiredError = true;
+		}
+
 		if(requiredError == false){
 	  		$.ajax({
 	  			url: webFormAjaxDir + "?FORM_ID=" + formId + "&SITE_ID=" + webFormSiteId,

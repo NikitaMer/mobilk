@@ -217,7 +217,7 @@
         </div>
     
     <script type="text/javascript">
-      var ajaxPath = "<?=SITE_DIR?>ajax.php";
+      var ajaxPath = "<?=SITE_DIR?>ajax_local.php";
       var SITE_DIR = "<?=SITE_DIR?>";
       var SITE_ID  = "<?=SITE_ID?>";
       var TEMPLATE_PATH = "<?=SITE_TEMPLATE_PATH?>";

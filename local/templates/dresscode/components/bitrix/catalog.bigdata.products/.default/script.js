@@ -1,5 +1,6 @@
+var dwLoadBigData;
+try {
 (function (window) {
-
 if (!!window.JCCatalogBigdataProducts)
 {
 	return;
@@ -1509,20 +1510,21 @@ function bx_rcm_get_from_cloud(injectId, rcmParameters, localAjaxData)
 		'onfailure': onready
 	});
 }
+} catch(err){
+	console.error(err.message);
+}finally{
+	$(function(){
+		dwLoadBigData = function(title, id){
 
-var dwLoadBigData;
+			$("#footerTabsCaption .items").prepend(
+				$("<div />", {class: "item"}).append(
+					$("<a/>", {class: "fcBigDataLink", href: "#"}).html(title)
+				)
+			);
 
-$(function(){
-	dwLoadBigData = function(title, id){
-		
-		$("#footerTabsCaption .items").prepend(
-			$("<div />", {class: "item"}).append(
-				$("<a/>", {class: "fcBigDataLink", href: "#"}).html(title)
-			)
-		);
+			$("#footerTabs .items").prepend($("#fcBigData"));
+			$(".fcBigDataLink").trigger("click");
 
-		$("#footerTabs .items").prepend($("#fcBigData"));
-		$(".fcBigDataLink").trigger("click");
-
-	};
-});
+		};
+	});
+}

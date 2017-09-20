@@ -21,7 +21,7 @@ $this->setFrameMode(true);$arPlacemarks = array();?>
 						}
 						?>
 						<?$image = CFile::ResizeImageGet($arProperty["IMAGE_ID"], array('width' => 50, 'height' => 50), BX_RESIZE_IMAGE_PROPORTIONAL, false);?>
-						<tr>
+						<tr style="display: <? echo ($arParams['SHOW_EMPTY_STORE'] == 'N' && isset($arProperty['REAL_AMOUNT']) && $arProperty['REAL_AMOUNT'] <= 0 ? 'none' : ''); ?>;">
 							<td class="name"><a href="<?=$arProperty["URL"]?>"> <?=$arProperty["TITLE"]?></a></td>
 							<td><?=$arProperty["SCHEDULE"]?></td>
 							<td><?=$arProperty["PHONE"]?></td>

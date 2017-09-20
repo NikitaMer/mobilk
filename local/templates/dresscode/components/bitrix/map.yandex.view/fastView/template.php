@@ -90,6 +90,7 @@ else:
 		'INIT_MAP_SCALE' => $arResult['POSITION']['yandex_scale'],
 		'MAP_WIDTH' => $arParams['MAP_WIDTH'],
 		'MAP_HEIGHT' => $arParams['MAP_HEIGHT'],
+		"DEV_MODE"=>"Y",
 		'CONTROLS' => $arParams['CONTROLS'],
 		'OPTIONS' => $arParams['OPTIONS'],
 		'MAP_ID' => $arParams['MAP_ID'],
@@ -166,7 +167,7 @@ function BX_SetPlacemarks_<?echo $arParams['MAP_ID']?>(map)
 <div class="bx-yandex-view-layout">
 	<div class="bx-yandex-view-map">
 <?
-	$APPLICATION->IncludeComponent('bitrix:map.yandex.system', 'fastView', $arTransParams, false, array('HIDE_ICONS' => 'Y'));
+	$APPLICATION->IncludeComponent('dresscode:map.yandex.system', '.default', $arTransParams, false, array('HIDE_ICONS' => 'Y'));
 ?>
 	</div>
 </div>

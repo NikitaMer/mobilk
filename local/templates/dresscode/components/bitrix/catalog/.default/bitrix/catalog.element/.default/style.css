@@ -170,6 +170,7 @@
 }
 
 #elementTools .fixContainer.maxScroll{
+	padding-bottom: 12px;
 	position: absolute;
 	bottom: 0px;
 	top: unset;
@@ -244,6 +245,10 @@
 	font-size: 21px;
 	display: block;
 	color: #000000;
+}
+
+#elementTools .price{
+	margin-top: 12px;
 }
 
 #elementTools .price .discount,
@@ -386,6 +391,12 @@
 #smallElementTools .secondTool{
 	width: 50%;
 	float: left;
+}
+
+.ya-share-label{
+	margin-bottom: 6px;
+	margin-top: 36px;
+	color: #717171;
 }
 
 #elementContainer{

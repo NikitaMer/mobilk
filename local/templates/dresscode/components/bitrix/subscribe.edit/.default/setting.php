@@ -27,7 +27,12 @@
 <tfoot><tr><td colspan="2">
 	<input type="submit" name="Save" class="submit" value="<?echo ($arResult["ID"] > 0? GetMessage("subscr_upd"):GetMessage("subscr_add"))?>" />
 	<input type="reset" class="clear" value="<?echo GetMessage("subscr_reset")?>" name="reset" />
-</td></tr></tfoot>
+</td></tr>
+<tr>
+	<td colspan="2"><br /><br />
+		<?echo GetMessage("USER_PERSONAL_INFO")?>
+	</td>
+</tr></tfoot>
 </table>
 <input type="hidden" name="PostAction" value="<?echo ($arResult["ID"]>0? "Update":"Add")?>" />
 <input type="hidden" name="ID" value="<?echo $arResult["SUBSCRIPTION"]["ID"];?>" />

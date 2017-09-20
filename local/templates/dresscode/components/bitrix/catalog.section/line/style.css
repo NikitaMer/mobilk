@@ -80,7 +80,7 @@
 
 #catalogLineList .markerContainer{
 	position: absolute;
-	z-index: 99;
+	z-index: 22;
 	top: 8px;
 	left: 8px;
 }

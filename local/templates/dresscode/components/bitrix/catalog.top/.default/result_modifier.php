@@ -194,7 +194,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED!==true) die();
 				foreach ($arElement["SKU_PROPERTIES"] as $ip => $arProp) {
 					foreach ($arProp["VALUES"] as $ipv => $arPropValue) {
 						$find = false;;
-						foreach ($arElement["OFFERS"] as $ipo => $arOffer) {
+						foreach ($arElement["SKU_PRODUCT"] as $ipo => $arOffer) {
 							if(!empty($arPropValue["VALUE"])){
 								if($arOffer["PROPERTIES"][$arProp["CODE"]]["VALUE"] == $arPropValue["VALUE"]){
 									$find = true;
@@ -229,7 +229,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED!==true) die();
 								$disabled = true;
 								$checkValue = $arElement["SKU_PROPERTIES"][$ip]["VALUES"][$keyValue]["VALUE"];
 
-								foreach ($arElement["OFFERS"] as $io => $arOffer) {
+								foreach ($arElement["SKU_PRODUCT"] as $io => $arOffer) {
 									if($arOffer["PROPERTIES"][$ip]["VALUE"] == $checkValue){
 										$disabled = false; $selected = true;
 										foreach ($arPropClean as $ic => $arNextClean) {

@@ -370,11 +370,11 @@ body.index{
 	color: #ffffff;
 }
 
-#rightFooter .showMap{
+#rightFooter .showMap, .pop{
 	color: #0061b2;
 }
 
-#rightFooter .showMap:hover{
+#rightFooter .showMap:hover, .pop:hover{
 	color: #006ac2;
 }
 

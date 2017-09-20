@@ -1,6 +1,6 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 
-<a href="<?=$arResult["URL_TO_LIST"]?>" class="back"><?=GetMessage("SALE_RECORDS_LIST")?></a>
+<a href="<?=$arResult["URL_TO_LIST"]?>"><?=GetMessage("SALE_RECORDS_LIST")?></a>
 
 <div class="bx_my_order_cancel">
 	<?if(strlen($arResult["ERROR_MESSAGE"])<=0):?>

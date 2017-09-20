@@ -6,7 +6,7 @@ $this->setFrameMode(true);
 		<span class="heading"><?=GetMessage("SNT_HEADING")?></span>
 
 			<div class="setList">
-				<div class="general setElement setMainElement" data-id="<?=$arResult["ELEMENT"]["ID"]?>">
+				<div class="general setElement setMainElement changeID" data-quantity="<?=$arResult["BASKET_QUANTITY"][$arResult["ELEMENT"]["ID"]]?>" data-id="<?=$arResult["ELEMENT"]["ID"]?>">
 					<div class="wrap">
 						<a href="<?=$arResult["ELEMENT"]["DETAIL_PAGE_URL"]?>" class="picture changePicture" target="_blank">
 							<img src="<?=$arResult["ELEMENT"]["DETAIL_PICTURE"]["src"]?>" alt="<?=$arResult["ELEMENT"]["NAME"]?>">
@@ -21,7 +21,7 @@ $this->setFrameMode(true);
 							$this->AddEditAction($arElement['ID'], $arElement['EDIT_LINK'], CIBlock::GetArrayByID($arElement["ELEMENT_INFO"]["IBLOCK_ID"], "ELEMENT_EDIT"));
 							$this->AddDeleteAction($arElement['ID'], $arElement['DELETE_LINK'], CIBlock::GetArrayByID($arElement["ELEMENT_INFO"]["IBLOCK_ID"], "ELEMENT_DELETE"), array());
 						?>
-						<div class="setElement setMainElement" data-price="<?=$arElement["PRICE_DISCOUNT_VALUE"]?>" data-discount="<?=$arElement["PRICE_DISCOUNT_DIFFERENCE_VALUE"]?>" data-id="<?=$arElement["ID"]?>" id="<?=$this->GetEditAreaId($arElement['ID']);?>">
+						<div class="setElement setMainElement" data-price="<?=$arElement["PRICE_DISCOUNT_VALUE"]?>" data-discount="<?=$arElement["PRICE_DISCOUNT_DIFFERENCE_VALUE"]?>" data-quantity="<?=$arResult["BASKET_QUANTITY"][$arElement["ID"]]?>" data-id="<?=$arElement["ID"]?>" id="<?=$this->GetEditAreaId($arElement['ID']);?>">
 								<span class="sCheck" data-id="<?=$arElement["ID"]?>"></span>
 							<div class="wrap">
 								<a href="<?=$arElement["DETAIL_PAGE_URL"]?>" class="picture" target="_blank">
@@ -55,7 +55,7 @@ $this->setFrameMode(true);
 						<tbody>
 							<tr>
 								<td class="wElement">
-									<div id="wProduct" class="setElement setWindowElement" data-price="<?=$arResult["ELEMENT"]["PRICE_DISCOUNT_VALUE"]?>" data-discount="<?=$arResult["ELEMENT"]["PRICE_DISCOUNT_DIFFERENCE_VALUE"]?>" data-id="<?=$arResult["ELEMENT"]["ID"]?>">
+									<div id="wProduct" class="setElement setWindowElement changeID" data-price="<?=$arResult["ELEMENT"]["PRICE_DISCOUNT_VALUE"]?>" data-discount="<?=$arResult["ELEMENT"]["PRICE_DISCOUNT_DIFFERENCE_VALUE"]?>" data-id="<?=$arResult["ELEMENT"]["ID"]?>" data-quantity="<?=$arResult["BASKET_QUANTITY"][$arResult["ELEMENT"]["ID"]]?>">
 										<span class="fr"><?=GetMessage("SNT_FOR_SET")?></span>
 										<a href="<?=$arResult["ELEMENT"]["DETAIL_PAGE_URL"]?>" class="picture changePicture" target="_blank">
 											<img src="<?=$arResult["ELEMENT"]["DETAIL_PICTURE"]["src"]?>" alt="<?=$arResult["ELEMENT"]["NAME"]?>">
@@ -74,7 +74,7 @@ $this->setFrameMode(true);
 															$this->AddEditAction($arElement['ID'], $arElement['EDIT_LINK'], CIBlock::GetArrayByID($arElement["ELEMENT_INFO"]["IBLOCK_ID"], "ELEMENT_EDIT"));
 															$this->AddDeleteAction($arElement['ID'], $arElement['DELETE_LINK'], CIBlock::GetArrayByID($arElement["ELEMENT_INFO"]["IBLOCK_ID"], "ELEMENT_DELETE"), array());
 														?>
-														<li class="setElement setWindowElement<?if($arElement["TYPE"] === "OTHER"):?> disabled<?endif;?>" data-price="<?=$arElement["PRICE_DISCOUNT_VALUE"]?>" data-discount="<?=$arElement["PRICE_DISCOUNT_DIFFERENCE_VALUE"]?>" data-id="<?=$arElement["ID"]?>" id="<?=$this->GetEditAreaId($arElement['ID']);?>">
+														<li class="setElement setWindowElement<?if($arElement["TYPE"] === "OTHER"):?> disabled<?endif;?>" data-price="<?=$arElement["PRICE_DISCOUNT_VALUE"]?>" data-discount="<?=$arElement["PRICE_DISCOUNT_DIFFERENCE_VALUE"]?>" data-id="<?=$arElement["ID"]?>" data-quantity="<?=$arResult["BASKET_QUANTITY"][$arElement["ID"]]?>" id="<?=$this->GetEditAreaId($arElement['ID']);?>">
 															<span class="sWindowCheck<?if($arElement["TYPE"] === "OTHER"):?> disabled<?endif;?>" data-id="<?=$arElement["ID"]?>"></span>
 															<div class="wrap">
 																<a href="<?=$arElement["DETAIL_PAGE_URL"]?>" class="picture" target="_blank">
@@ -99,7 +99,7 @@ $this->setFrameMode(true);
 						<ul>
 							<li>
 								<span class="heading4"><?=GetMessage("SNT_SUM_PRICE")?></span>
-								<span class="price"><span id="setWPrice"><?=$arResult["ELEMENT"]["ALL_PRICE"]?><?if(!empty($arResult["ELEMENT"]["ALL_PRICE_DISCOUNT"])):?></span><s id="setWDisnt" class="discount"><?=$arResult["ELEMENT"]["ALL_PRICE_DISCOUNT"]?></s><?endif;?></span>
+								<span class="price"><span id="setWPrice"><?=$arResult["ELEMENT"]["ALL_PRICE"]?><?if(!empty($arResult["ELEMENT"]["ALL_PRICE_DISCOUNT"])):?></span><s id="setWDisnt" class="discount<?if($arResult["ELEMENT"]["ALL_PRICE"] == $arResult["ELEMENT"]["ALL_PRICE_DISCOUNT"]):?> hidden<?endif;?>"><?=$arResult["ELEMENT"]["ALL_PRICE_DISCOUNT"]?></s><?endif;?></span>
 							</li>
 							<li>
 								<a href="#" class="closeWindow"><img src="<?=SITE_TEMPLATE_PATH?>/images/continue.png" alt=""><span class="text"><?=GetMessage("SNT_CONT")?></span></a>
