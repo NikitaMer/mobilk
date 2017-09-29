@@ -10,8 +10,7 @@
 							<img src="<?=SITE_TEMPLATE_PATH?>/images/cont1.png">
 						</div>
 						<div class="tc">
-							+7 (800) 505-40-38<br>
-							+7 (812) 244-71-27<br>
+							+7 (800) 333-92-14<br>
 						</div>
 					</div>
 				</div>
@@ -21,8 +20,7 @@
 							<img src="<?=SITE_TEMPLATE_PATH?>/images/cont2.png">
 						</div>
 						<div class="tc">
-							<a href="mailto:info@dw24.su">info@dw24.su</a><br>
-							<a href="mailto:support@dw24.su">support@dw24.su</a><br>
+							<a href="mailto:shop@mobilk.ru">shop@mobilk.ru</a><br>
 						</div>
 					</div>
 				</div>
@@ -32,8 +30,8 @@
 							<img src="<?=SITE_TEMPLATE_PATH?>/images/cont3.png">
 						</div>
 						<div class="tc">
-							г. Санкт-Петербург<br>
-							улица Пушкина, д.53    
+							215039, Россия, Смоленская обл.<br>
+							Гагаринский р-н, д. Поличня, ул. Новая    
 						</div>
 					</div>
 				</div>
@@ -44,7 +42,8 @@
 						</div>
 						<div class="tc">
 							Пн-Пт : с 10:00 до 20:00<br>
-							Сб, Вс : выходной<br>
+							Сб : с 10:00 до 15:00<br>
+							Вс : выходной<br>
 						</div>
 					</div>
 				</div>

@@ -48,6 +48,13 @@ $aMenuLinks = Array(
 		Array(), 
 		Array(), 
 		"" 
+	),
+	Array(
+		"Магазины дилеров", 
+		"about/stores/", 
+		Array(), 
+		Array(), 
+		"" 
 	)
 );
 ?>

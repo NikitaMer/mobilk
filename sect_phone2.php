@@ -1,1 +1,1 @@
-<span class="heading">+7 (800) 505-40-38</span>
+<span class="heading">+7 (800) 333-92-14</span>
