@@ -5,7 +5,7 @@
 	$countPropertyElements = 7;
 	global $USER;
 ?>
-<?
+<? 
 	$this->AddEditAction($arResult["ID"], $arResult["EDIT_LINK"], CIBlock::GetArrayByID($arResult["IBLOCK_ID"], "ELEMENT_EDIT"));
 	$this->AddDeleteAction($arResult["ID"], $arResult["DELETE_LINK"], CIBlock::GetArrayByID($arResult["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
 ?>
@@ -471,44 +471,47 @@
 					</div>
 				<?endif;?>
 				<?if($arParams["HIDE_AVAILABLE_TAB"] != "Y"):?>
+                <div id="stores">
+                    <div class="heading"><?=GetMessage("STORES_HEADING")?></div>
 					<?$APPLICATION->IncludeComponent(
-	"bitrix:catalog.store.amount", 
-	".default", 
-	array(
-		"COMPONENT_TEMPLATE" => ".default",
-		"STORES" => array(
-		),
-		"ELEMENT_ID" => $arResult["ID"],
-		"ELEMENT_CODE" => $arResult["CODE"],
-		"STORE_PATH" => "/stores/#store_id#/",
-		"CACHE_TYPE" => "N",
-		"CACHE_TIME" => "36000",
-		"MAIN_TITLE" => "",
-		"USER_FIELDS" => array(
-			0 => "",
-			1 => "",
-		),
-		"FIELDS" => array(
-			0 => "TITLE",
-			1 => "ADDRESS",
-			2 => "DESCRIPTION",
-			3 => "PHONE",
-			4 => "EMAIL",
-			5 => "IMAGE_ID",
-			6 => "COORDINATES",
-			7 => "SCHEDULE",
-			8 => "",
-		),
-		"SHOW_EMPTY_STORE" => "N",
-		"USE_MIN_AMOUNT" => "Y",
-		"SHOW_GENERAL_STORE_INFORMATION" => "N",
-		"MIN_AMOUNT" => "0",
-		"IBLOCK_TYPE" => "catalog",
-		"IBLOCK_ID" => "",
-		"OFFER_ID" => ""
-	),
-	false
-);?>
+	                    "bitrix:catalog.store.amount", 
+	                    ".default", 
+	                    array(
+		                    "COMPONENT_TEMPLATE" => ".default",
+		                    "STORES" => array(
+		                    ),
+		                    "ELEMENT_ID" => $arResult["ID"],
+		                    "ELEMENT_CODE" => $arResult["CODE"],
+		                    "STORE_PATH" => "/stores/#store_id#/",
+		                    "CACHE_TYPE" => "N",
+		                    "CACHE_TIME" => "36000",
+		                    "MAIN_TITLE" => "",
+		                    "USER_FIELDS" => array(
+			                    0 => "",
+			                    1 => "",
+		                    ),
+		                    "FIELDS" => array(
+			                    0 => "TITLE",
+			                    1 => "ADDRESS",
+			                    2 => "DESCRIPTION",
+			                    3 => "PHONE",
+			                    4 => "EMAIL",
+			                    5 => "IMAGE_ID",
+			                    6 => "COORDINATES",
+			                    7 => "SCHEDULE",
+			                    8 => "",
+		                    ),
+		                    "SHOW_EMPTY_STORE" => "N",
+		                    "USE_MIN_AMOUNT" => "Y",
+		                    "SHOW_GENERAL_STORE_INFORMATION" => "N",
+		                    "MIN_AMOUNT" => "0",
+		                    "IBLOCK_TYPE" => "catalog",
+		                    "IBLOCK_ID" => "",
+		                    "OFFER_ID" => ""
+	                    ),
+	                    false
+                    );?>
+                </div>
 				<?endif;?>
 				<?if(!empty($arResult["FILES"])):?>
 				<div id="files">

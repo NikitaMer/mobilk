@@ -1123,6 +1123,17 @@
 	display: block;
 }
 
+#stores .heading{
+    border-top: 1px solid #efefef;
+    font-family: 'robotobold';
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 36px 24px;
+    font-weight: 800;
+    font-size: 20px;
+    display: block;
+}
+
 #video{
 	margin-top: 24px;
 }

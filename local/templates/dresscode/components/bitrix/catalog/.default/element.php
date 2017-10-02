@@ -37,7 +37,7 @@ $this->setFrameMode(true);?>
 </div></div></div></div></div></div><?if($_SESSION["SESS_INCLUDE_AREAS"]):?></div><?endif;?>
 <?$APPLICATION->IncludeComponent(
 	"bitrix:catalog.element",
-	"",
+	".default",
 	array(
 		"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
 		"IBLOCK_ID" => $arParams["IBLOCK_ID"],
