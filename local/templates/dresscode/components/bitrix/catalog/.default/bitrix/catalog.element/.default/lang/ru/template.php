@@ -65,7 +65,8 @@
 	$MESS["REVIEWS_AUTHOR"] = "Автор:";
 	$MESS["REVIEWS_ADD"] = "Добавить отзыв";
 	$MESS["FILES_HEADING"] = "Файлы";
-	$MESS["VIDEO_HEADING"] = "Видео";
+    $MESS["VIDEO_HEADING"] = "Видео";
+	$MESS["FOTO_HEADING"] = "Фотографии";
 	$MESS["REQUEST_PRICE_LABEL"] = "Цена по запросу";
 	$MESS["REQUEST_PRICE_BUTTON_LABEL"] = "Запросить цену";
     $MESS["SHARE_LABEL"] = "Поделиться";

@@ -1134,6 +1134,32 @@
     display: block;
 }
 
+#foto{
+    margin-top: 24px;
+}
+#foto img{
+    width: 100%;    
+}
+#foto .foto_img{
+    margin: 0 5px;
+}
+#foto .heading{
+    border-top: 1px solid #efefef;
+    font-family: 'robotobold';
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 36px 24px;
+    font-weight: 800;
+    font-size: 20px;
+    display: block;
+}
+#foto .wrap{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 60px;
+}
+
 #video{
 	margin-top: 24px;
 }

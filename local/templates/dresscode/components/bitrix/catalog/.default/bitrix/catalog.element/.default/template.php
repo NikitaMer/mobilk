@@ -199,90 +199,31 @@
 				</div>
 		        <?if($arResult["SHOW_RELATED"] == "Y"):?>
 		        	<div id="related">
-						<div class="heading"><?=GetMessage("CATALOG_ELEMENT_ACCEESSORIES")?> (<?=$arResult["RELATED_COUNT"] <= 8 ? $arResult["RELATED_COUNT"] : 8?>)</div>
-						<?$APPLICATION->IncludeComponent(
-							"bitrix:catalog.section", 
-							"squares", 
-							array(
-								"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
-								"IBLOCK_ID" => $arParams["IBLOCK_ID"],
-								"CONVERT_CURRENCY" => $arParams["CONVERT_CURRENCY"],
-								"CURRENCY_ID" => $arParams["CURRENCY_ID"],
-								"ADD_SECTIONS_CHAIN" => "N",
-								"COMPONENT_TEMPLATE" => "squares",
-								"SECTION_ID" => $_REQUEST["SECTION_ID"],
-								"SECTION_CODE" => "",
-								"SECTION_USER_FIELDS" => array(
-									0 => "",
-									1 => "",
-								),
-								"ELEMENT_SORT_FIELD" => "sort",
-								"ELEMENT_SORT_ORDER" => "asc",
-								"ELEMENT_SORT_FIELD2" => "id",
-								"ELEMENT_SORT_ORDER2" => "desc",
-								"FILTER_NAME" => "relatedFilter",
-								"INCLUDE_SUBSECTIONS" => "Y",
-								"SHOW_ALL_WO_SECTION" => "Y",
-								"HIDE_NOT_AVAILABLE" => $arParams["HIDE_NOT_AVAILABLE_ELEMENT"],
-								"PAGE_ELEMENT_COUNT" => "8",
-								"LINE_ELEMENT_COUNT" => "3",
-								"PROPERTY_CODE" => array(
-									0 => "",
-									1 => "",
-								),
-								"OFFERS_LIMIT" => "5",
-								"BACKGROUND_IMAGE" => "-",
-								"SECTION_URL" => "",
-								"DETAIL_URL" => "",
-								"SECTION_ID_VARIABLE" => "SECTION_ID",
-								"SEF_MODE" => "N",
-								"AJAX_MODE" => "N",
-								"AJAX_OPTION_JUMP" => "N",
-								"AJAX_OPTION_STYLE" => "Y",
-								"AJAX_OPTION_HISTORY" => "N",
-								"AJAX_OPTION_ADDITIONAL" => "undefined",
-								"CACHE_TYPE" => "Y",
-								"CACHE_TIME" => "36000000",
-								"CACHE_GROUPS" => "Y",
-								"SET_TITLE" => "Y",
-								"SET_BROWSER_TITLE" => "Y",
-								"BROWSER_TITLE" => "-",
-								"SET_META_KEYWORDS" => "Y",
-								"META_KEYWORDS" => "-",
-								"SET_META_DESCRIPTION" => "Y",
-								"META_DESCRIPTION" => "-",
-								"SET_LAST_MODIFIED" => "N",
-								"USE_MAIN_ELEMENT_SECTION" => "N",
-								"CACHE_FILTER" => "Y",
-								"ACTION_VARIABLE" => "action",
-								"PRODUCT_ID_VARIABLE" => "id",
-								"PRICE_CODE" => $arParams["PRICE_CODE"],
-								"USE_PRICE_COUNT" => "N",
-								"SHOW_PRICE_COUNT" => "1",
-								"PRICE_VAT_INCLUDE" => "Y",
-								"BASKET_URL" => "/personal/basket.php",
-								"USE_PRODUCT_QUANTITY" => "N",
-								"PRODUCT_QUANTITY_VARIABLE" => "undefined",
-								"ADD_PROPERTIES_TO_BASKET" => "Y",
-								"PRODUCT_PROPS_VARIABLE" => "prop",
-								"PARTIAL_PRODUCT_PROPERTIES" => "N",
-								"PRODUCT_PROPERTIES" => array(
-								),
-								"PAGER_TEMPLATE" => "round",
-								"DISPLAY_TOP_PAGER" => "N",
-								"DISPLAY_BOTTOM_PAGER" => "N",
-								"PAGER_TITLE" => GetMessage("CATALOG_ELEMENT_ACCEESSORIES"),
-								"PAGER_SHOW_ALWAYS" => "N",
-								"PAGER_DESC_NUMBERING" => "N",
-								"PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
-								"PAGER_SHOW_ALL" => "N",
-								"PAGER_BASE_LINK_ENABLE" => "N",
-								"SET_STATUS_404" => "N",
-								"SHOW_404" => "N",
-								"MESSAGE_404" => ""
-							),
-							false
-						);?>
+						<div class="heading"><?=GetMessage("CATALOG_ELEMENT_ACCEESSORIES")?> <!--(<?=$arResult["RELATED_COUNT"] <= 8 ? $arResult["RELATED_COUNT"] : 8?>)--></div>
+                        
+                        <?$APPLICATION->IncludeComponent(
+                            "bitrix:catalog.section.list",
+                            "product",
+                            array(
+                                "IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
+                                "IBLOCK_ID" => $arParams["IBLOCK_ID"],
+                                "CACHE_TYPE" => $arParams["CACHE_TYPE"],
+                                "CACHE_TIME" => $arParams["CACHE_TIME"],
+                                "CACHE_GROUPS" => $arParams["CACHE_GROUPS"],
+                                "SECTION_ID" => 109,
+                                "FILTER" => $arResult["ACCESSORIES"],
+                                "COUNT_ELEMENTS" => "N",
+                                "TOP_DEPTH" => 4,
+                                "SECTION_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["section"],
+                                "VIEW_MODE" => "TEXT",
+                                "SHOW_PARENT_NAME" => "N",
+                                "HIDE_SECTION_NAME" => (isset($arParams["SECTIONS_HIDE_SECTION_NAME"]) ? $arParams["SECTIONS_HIDE_SECTION_NAME"] : "N"),
+                                "ADD_SECTIONS_CHAIN" => (isset($arParams["ADD_SECTIONS_CHAIN"]) ? $arParams["ADD_SECTIONS_CHAIN"] : '')
+                            ),
+                            $component
+                        );
+                        ?>
+                            
 					</div>
 				<?endif;?>
 		        <?if(isset($arResult["REVIEWS"])):?>
@@ -568,6 +509,21 @@
 						</div>
 					</div>
 				<?endif;?>
+                <div id="foto">
+                        <div class="heading"><?=GetMessage("FOTO_HEADING")?></div>
+                        <div class="wrap">
+                            <div class="items foto">
+                                <div class="foto_img"><a href="<?=$templateFolder?>/images/DS1.jpg" data-fancybox="images" data-caption="My caption1"><img src="<?=$templateFolder?>/images/DS1.jpg" alt=""></a></div>
+                                <div class="foto_img"><a href="<?=$templateFolder?>/images/DS2.jpg" data-fancybox="images" data-caption="My caption2"><img src="<?=$templateFolder?>/images/DS2.jpg" alt=""></a></div>
+                                <div class="foto_img"><a href="<?=$templateFolder?>/images/DS1.jpg" data-fancybox="images" data-caption="My caption3"><img src="<?=$templateFolder?>/images/DS1.jpg" alt=""></a></div>
+                                <div class="foto_img"><a href="<?=$templateFolder?>/images/DS2.jpg" data-fancybox="images" data-caption="My caption4"><img src="<?=$templateFolder?>/images/DS2.jpg" alt=""></a></div>
+                                <div class="foto_img"><a href="<?=$templateFolder?>/images/DS1.jpg" data-fancybox="images" data-caption="My caption5"><img src="<?=$templateFolder?>/images/DS1.jpg" alt=""></a></div>
+                                <div class="foto_img"><a href="<?=$templateFolder?>/images/DS2.jpg" data-fancybox="images" data-caption="My caption6"><img src="<?=$templateFolder?>/images/DS2.jpg" alt=""></a></div>
+                                <div class="foto_img"><a href="<?=$templateFolder?>/images/DS1.jpg" data-fancybox="images" data-caption="My caption7"><img src="<?=$templateFolder?>/images/DS1.jpg" alt=""></a></div>
+                                <div class="foto_img"><a href="<?=$templateFolder?>/images/DS2.jpg" data-fancybox="images" data-caption="My caption8"><img src="<?=$templateFolder?>/images/DS2.jpg" alt=""></a></div>
+                            </div>
+                        </div>
+                    </div>
 			</div>
 			<div id="elementTools" class="column">
 				<div class="fixContainer">
@@ -596,7 +552,35 @@
 
 	var elementAjaxPath = "<?=$templateFolder."/ajax.php"?>";
 
+    $('.foto').slick({
+      centerMode: true,
+      infinite: true,
+      centerPadding: '40px',
+      slidesToShow: 3,
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            arrows: false,
+            centerMode: true,
+            centerPadding: '40px',
+            slidesToShow: 3
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            arrows: false,
+            centerMode: true,
+            centerPadding: '40px',
+            slidesToShow: 1
+          }
+        }
+      ]
+    });
+    
 </script>
+
 <div itemscope itemtype="http://schema.org/Product" class="microdata">
 	<meta itemprop="name" content="<?=$arResult["NAME"]?>" />
 	<link itemprop="url" href="<?=$arResult["DETAIL_PAGE_URL"]?>" />
