@@ -119,9 +119,14 @@
 
 	if(!empty($arResult["PROPERTIES"]["RELATED_PRODUCT"]["VALUE"])){
 
-		$arSelect = Array("ID");
+		//$arSelect = Array("ID", "IBLOCK_ID");
 		$arFilter = Array("IBLOCK_ID" => $arParams["IBLOCK_ID"], "ACTIVE_DATE" => "Y", "ACTIVE" => "Y", "ID" => $arResult["PROPERTIES"]["RELATED_PRODUCT"]["VALUE"]);
 		$gRelated = CIBlockElement::GetList(Array(), $arFilter, false, false, $arSelect);
+        while($rRelated = $gRelated->GetNext()){            
+            $arAccessoriesID[] = $rRelated["ID"];    
+            $arAccessoriesIBLOCKSEC[] = $rRelated["IBLOCK_SECTION_ID"];    
+        }
+            
 		$arResult["RELATED_COUNT"] = $gRelated->SelectedRowsCount();
 
 		if (intval($arResult["RELATED_COUNT"]) > 0){
@@ -227,8 +232,6 @@
 					$arResult["PROPERTIES_LIST"][$prop_fields["CODE"]] = array_merge(
 						$prop_fields, array("VALUES" => $propValues)
 					);
-
-					// print_r($requests);
 
 				}
 			}elseif($prop_fields["SORT"] <= 100 && $prop_fields["PROPERTY_TYPE"] == "E" && !empty($prop_fields["LINK_IBLOCK_ID"])){
@@ -825,10 +828,13 @@
 	$arParams["SHOW_REVIEW_FORM"] = $arResult["SHOW_REVIEW_FORM"];
 
 	//related filter
+    
 	global $relatedFilter;
 	$relatedFilter = array(
-		"ID" => $arResult["PROPERTIES"]["RELATED_PRODUCT"]["VALUE"]
+		"ID" => $arAccessoriesID
 	);
+    
+    $arResult["ACCESSORIES"] = $arAccessoriesIBLOCKSEC;
 
 	global $similarFilter;
 	if(empty($arResult["PROPERTIES"]["SIMILAR_PRODUCT"]["VALUE"])){

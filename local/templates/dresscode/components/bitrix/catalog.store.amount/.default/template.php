@@ -1,8 +1,6 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 $this->setFrameMode(true);$arPlacemarks = array();?>
-<?if(!empty($arResult["STORES"]) && $arResult["SHOW_STORES"] == "Y"):?>
-	<div id="stores">
-		<div class="heading"><?=GetMessage("STORES_HEADING")?></div>
+<?if(!empty($arResult["STORES"])):?>
 		<div class="wrap">
 			<table class="storeTable">
 				<tbody>
@@ -21,7 +19,7 @@ $this->setFrameMode(true);$arPlacemarks = array();?>
 						}
 						?>
 						<?$image = CFile::ResizeImageGet($arProperty["IMAGE_ID"], array('width' => 50, 'height' => 50), BX_RESIZE_IMAGE_PROPORTIONAL, false);?>
-						<tr style="display: <? echo ($arParams['SHOW_EMPTY_STORE'] == 'N' && isset($arProperty['REAL_AMOUNT']) && $arProperty['REAL_AMOUNT'] <= 0 ? 'none' : ''); ?>;">
+						<tr>
 							<td class="name"><a href="<?=$arProperty["URL"]?>"> <?=$arProperty["TITLE"]?></a></td>
 							<td><?=$arProperty["SCHEDULE"]?></td>
 							<td><?=$arProperty["PHONE"]?></td>
@@ -56,5 +54,4 @@ $this->setFrameMode(true);$arPlacemarks = array();?>
 				false
 			);?>
 		</div>
-	</div>
 <?endif;?>

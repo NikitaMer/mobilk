@@ -13,7 +13,9 @@ IncludeTemplateLangFile(__FILE__);
 		<META NAME="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" type="image/x-icon" href="<?=SITE_TEMPLATE_PATH?>/images/favicon.ico" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<?$APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/fonts/roboto/roboto.css");?>
+        <?$APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/fonts/roboto/roboto.css");?>
+        <?$APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/slick.css");?>
+		<?$APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/slick-theme.css");?>
 		<?$APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/themes/".$TEMPLATE_BACKGROUND_NAME."/".$TEMPLATE_THEME_NAME."/style.css");?>
 		<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH."/js/jquery-1.11.0.min.js");?>
 		<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH."/js/jquery.easing.1.3.js");?>
@@ -26,8 +28,11 @@ IncludeTemplateLangFile(__FILE__);
 		<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH."/js/dwZoomer.js");?>
 		<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH."/js/dwTimer.js");?>
         <?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH."/js/colorSwitcher.js");?>
+        <?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH."/js/slick.js");?>
 		<?$APPLICATION->ShowHead();?>
         <?CJSCore::Init(array("fx"));?>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.js"></script>
         <!-- Yandex.Metrika counter -->
         <script type="text/javascript">
             (function (d, w, c) {
