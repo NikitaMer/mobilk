@@ -212,6 +212,7 @@
                                 "CACHE_GROUPS" => $arParams["CACHE_GROUPS"],
                                 "SECTION_ID" => 109,
                                 "FILTER" => $arResult["ACCESSORIES"],
+                                "ID_PRODUCT" => $arResult["~ID"],
                                 "COUNT_ELEMENTS" => "N",
                                 "TOP_DEPTH" => 4,
                                 "SECTION_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["section"],

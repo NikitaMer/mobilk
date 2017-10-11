@@ -498,5 +498,16 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED!==true) die();
 			$arResult["MEASURES"][$arNextMeasure["ID"]] = $arNextMeasure;
 		}
 	}
-
+// Выбор нужных товаров.
+if($_GET["ID"]){
+    $dbProduct = CIBlockElement::GetList(array("sort"=>"asc"), array("ID"=>$_GET["ID"]), false, false, array("ID", "PROPERTY_RELATED_PRODUCT"));
+    while($arProduct = $dbProduct->GetNext()){    
+        $relatedProduct["PROPERTY_RELATED_PRODUCT_VALUE"][] = $arProduct["PROPERTY_RELATED_PRODUCT_VALUE"];   
+    }
+    foreach($arResult["ITEMS"] as $key=>$arElement){         
+        if (!in_array($arElement["ID"], $relatedProduct["PROPERTY_RELATED_PRODUCT_VALUE"])) {
+            unset($arResult["ITEMS"][$key]);      
+        }   
+    }    
+}
 ?>
