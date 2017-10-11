@@ -1,7 +1,7 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 
 	$this->setFrameMode(true);
-
+    
 	$i = 0;
 
 	foreach($arResult["SECTIONS"] as $arElement){
@@ -31,7 +31,7 @@
 								<?if(count($nextElement["ELEMENTS"])):?>
 									<div class="sectionList">
 										<?foreach($nextElement["ELEMENTS"] as $next2Elements):?>
-											<div class="section"><a href="<?=$next2Elements["SECTION_PAGE_URL"]?>"><?if(!empty($next2Elements["PICTURE"]["src"])):?><img src="<?=$next2Elements["PICTURE"]["src"]?>" alt="<?=$next2Elements["NAME"]?>"><?endif;?><?=$next2Elements["NAME"]?></a></div>
+											<div class="section"><a href="<?=$next2Elements["SECTION_PAGE_URL"]?>?ID=<?=$arParams["ID_PRODUCT"]?>"><?if(!empty($next2Elements["PICTURE"]["src"])):?><img src="<?=$next2Elements["PICTURE"]["src"]?>" alt="<?=$next2Elements["NAME"]?>"><?endif;?><?=$next2Elements["NAME"]?></a></div>
 										<?endforeach;?>	
 									</div>
 								<?endif;?>	

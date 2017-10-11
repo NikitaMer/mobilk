@@ -4,6 +4,10 @@ $arComponentParameters = Array(
    "FILTER" => Array(
         "NAME" => GetMessage("FILTER"),
         "TYPE" => "STRING",    
+   ),
+   "ID_PRODUCT" => Array(
+        "NAME" => GetMessage("ID_PRODUCT"),
+        "TYPE" => "STRING",    
    )
 )
 );

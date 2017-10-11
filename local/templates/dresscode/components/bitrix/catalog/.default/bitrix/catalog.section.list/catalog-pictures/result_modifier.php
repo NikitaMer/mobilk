@@ -5,4 +5,6 @@ if(!empty($arResult["SECTIONS"])){
 			unset($arResult["SECTIONS"][$inc]);
 		}
 	}
-}?>
+}
+
+?>
