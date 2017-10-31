@@ -79,7 +79,7 @@
 						$propValues = array();
 						$prop_fields["HIGHLOAD"] = "N";
 						$property_enums = CIBlockPropertyEnum::GetList(Array("SORT" => "ASC", "DEF" => "DESC"), Array("IBLOCK_ID" => $SKU_INFO["IBLOCK_ID"], "CODE" => $prop_fields["CODE"]));
-						while($enum_fields = $property_enums->GetNext()){  //arshow($enum_fields);
+						while($enum_fields = $property_enums->GetNext()){  
 							$propValues[] = array(
 								"VALUE"  => $enum_fields["VALUE"],
 								"DISPLAY_VALUE"  => $enum_fields["VALUE"],
@@ -176,7 +176,12 @@
 
 					$PROP_ID = str_replace("_", "", $PROP_ID);
 					$arSelect = Array("ID", "NAME", "IBLOCK_ID", "DETAIL_PICTURE", "CATALOG_QUANTITY", "DETAIL_PAGE_URL", "IBLOCK_SECTION_ID", "CATALOG_MEASURE", "CATALOG_AVAILABLE");
-					$arFilter = Array("IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"], "IBLOCK_ID" => $arParams["IBLOCK_ID"], "PROPERTY_".$arParams["PROP_NAME"] => $PROP_ID, "ACTIVE_DATE" => "Y", "ACTIVE" => "Y");
+                    
+                    if ($arParams["ID"] && $arParams["SECTION_ID"]) {
+                        $arFilter = Array("ID" => $arParams["ID"],  "SECTION_ID" => $arParams["SECTION_ID"],  "IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"], "IBLOCK_ID" => $arParams["IBLOCK_ID"], "PROPERTY_".$arParams["PROP_NAME"] => $PROP_ID, "ACTIVE_DATE" => "Y", "ACTIVE" => "Y");
+                    } else {
+                        $arFilter = Array("IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"], "IBLOCK_ID" => $arParams["IBLOCK_ID"], "PROPERTY_".$arParams["PROP_NAME"] => $PROP_ID, "ACTIVE_DATE" => "Y", "ACTIVE" => "Y");
+                    }
 
 					if($arParams["HIDE_NOT_AVAILABLE"] == "Y"){
 						$arFilter["CATALOG_AVAILABLE"] = "Y";
@@ -553,7 +558,7 @@
 							}
 
 						}
-
+                        
 						if(empty($arFields["COMPLECT"])){
 							//Информация о складах
 							$rsStore = CCatalogStoreProduct::GetList(array(), array("PRODUCT_ID" => $arFields["ID"]), false, false, array("ID", "AMOUNT")); 

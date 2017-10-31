@@ -164,3 +164,43 @@
     border: none !important;
     padding: 0px 24px !important;
 }
+.tabs_el {
+    padding: 0px;
+    list-style: none;
+    text-align: center;
+    border-radius: 0 !important;
+    display: flex;
+    flex-wrap: wrap;          
+}
+.tab-link {
+    border: 1px solid #3c3c3c;
+    width: 15.6666%;
+    margin: 5px;
+    padding: 7px 12px;
+    cursor: pointer;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;            
+}
+.tab-link div{
+    width: 100%;    
+}
+.tab-link.current{
+    border-color: #c00;    
+}
+.tab-link:hover {
+    border-color: #c00;
+}
+.tab-content {
+    display: none;
+    padding: 15px 0 !important;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #191b1a;
+    overflow: hidden;
+}
+.tab-content.current {
+    display: inherit;
+}
