@@ -47,7 +47,7 @@
 										<div class="item">
 											<a href="<?=$arNextPicture["LARGE_IMAGE"]["SRC"]?>" title="<?=GetMessage("CATALOG_ELEMENT_ZOOM")?>"  class="zoom" data-small-picture="<?=$arNextPicture["SMALL_IMAGE"]["SRC"]?>" data-large-picture="<?=$arNextPicture["LARGE_IMAGE"]["SRC"]?>"><img src="<?=$arNextPicture["MEDIUM_IMAGE"]["SRC"]?>" alt="<?if($ipr==0):?><?if(!empty($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_ALT"])):?><?=$arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_ALT"]?><?else:?><?=$arResult["NAME"]?><?endif;?><?endif;?>" title="<?if($ipr==0):?><?if(!empty($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TITLE"])):?><?=$arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TITLE"]?><?else:?><?=$arResult["NAME"]?><?endif;?><?endif;?>"></a>										</div>
 									<?endforeach;?>
-								</div>
+								</div>                     <td></td>
 							</div>
 								<div id="moreImagesCarousel"<?if(count($arResult["IMAGES"]) <= 1):?> class="hide"<?endif;?>>
 									<div class="carouselWrapper">
@@ -211,8 +211,8 @@
                                 "CACHE_TIME" => $arParams["CACHE_TIME"],
                                 "CACHE_GROUPS" => $arParams["CACHE_GROUPS"],
                                 "SECTION_ID" => 109,
-                                "FILTER" => $arResult["ACCESSORIES"],
-                                "ID_PRODUCT" => $arResult["~ID"],
+                                "FILTER" => $arResult["ACCESSORIES_IBLOCKSEC"],
+                                "ID_PRODUCTS" => $arResult["ACCESSORIES_ELEMENTS"],
                                 "COUNT_ELEMENTS" => "N",
                                 "TOP_DEPTH" => 4,
                                 "SECTION_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["section"],

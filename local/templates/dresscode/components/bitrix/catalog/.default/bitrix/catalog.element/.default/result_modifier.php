@@ -829,12 +829,9 @@
 
 	//related filter
     
-	global $relatedFilter;
-	$relatedFilter = array(
-		"ID" => $arAccessoriesID
-	);
     
-    $arResult["ACCESSORIES"] = $arAccessoriesIBLOCKSEC;
+    $arResult["ACCESSORIES_IBLOCKSEC"] = $arAccessoriesIBLOCKSEC;
+    $arResult["ACCESSORIES_ELEMENTS"] = $arAccessoriesID;
 
 	global $similarFilter;
 	if(empty($arResult["PROPERTIES"]["SIMILAR_PRODUCT"]["VALUE"])){
