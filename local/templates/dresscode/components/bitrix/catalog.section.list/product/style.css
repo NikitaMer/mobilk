@@ -198,8 +198,7 @@
     background: none !important;
     border: none !important;
     box-shadow: none !important;
-    color: #191b1a;
-    overflow: hidden;
+    color: #191b1a;  
 }
 .tab-content.current {
     display: inherit;
