@@ -1621,8 +1621,6 @@ $(window).on("ready", function(event){
         $(this).addClass('current');
         $("#"+tab_id).addClass('current');
     });
-    
-    $('.tab-link').
 });
 
 
