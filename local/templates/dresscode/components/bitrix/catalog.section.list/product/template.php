@@ -15,15 +15,16 @@
 	}
     
 	?>
-
-    <div class="tabs_el">
-        <?
-        foreach($result as $key=>$nextElement){
-        ?>
-            <div class="tab-link" data-tab="tab-<?=$key?>"><span><?=$nextElement["NAME"]?></span></div>
-        <?
-        }
-        ?>
+    <div class="div_tabs">
+        <div class="tabs_el">
+            <?
+            foreach($result as $key=>$nextElement){
+            ?>
+                <div class="tab-link" data-tab="tab-<?=$key?>"><span><?=$nextElement["NAME"]?></span></div>
+            <?
+            }
+            ?>
+        </div>
     </div>
     <?
     foreach($result as $key=>$nextElement){

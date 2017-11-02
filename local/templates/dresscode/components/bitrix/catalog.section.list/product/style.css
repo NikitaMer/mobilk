@@ -164,17 +164,21 @@
     border: none !important;
     padding: 0px 24px !important;
 }
+.div_tabs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .tabs_el {
     padding: 0px;
-    list-style: none;
     text-align: center;
-    border-radius: 0 !important;
     display: flex;
-    flex-wrap: wrap;          
+    flex-wrap: wrap;
+    width: 1000px;          
 }
 .tab-link {
-    border: 1px solid #3c3c3c;
-    width: 15.6666%;
+    border: 1px solid #dddddd;
+    width: 160px;
     margin: 5px;
     padding: 7px 12px;
     cursor: pointer;
@@ -182,6 +186,9 @@
     display: flex;
     align-items: center;
     justify-content: center;            
+}
+.tab-link .gray{
+    opacity: 0.5;
 }
 .tab-link div{
     width: 100%;    
