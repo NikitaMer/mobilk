@@ -1613,14 +1613,24 @@ $(window).on("ready", function(event){
 	});
 
     $('.tab-link').click(function(){
-        var tab_id = $(this).attr('data-tab');
-
+        tab = $(this);
+        var tab_id = tab.attr('data-tab');
+        
         $('.tab-link').removeClass('current');
         $('.tab-content').removeClass('current');
  
-        $(this).addClass('current');
+        tab.addClass('current');
         $("#"+tab_id).addClass('current');
+        
+        tab.animate({ opacity: 0.5}, 500);
+        tab.animate({ opacity: 1}, 500);
+         
+        /*setTimeout(function() {
+            tab.children('span').removeClass('gray')
+        }, 500);*/
     });
+    $( '.tab-link' ).filter( ':first' ).addClass('current');
+    $("#"+$( '.tab-link' ).filter( ':first' ).attr('data-tab')).addClass('current');
 });
 
 
