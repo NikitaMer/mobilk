@@ -193,12 +193,6 @@
 .tab-link div{
     width: 100%;    
 }
-.tab-link.current{
-    border-color: #c00;    
-}
-.tab-link:hover {
-    border-color: #c00;
-}
 .tab-content {
     display: none;
     padding: 15px 0 !important;

@@ -1912,3 +1912,6 @@ input[name="BuyButton"]{
 	background: #eca712;
 	color: #fff;
 }
+.tab-link.current,.tab-link:hover{
+    border-color: #2a65d0;    
+}
