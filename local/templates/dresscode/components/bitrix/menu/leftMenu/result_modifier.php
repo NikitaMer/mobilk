@@ -65,7 +65,7 @@
 				if(!empty($arParams["PRODUCT_PRICE_CODE"])){
 					$dbPriceType = CCatalogGroup::GetList(
 				        array("SORT" => "ASC"),
-				        array("NAME" => $arParams["PRODUCT_PRICE_CODE"])
+				        array("XML_ID" => $arParams["PRODUCT_PRICE_CODE"])
 				    );
 					while ($arPriceType = $dbPriceType->Fetch()){
 						if($arPriceType["CAN_BUY"] == "Y"){
@@ -87,12 +87,12 @@
 							$prop_fields["HIGHLOAD"] = "N";
 							$property_enums = CIBlockPropertyEnum::GetList(Array("SORT" => "ASC", "DEF" => "DESC"), Array("IBLOCK_ID" => $SKU_INFO["IBLOCK_ID"], "CODE" => $prop_fields["CODE"]));
 							while($enum_fields = $property_enums->GetNext()){
-								$propValues[$enum_fields["VALUE"]] = array(
+								$propValues[$enum_fields["EXTERNAL_ID"]] = array(
 									"VALUE"  => $enum_fields["VALUE"],
 									"DISPLAY_VALUE"  => $enum_fields["VALUE"],
-									"SELECTED"  => "N",
-									"DISABLED"  => "N",
-									"HIGHLOAD" => "N",
+									"SELECTED"  => N,
+									"DISABLED"  => N,
+									"HIGHLOAD" => N,
 									"TYPE" => "L",
 								);
 							}
@@ -130,8 +130,8 @@
 									$propValues[$row_requests["UF_XML_ID"]] = array(
 										"VALUE" => $row_requests["UF_XML_ID"],
 										"DISPLAY_VALUE"  => $row_requests["UF_NAME"],
-										"SELECTED" => "N",
-										"DISABLED" => "N",
+										"SELECTED" => N,
+										"DISABLED" => N,
 										"TYPE" => "H",
 										"UF_XML_ID" => $row_requests["UF_XML_ID"],
 										"IMAGE" => $row_requests["UF_FILE"],
@@ -311,7 +311,7 @@
 												if($arOffer["PROPERTIES"][$ip]["VALUE"] == $checkValue){
 													$disabled = false; $selected = true;
 													foreach ($arPropClean as $ic => $arNextClean) {
-														if($arNextClean["HIGHLOAD"] == "Y" && $arOffer["PROPERTIES"][$arNextClean["PROPERTY"]]["VALUE"] != $arNextClean["VALUE"] || $arNextClean["HIGHLOAD"] != "Y" && $arOffer["PROPERTIES"][$arNextClean["PROPERTY"]]["VALUE"] != $arNextClean["VALUE"]){
+														if($arNextClean["HIGHLOAD"] == "Y" && $arOffer["PROPERTIES"][$arNextClean["PROPERTY"]]["VALUE"] != $arNextClean["VALUE"] || $arNextClean["HIGHLOAD"] != "Y" && $arOffer["PROPERTIES"][$arNextClean["PROPERTY"]]["VALUE_XML_ID"] != $arNextClean["VALUE"]){
 															if($ic == $ip){
 																break(2);
 															}
@@ -366,7 +366,7 @@
 											break(1);
 										}
 									}else{
-										if($arOffer["PROPERTIES"][$arNextClean["PROPERTY"]]["VALUE"] != $arNextClean["VALUE"]){
+										if($arOffer["PROPERTIES"][$arNextClean["PROPERTY"]]["VALUE_XML_ID"] != $arNextClean["VALUE"]){
 											$active = false;
 											break(1);
 										}

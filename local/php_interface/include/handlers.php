@@ -308,6 +308,9 @@ function changeMailOrder($orderID, &$eventName, &$arFields) {
         if ($arProps["CODE"] == "ZIP") {
           $arFields["ZIP"] = $arProps["VALUE"];   
         }
+        if ($arProps["CODE"] == "PASSPORT") {
+          $arFields["PASSPORT"] = $arProps["VALUE"];
+        }
         if ($arProps["CODE"] == "ADDRESS") {
           $arFields["ADDRESS"] = $arProps["VALUE"];
         }

@@ -54,9 +54,9 @@
 	display: none;
 	background: #232323;
 	min-width:180px;
-	z-index: 99;
 	left: -1px;
 	top: 30px;
+	z-index: 1;
 }
 
 #topMenu .sub li{

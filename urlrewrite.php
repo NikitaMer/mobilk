@@ -30,7 +30,7 @@ $arUrlRewrite = array(
 		"ID" => "bitrix:stssync.server",
 		"PATH" => "/bitrix/services/stssync/calendar/index.php",
 	),
-	array(                                     
+	array(
 		"CONDITION" => "#^/personal/order/#",
 		"RULE" => "",
 		"ID" => "bitrix:sale.personal.order",
@@ -58,6 +58,18 @@ $arUrlRewrite = array(
 		"CONDITION" => "#^/stores/#",
 		"RULE" => "",
 		"ID" => "bitrix:catalog.store",
+		"PATH" => "/about/stores/index.php",
+	),
+	array(
+		"CONDITION" => "#^/brands/#",
+		"RULE" => "",
+		"ID" => "bitrix:news",
+		"PATH" => "/brands/index.php",
+	),
+	array(
+		"CONDITION" => "#^/stores/#",
+		"RULE" => "",
+		"ID" => "bitrix:catalog.store",
 		"PATH" => "/stores/index.php",
 	),
 	array(
@@ -67,18 +79,6 @@ $arUrlRewrite = array(
 		"PATH" => "/survey/index.php",
 	),
 	array(
-		"CONDITION" => "#^/brands/#",
-		"RULE" => "",
-		"ID" => "bitrix:news",
-		"PATH" => "/brands/index.php",
-	),
-	array(
-		"CONDITION" => "#^/store/#",
-		"RULE" => "",
-		"ID" => "bitrix:catalog.store",
-		"PATH" => "/store/index.php",
-	),
-	array(                                       
 		"CONDITION" => "#^/stock/#",
 		"RULE" => "",
 		"ID" => "bitrix:news",

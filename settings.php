@@ -1,38 +1,38 @@
 <?
 
-	//íàñòðîéêè øàáëîíà
-	//øàïêà ñàéòà
-	$TEMPLATE_HEADER = "header6"; // âûáîð øàïêè 1-8
-	$TEMPLATE_HEADER_TYPE = "type1"; // êðóãëûå, êâàäðàòíûå êðàÿ (type1, type2)
-	$TEMPLATE_HEADER_COLOR = "theme"; // öâåò âåðõíåé èëè íèæíåé ïàíåëè øàïêè (default, black, theme)
-	$TEMPLATE_SUBHEADER_COLOR = "default"; // öâåò îñíîâíîé øàïêè  (default, black, theme)
+	//Ã­Ã Ã±Ã²Ã°Ã®Ã©ÃªÃ¨ Ã¸Ã Ã¡Ã«Ã®Ã­Ã 
+	//Ã¸Ã Ã¯ÃªÃ  Ã±Ã Ã©Ã²Ã 
+	$TEMPLATE_HEADER = "header2"; // Ã¢Ã»Ã¡Ã®Ã° Ã¸Ã Ã¯ÃªÃ¨ 1-8
+	$TEMPLATE_HEADER_TYPE = "type1"; // ÃªÃ°Ã³Ã£Ã«Ã»Ã¥, ÃªÃ¢Ã Ã¤Ã°Ã Ã²Ã­Ã»Ã¥ ÃªÃ°Ã Ã¿ (type1, type2)
+	$TEMPLATE_HEADER_COLOR = "default"; // Ã¶Ã¢Ã¥Ã² Ã¢Ã¥Ã°ÃµÃ­Ã¥Ã© Ã¨Ã«Ã¨ Ã­Ã¨Ã¦Ã­Ã¥Ã© Ã¯Ã Ã­Ã¥Ã«Ã¨ Ã¸Ã Ã¯ÃªÃ¨ (default, black, theme)
+	$TEMPLATE_SUBHEADER_COLOR = "default"; // Ã¶Ã¢Ã¥Ã² Ã®Ã±Ã­Ã®Ã¢Ã­Ã®Ã© Ã¸Ã Ã¯ÃªÃ¨  (default, black, theme)
 
-	//òåìà ñàéòà
-	$TEMPLATE_BACKGROUND_NAME = "white"; // öâåò ìåíþ (black, white)
-	$TEMPLATE_THEME_NAME = "violet"; // öâåòîâàÿ ãàììà ñàéòà (/themes/)
+	//Ã²Ã¥Ã¬Ã  Ã±Ã Ã©Ã²Ã 
+	$TEMPLATE_BACKGROUND_NAME = "white"; // Ã¶Ã¢Ã¥Ã² Ã¬Ã¥Ã­Ã¾ (black, white)
+	$TEMPLATE_THEME_NAME = "red"; // Ã¶Ã¢Ã¥Ã²Ã®Ã¢Ã Ã¿ Ã£Ã Ã¬Ã¬Ã  Ã±Ã Ã©Ã²Ã  (/themes/)
 
 	// /themes/
-	//arctic - ãîëóáîé
-	//beige - áåæåâûé
-	//blue - ñèíèé
-	//brown - êîðè÷íåâûé
-	//coral - êîðàëëîâûé (ñâåòëî-êðàñíûé)
-	//default - îðàíæåâûé
-	//green - çåëåíûé
-	//mint - ñàëàòîâûé
-	//ocean - áèðþçîâûé
-	//peach - ïåðñèêîâûé
-	//pink - ðîçîâûé
-	//raspberry - ìàëèíîâûé
-	//red - êðàñíûé
-	//ultramarine - òåìíî ñèíèé
-	//violet - ôèîëåòîâûé
+	//arctic - Ã£Ã®Ã«Ã³Ã¡Ã®Ã©
+	//beige - Ã¡Ã¥Ã¦Ã¥Ã¢Ã»Ã©
+	//blue - Ã±Ã¨Ã­Ã¨Ã©
+	//brown - ÃªÃ®Ã°Ã¨Ã·Ã­Ã¥Ã¢Ã»Ã©
+	//coral - ÃªÃ®Ã°Ã Ã«Ã«Ã®Ã¢Ã»Ã© (Ã±Ã¢Ã¥Ã²Ã«Ã®-ÃªÃ°Ã Ã±Ã­Ã»Ã©)
+	//default - Ã®Ã°Ã Ã­Ã¦Ã¥Ã¢Ã»Ã©
+	//green - Ã§Ã¥Ã«Ã¥Ã­Ã»Ã©
+	//mint - Ã±Ã Ã«Ã Ã²Ã®Ã¢Ã»Ã©
+	//ocean - Ã¡Ã¨Ã°Ã¾Ã§Ã®Ã¢Ã»Ã©
+	//peach - Ã¯Ã¥Ã°Ã±Ã¨ÃªÃ®Ã¢Ã»Ã©
+	//pink - Ã°Ã®Ã§Ã®Ã¢Ã»Ã©
+	//raspberry - Ã¬Ã Ã«Ã¨Ã­Ã®Ã¢Ã»Ã©
+	//red - ÃªÃ°Ã Ã±Ã­Ã»Ã©
+	//ultramarine - Ã²Ã¥Ã¬Ã­Ã® Ã±Ã¨Ã­Ã¨Ã©
+	//violet - Ã´Ã¨Ã®Ã«Ã¥Ã²Ã®Ã¢Ã»Ã©
 
-	//çàãîëîâêè è ïàíåëè ñàéòà
-	$TEMPLATE_PANELS_COLOR = "white"; // çàãîëîâêè è ïàíåëè ñàéòà (default, white)
+	//Ã§Ã Ã£Ã®Ã«Ã®Ã¢ÃªÃ¨ Ã¨ Ã¯Ã Ã­Ã¥Ã«Ã¨ Ã±Ã Ã©Ã²Ã 
+	$TEMPLATE_PANELS_COLOR = "default"; // Ã§Ã Ã£Ã®Ã«Ã®Ã¢ÃªÃ¨ Ã¨ Ã¯Ã Ã­Ã¥Ã«Ã¨ Ã±Ã Ã©Ã²Ã  (default, white)
 
-	//ïîäâàë - ôóòåð ñàéòà
-	$TEMPLATE_FOOTER_LINE_COLOR = "default"; // ïðèêðåïëÿþùèéñÿ áëîê âíèçó ýêðàíà (default, white, theme)
+	//Ã¯Ã®Ã¤Ã¢Ã Ã« - Ã´Ã³Ã²Ã¥Ã° Ã±Ã Ã©Ã²Ã 
+	$TEMPLATE_FOOTER_LINE_COLOR = "default"; // Ã¯Ã°Ã¨ÃªÃ°Ã¥Ã¯Ã«Ã¿Ã¾Ã¹Ã¨Ã©Ã±Ã¿ Ã¡Ã«Ã®Ãª Ã¢Ã­Ã¨Ã§Ã³ Ã½ÃªÃ°Ã Ã­Ã  (default, white, theme)
 	$TEMPLATE_FOOTER_VARIANT = "default";
 
 ?>

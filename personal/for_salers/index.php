@@ -33,7 +33,7 @@ $APPLICATION->SetTitle("Для продавцов");
 	);?>
 	
 	<?$APPLICATION->IncludeComponent("bitrix:iblock.element.add.form", "add_sale", array(
-	"COMPONENT_TEMPLATE" => ".default",
+	"COMPONENT_TEMPLATE" => "add_sale",
 		"IBLOCK_TYPE" => "for_sellers",
 		"IBLOCK_ID" => "22",
 		"STATUS_NEW" => "N",
@@ -48,7 +48,6 @@ $APPLICATION->SetTitle("Для продавцов");
 			1 => "128",
 			2 => "129",
 			3 => "NAME",
-			4 => "127",
 		),
 		"PROPERTY_CODES_REQUIRED" => array(
 			0 => "126",
